@@ -85,6 +85,51 @@
       color: red !important;
       font-weight: 600;
     }
+
+    /* Hamburger menu styles */
+    .hamburger-menu {
+      display: none;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+    }
+
+    .hamburger-menu div {
+      width: 100%;
+      height: 3px;
+      background-color: var(--primary);
+      transition: all 0.3s ease;
+    }
+
+    /* Dropdown menu styles */
+    .dropdown-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.95);
+      justify-content: center;
+      align-items: center;
+      z-index: 1001;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .dropdown-menu.show {
+      display: flex;
+    }
+
+    .dropdown-menu a {
+      margin: 1rem 0;
+      font-size: 1.5rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
     h1 {
       color: var(--primary);
       text-align: center;
@@ -107,6 +152,7 @@
       display: flex;
     }
     .popup {
+      position: relative;
       background-color: white;
       padding: 2rem;
       border-radius: 10px;
@@ -117,6 +163,28 @@
       max-height: 80vh;
       overflow-y: auto;
       box-sizing: border-box;
+    }
+
+    .popup-close-x {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: #888;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+      z-index: 10;
+    }
+
+    .popup-close-x:hover {
+      color: #111;
+      background-color: rgba(0, 0, 0, 0.06);
     }
 
     /* Ensure location headings in the popup match theme color */
@@ -215,6 +283,9 @@
       .nav {
         display: none;
       }
+      .hamburger-menu {
+        display: flex;
+      }
       .logo-container {
         position: absolute;
         top: 60px;
@@ -266,10 +337,28 @@
       <a href="index.html">Home</a>
       <a href="services.html">Our Services</a>
       <a href="WHealth.html">Women's Health Clinic</a>
+      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
       <a href="#" id="navPapImmunLink">Pap Test & Immunization</a>
       <a href="contact-us.html">Contact Us!</a>
       <a href="privacy-policy.html">Privacy Policy</a>
     </nav>
+    <!-- Hamburger menu icon for mobile -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <!-- Dropdown menu for mobile -->
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="index.html">Home</a>
+      <a href="services.html">Our Services</a>
+      <a href="WHealth.html">Women's Health Clinic</a>
+      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
+      <a href="#" id="navPapImmunLinkMobile">Pap Test & Immunization</a>
+      <a href="contact-us.html">Contact Us!</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
   </header>
 
   <!-- Logo Section -->
@@ -506,6 +595,15 @@
             window.open(RICHMOND_NEW, '_blank');
           }
         };
+      }
+
+      // Hamburger menu functionality
+      const hamburgerMenu = document.getElementById('hamburgerMenu');
+      const dropdownMenu = document.getElementById('dropdownMenu');
+      if (hamburgerMenu && dropdownMenu) {
+        hamburgerMenu.addEventListener('click', () => {
+          dropdownMenu.classList.toggle('show');
+        });
       }
     });
   </script>

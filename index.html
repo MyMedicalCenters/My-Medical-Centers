@@ -212,6 +212,7 @@
     }
 
     .popup {
+      position: relative;
       background-color: white;
       padding: 2rem;
       border-radius: 10px;
@@ -219,6 +220,28 @@
       max-width: 400px;
       width: 90%;
       text-align: center;
+    }
+
+    .popup-close-x {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: #888;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+      z-index: 10;
+    }
+
+    .popup-close-x:hover {
+      color: #111;
+      background-color: rgba(0, 0, 0, 0.06);
     }
 
     /* Dr. Imran popup (physician announcement) — compact sizing */
@@ -506,6 +529,7 @@
       <a href="index.html">Home</a>
       <a href="services.html">Our Services</a>
       <a href="WHealth.html" id="navProfessionalButton">Women's Health Clinic</a>
+      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
       <a href="#" id="navPapImmunLink">Pap Test & Immunization</a>
       <a href="contact-us.html">Contact Us!</a>
       <a href="privacy-policy.html">Privacy Policy</a>
@@ -523,6 +547,7 @@
       <a href="index.html">Home</a>
       <a href="services.html">Our Services</a>
       <a href="WHealth.html">Women's Health Clinic</a>
+      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
       <a href="#" id="navPapImmunLinkMobile">Pap Test & Immunization</a>
       <a href="contact-us.html">Contact Us!</a>
       <a href="privacy-policy.html">Privacy Policy</a>
@@ -557,7 +582,7 @@
   <!-- Dr. Olayemi Sadiku Popup Overlay -->
   <div class="popup-overlay" id="sadikuPopup">
     <div class="popup" style="max-width: 480px; border-top: 5px solid var(--primary); text-align: left; padding: 1.8rem; position: relative;">
-      <button id="closeSadikuX" aria-label="Close" style="position: absolute; top: 12px; right: 15px; background: none; border: none; font-size: 1.6rem; color: #888; cursor: pointer; line-height: 1; padding: 4px 8px; border-radius: 4px;">&times;</button>
+      <button class="popup-close-x" id="closeSadikuX" aria-label="Close">&times;</button>
       
       <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
         <div style="background: rgba(0, 119, 190, 0.1); color: var(--primary); padding: 0.6rem; border-radius: 50%; font-size: 1.6rem; display: flex; align-items: center; justify-content: center; min-width: 48px; min-height: 48px;">
@@ -598,6 +623,7 @@
 
   <div class="popup-overlay" id="popupOverlay">
     <div class="popup">
+      <button class="popup-close-x" aria-label="Close">&times;</button>
       <h2>Welcome to My Medical Centers</h2>
       <p>Please select a service:</p>
       <button class="button professionals" id="popupProfessionalButton">Women's Health Clinic</button>
@@ -609,6 +635,7 @@
   <!-- Secondary Popup: Pap Test or Immunization Request -->
   <div class="popup-overlay" id="secondaryPopup">
     <div class="popup">
+      <button class="popup-close-x" aria-label="Close">&times;</button>
       <h2>Select Request</h2>
       <p>Please choose:</p>
       <button class="button professionals" id="papTestBtn">Pap Test</button>
@@ -620,6 +647,7 @@
   <!-- Announcement Popup -->
   <div class="popup-overlay" id="announcementPopup">
     <div class="popup">
+      <button class="popup-close-x" aria-label="Close">&times;</button>
       <h2 style="color: var(--accent); font-weight: bold;">Important!</h2>
       <p style="font-weight: bold; font-size: 1.2rem;">We are accepting walk-in all day (from 9 am to 5 pm on weekdays, and Saturdays (from 9am to 1pm)</p>
       <button class="button clients" id="closeAnnouncementBtn">OK</button>
@@ -690,6 +718,17 @@
     const navPapImmunLink = document.getElementById('navPapImmunLink');
     const navPapImmunLinkMobile = document.getElementById('navPapImmunLinkMobile');
 
+    // Global click listener for closing popups with the top-right X button
+    document.addEventListener('click', function(e) {
+      const closeBtn = e.target.closest('.popup-close-x');
+      if (closeBtn && closeBtn.id !== 'closeSadikuX') {
+        const overlay = closeBtn.closest('.popup-overlay');
+        if (overlay) {
+          overlay.classList.remove('show');
+        }
+      }
+    });
+
     function createPapImmunPopupsIfNeeded() {
       // Ensure main overlay exists
       let overlay = document.getElementById('popupOverlay');
@@ -699,6 +738,7 @@
         overlay.id = 'popupOverlay';
         overlay.innerHTML = `
         <div class="popup">
+          <button class="popup-close-x" aria-label="Close">&times;</button>
           <h2>Welcome to My Medical Centers</h2>
           <p>Please select a service:</p>
           <button class="button professionals" id="popupProfessionalButton">Women's Health Clinic</button>
@@ -716,6 +756,7 @@
         secondary.id = 'secondaryPopup';
         secondary.innerHTML = `
         <div class="popup">
+          <button class="popup-close-x" aria-label="Close">&times;</button>
           <h2>Select Request</h2>
           <p>Please choose:</p>
           <button class="button professionals" id="papTestBtn">Pap Test</button>

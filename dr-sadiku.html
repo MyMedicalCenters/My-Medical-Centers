@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Psychiatry Clinic - Dr. Olayemi Sadiku | My Medical Centers</title>
+  <meta name="description" content="My Medical Centers 3 – Orléans is accepting psychiatry referrals with Dr. Olayemi Sadiku for adults ages 18–65. Short waiting times." />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
     
@@ -66,8 +67,8 @@
     .nav a {
       color: var(--primary);
       text-decoration: none;
-      margin-left: 1.1rem;
-      font-size: 0.95rem;
+      margin-left: 1.2rem;
+      font-size: 0.97rem;
       transition: color 0.3s ease;
       font-weight: 400;
       line-height: 1;
@@ -103,6 +104,10 @@
 
     .logo-container:hover {
       transform: scale(1.1);
+    }
+
+    .logo-container:active {
+      transform: scale(1.2);
     }
 
     .book-appointment-btn {
@@ -167,8 +172,8 @@
     }
 
     .dropdown-menu a {
-      margin: 0.9rem 0;
-      font-size: 1.35rem;
+      margin: 1rem 0;
+      font-size: 1.4rem;
       color: var(--primary);
       text-decoration: none;
       font-weight: 500;
@@ -176,21 +181,30 @@
 
     /* Main Container */
     .main-content {
-      padding: 2.5rem 2rem;
-      max-width: 940px;
-      margin: 110px auto 3rem auto;
+      padding: 2.5rem 1.5rem 2rem 1.5rem;
+      max-width: 900px;
+      margin: 120px auto 3rem auto;
       background: var(--card-bg);
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
       box-sizing: border-box;
     }
 
-    /* Hero Banner */
-    .hero-banner {
+    /* Hero & Header Title */
+    h1 {
+      color: var(--primary);
       text-align: center;
-      padding-bottom: 2rem;
-      border-bottom: 2px solid #eef2f6;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .badge-group {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
     }
 
     .badge-accepting {
@@ -204,29 +218,45 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       box-shadow: 0 4px 12px rgba(40, 167, 69, 0.25);
-      margin-bottom: 1rem;
     }
 
-    h1 {
-      color: var(--primary);
-      margin: 0.2rem 0 0.5rem 0;
-      font-size: 2.5rem;
+    .badge-service {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      font-size: 0.88rem;
       font-weight: 700;
-      letter-spacing: -0.5px;
+      padding: 0.4rem 1.1rem;
+      border-radius: 20px;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(0, 119, 190, 0.25);
     }
 
-    .subtitle {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      font-weight: 500;
-      margin: 0;
+    /* Team / Doctor Photo (whealth style circle pic) */
+    .team-photos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 1.5rem 0 2rem 0;
     }
 
-    /* Highlights Grid */
+    .photo-placeholder {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      object-fit: cover;
+      border: 4px solid var(--primary);
+    }
+
+    /* Key Highlights Grid */
     .highlights-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.2rem;
       margin: 2rem 0;
     }
 
@@ -234,7 +264,7 @@
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 1.25rem;
+      padding: 1.2rem 1rem;
       text-align: center;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
@@ -247,20 +277,20 @@
 
     .highlight-icon {
       font-size: 2rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
     .highlight-title {
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--text-muted);
       font-weight: 600;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.2rem;
     }
 
     .highlight-value {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--primary);
       margin: 0;
@@ -270,28 +300,53 @@
     h2 {
       color: var(--primary);
       font-size: 1.6rem;
-      margin-top: 2.2rem;
+      margin-top: 2.5rem;
       margin-bottom: 1rem;
-      font-weight: 700;
+      font-weight: 600;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .bio-box {
+    /* Bio Section & Card */
+    .bio-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .bio {
       background: var(--secondary);
-      border-left: 5px solid var(--primary);
+      border-left: 4px solid var(--primary);
       padding: 1.4rem 1.6rem;
-      border-radius: 10px;
-      margin-bottom: 2rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
       font-size: 1.05rem;
       line-height: 1.7;
     }
 
-    /* Services List Grid */
+    .bio p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .bio p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Conditions List & Grid */
+    ul.conditions-list {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    ul.conditions-list li {
+      margin-bottom: 0.5rem;
+    }
+
     .services-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1rem;
       margin-bottom: 2rem;
     }
@@ -315,21 +370,40 @@
       font-size: 1.2rem;
     }
 
-    /* Referral Box */
-    .referral-box {
-      background: linear-gradient(135deg, #ffffff, #f0f8ff);
-      border: 2px solid rgba(0, 119, 190, 0.15);
-      border-radius: 14px;
-      padding: 1.75rem;
-      margin: 2.5rem 0;
-      box-shadow: 0 6px 18px rgba(0, 119, 190, 0.05);
+    /* Availability Card */
+    .availability-card {
+      background: linear-gradient(135deg, #0b2f69, #0d4c9a);
+      color: white;
+      padding: 1.4rem 1.6rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      box-shadow: 0 6px 18px rgba(11, 47, 105, 0.15);
     }
 
-    .referral-box h3 {
-      color: var(--primary);
+    .availability-card h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.3rem;
+      color: #ffffff;
+    }
+
+    .availability-card p {
+      margin: 0.3rem 0;
+      font-size: 1.05rem;
+      opacity: 0.95;
+    }
+
+    /* Referral Section & Box */
+    .referral-section {
+      margin-top: 2.5rem;
+      background: #fbfcfe;
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 1.6rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    }
+
+    .referral-section h2 {
       margin-top: 0;
-      margin-bottom: 0.75rem;
-      font-size: 1.35rem;
     }
 
     .fax-banner {
@@ -351,32 +425,48 @@
 
     /* Contact Box */
     .contact-box {
-      background: #1e293b;
-      color: #f8fafc;
-      padding: 1.8rem;
-      border-radius: 12px;
+      background: var(--secondary);
+      border-left: 4px solid var(--accent);
+      padding: 1.4rem 1.6rem;
+      border-radius: 8px;
       margin-top: 2.5rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
     }
 
     .contact-box h3 {
-      color: #38bdf8;
+      color: var(--primary);
       margin-top: 0;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
       font-size: 1.3rem;
     }
 
     .contact-box p {
-      margin: 0.5rem 0;
-      font-size: 1.02rem;
+      margin: 0.4rem 0;
     }
 
     .contact-box a {
-      color: #38bdf8;
+      color: var(--primary);
+      font-weight: 600;
       text-decoration: none;
     }
 
     .contact-box a:hover {
       text-decoration: underline;
+    }
+
+    /* Collaboration Banner */
+    .collab-banner {
+      text-align: center;
+      padding: 1.5rem 1.2rem;
+      margin-top: 2rem;
+      background: var(--secondary);
+      border-radius: 10px;
+      border: 1px solid rgba(0, 119, 190, 0.15);
+      color: var(--primary-dark);
+      font-style: italic;
+      font-size: 1.1rem;
+      font-weight: 500;
     }
 
     /* Action Buttons */
@@ -425,14 +515,18 @@
       .nav { display: none; }
       .hamburger-menu { display: flex; }
       .book-appointment-btn { display: none !important; }
-      .logo-container { scale: 0; }
+      .logo-container {
+        top: 60px;
+        left: 8px;
+        width: 80px;
+      }
       .main-content {
-        margin-top: 80px;
+        margin: 120px 0 0 0;
         padding: 1.5rem 1rem;
         border-radius: 0;
       }
-      h1 { font-size: 1.9rem; }
-      .subtitle { font-size: 1.1rem; }
+      h1 { font-size: 2rem; }
+      .photo-placeholder { width: 140px; height: 140px; }
       .action-buttons { flex-direction: column; }
       .btn-cta { text-align: center; justify-content: center; width: 100%; box-sizing: border-box; }
     }
@@ -460,6 +554,7 @@
     }
 
     .popup {
+      position: relative;
       background-color: white;
       padding: 2rem;
       border-radius: 10px;
@@ -467,6 +562,28 @@
       max-width: 400px;
       width: 90%;
       text-align: center;
+    }
+
+    .popup-close-x {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: #888;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+      z-index: 10;
+    }
+
+    .popup-close-x:hover {
+      color: #111;
+      background-color: rgba(0, 0, 0, 0.06);
     }
 
     .button {
@@ -501,6 +618,7 @@
       <a href="index.html">Home</a>
       <a href="services.html">Our Services</a>
       <a href="WHealth.html">Women's Health Clinic</a>
+      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
       <a href="#" id="navPapImmunLink">Pap Test & Immunization</a>
       <a href="contact-us.html">Contact Us!</a>
       <a href="privacy-policy.html">Privacy Policy</a>
@@ -519,6 +637,7 @@
       <a href="index.html">Home</a>
       <a href="services.html">Our Services</a>
       <a href="WHealth.html">Women's Health Clinic</a>
+      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
       <a href="#" id="navPapImmunLinkMobile">Pap Test & Immunization</a>
       <a href="contact-us.html">Contact Us!</a>
       <a href="privacy-policy.html">Privacy Policy</a>
@@ -526,15 +645,22 @@
     </div>
   </header>
 
-  <!-- Main Content Card -->
+  <!-- Main Content Card (WHealth Style) -->
   <main class="main-content">
     
-    <!-- Hero Banner -->
-    <section class="hero-banner">
-      <div class="badge-accepting">⚡ NOW ACCEPTING NEW REFERRALS</div>
-      <h1>Dr. Olayemi Sadiku</h1>
-      <p class="subtitle">Psychiatrist</p>
-    </section>
+    <!-- Header Title -->
+    <h1>Psychiatry Clinic<br><span style="font-size:1.3rem;font-weight:400;display:block;margin-top:0.4rem;color:var(--text-muted);">with Dr. Olayemi Sadiku</span></h1>
+
+    <!-- Circular Profile Photo -->
+    <div class="team-photos">
+      <img src="dr-sadiku.png" alt="Dr. Olayemi Sadiku" class="photo-placeholder">
+    </div>
+
+    <!-- Badges -->
+    <div class="badge-group">
+      <span class="badge-accepting">⚡ NOW ACCEPTING NEW REFERRALS</span>
+      <span class="badge-service">NEW PSYCHIATRY SERVICE</span>
+    </div>
 
     <!-- Key Highlights Grid -->
     <div class="highlights-grid">
@@ -544,13 +670,18 @@
         <div class="highlight-value">Psychiatry</div>
       </div>
       <div class="highlight-card">
+        <div class="highlight-icon">👥</div>
+        <div class="highlight-title">Patient Group</div>
+        <div class="highlight-value">Adults (18–65)</div>
+      </div>
+      <div class="highlight-card">
         <div class="highlight-icon">⏱️</div>
-        <div class="highlight-title">Wait Time</div>
-        <div class="highlight-value">Very Short Wait</div>
+        <div class="highlight-title">Availability</div>
+        <div class="highlight-value">Starting Sept 2026 (Short Wait)</div>
       </div>
       <div class="highlight-card">
         <div class="highlight-icon">📍</div>
-        <div class="highlight-title">Practice Location</div>
+        <div class="highlight-title">Location</div>
         <div class="highlight-value">Orléans Location</div>
       </div>
       <div class="highlight-card">
@@ -561,39 +692,66 @@
     </div>
 
     <!-- About Dr. Sadiku -->
-    <h2>👨‍⚕️ About Dr. Olayemi Sadiku</h2>
-    <div class="bio-box">
-      <strong>Dr. Olayemi Sadiku</strong> is a dedicated Psychiatrist providing comprehensive psychiatric evaluations, evidence-based consultations, and ongoing mental health management. Practicing out of our <strong>Orléans Location</strong>, Dr. Sadiku is committed to compassionate, individualized, patient-centered care. With a focus on timely intervention, Dr. Sadiku is currently accepting new physician referrals with <strong>very short waiting times</strong> to ensure patients receive prompt psychiatric assessment and support.
+    <div class="bio-section">
+      <h2>👨‍⚕️ About Dr. Olayemi Sadiku</h2>
+      <div class="bio">
+        <p><strong>Dr. Olayemi Sadiku</strong> is an experienced physician with specialty training in Family Medicine and Psychiatry, and subspecialty training in Forensic Psychiatry. He gained his medical degree from the University of Ilorin, Nigeria and a master’s degree in Public Health from the London School of Hygiene and Tropical Medicine, England. He completed residency training in England in Family Medicine, Psychiatry, and Forensic Psychiatry. He holds the Fellowship of the Royal College of Physicians and Surgeons of Canada (FRCPC) and Certification with the College of Family Physicians of Canada (CCFP).</p>
+        <p>Dr. Sadiku's practice encompasses clinical psychiatric assessment and treatment, forensic psychiatric consultation, and family medicine, with his broad background enabling him to bring an integrated lens to complex cases. He has interest in independent psychiatric evaluations, other independent medical examinations (IMEs), forensic psychiatric evaluations, and expert opinion and testimony in legal proceedings. Drawing on his subspecialty training, he provides thorough, evidence-based assessments for legal, insurance, and administrative purposes.</p>
+      </div>
     </div>
 
-    <!-- Areas of Practice & Services -->
-    <h2>📋 Clinical Areas of Focus</h2>
+    <!-- What Conditions We See -->
+    <h2>📋 Clinical Areas & Conditions We See</h2>
+    <p style="font-size:1.05rem; margin-bottom:1.2rem; color:var(--text-muted);">
+      Dr. Sadiku accepts physician referrals for adult patients (ages 18–65) presenting with the following psychiatric conditions and clinical needs:
+    </p>
+
     <div class="services-list">
       <div class="service-item">
+        <span class="check-icon">✓</span> Adults Ages 18–65
+      </div>
+      <div class="service-item">
+        <span class="check-icon">✓</span> Anxiety Disorders
+      </div>
+      <div class="service-item">
+        <span class="check-icon">✓</span> Mood Disorders (Depression, Bipolar)
+      </div>
+      <div class="service-item">
+        <span class="check-icon">✓</span> Psychotic Disorders
+      </div>
+      <div class="service-item">
+        <span class="check-icon">✓</span> Trauma-Related Disorders
+      </div>
+      <div class="service-item">
+        <span class="check-icon">✓</span> Eating Disorders
+      </div>
+      <div class="service-item">
+        <span class="check-icon">✓</span> Personality Disorders
+      </div>
+      <div class="service-item">
         <span class="check-icon">✓</span> Comprehensive Psychiatric Assessments
-      </div>
-      <div class="service-item">
-        <span class="check-icon">✓</span> Mood Disorders (Depression, Bipolar Disorder)
-      </div>
-      <div class="service-item">
-        <span class="check-icon">✓</span> Anxiety & Stress-Related Disorders
       </div>
       <div class="service-item">
         <span class="check-icon">✓</span> Psychopharmacology & Medication Optimization
       </div>
       <div class="service-item">
-        <span class="check-icon">✓</span> Adult Mental Health Consultations
-      </div>
-      <div class="service-item">
-        <span class="check-icon">✓</span> Collaborative Care & Follow-Up Management
+        <span class="check-icon">✓</span> Independent Medical Examinations (IMEs) & Forensic Consultations
       </div>
     </div>
 
-    <!-- Referral Information -->
-    <div class="referral-box">
-      <h3>📄 Referral Instructions for Physicians</h3>
+    <!-- Availability Banner -->
+    <div class="availability-card">
+      <h3>🗓️ Service Availability & Referrals</h3>
+      <p><strong>Practice Start Date:</strong> Starting September 2026</p>
+      <p><strong>Waiting Time:</strong> Short waiting times for new patient consultations.</p>
+      <p>We welcome referrals from family physicians and other eligible healthcare providers.</p>
+    </div>
+
+    <!-- Referral Information (WHealth Style) -->
+    <div class="referral-section" id="referralSection">
+      <h2>📄 Referral Instructions for Physicians</h2>
       <p style="font-size:1.05rem; margin-bottom:1rem;">
-        Physicians and health professionals may send patient referrals directly to Dr. Olayemi Sadiku via Fax.
+        Physicians and eligible healthcare providers may send patient referrals directly to Dr. Olayemi Sadiku via Fax.
       </p>
       
       <div class="fax-banner">
@@ -601,21 +759,27 @@
       </div>
 
       <p style="margin-bottom:0.5rem; font-weight:600;">How to Submit a Referral:</p>
-      <ul style="margin-top:0.3rem; padding-left:1.4rem;">
-        <li>Fax referral notes, relevant patient history, and medical records to <strong>343-224-0424</strong>.</li>
+      <ol style="margin-top:0.3rem; padding-left:1.4rem; font-size:1.05rem; line-height:1.8;">
+        <li>Fax referral notes, relevant patient history, and medical records directly to <strong>343-224-0424</strong>.</li>
         <li>Specify <strong>"Dr. Olayemi Sadiku - Psychiatry Referral"</strong> on the cover page.</li>
+        <li>Please send psychiatry referrals directly to the Orléans clinic fax number above.</li>
         <li>Our referrals coordinator will contact the patient promptly to schedule their initial consultation.</li>
-      </ul>
+      </ol>
     </div>
 
     <!-- Contact & Location Box -->
     <div class="contact-box">
       <h3>📍 Practice Location & Contact Details</h3>
-      <p><strong>Location:</strong> Orléans Location – My Medical Centers 3</p>
+      <p><strong>Practice Location:</strong> My Medical Centers 3 – Orléans</p>
       <p><strong>Address:</strong> 6497 Jeanne-d'Arc Blvd. N, Orléans, ON K1C 2R1</p>
       <p><strong>Phone:</strong> <a href="tel:6137042524">613-704-2524</a></p>
       <p><strong>Direct Fax for Referrals:</strong> <a href="tel:3432240424">343-224-0424</a></p>
       <p><strong>Email:</strong> <a href="mailto:orleans@mymedicalcenters.ca">orleans@mymedicalcenters.ca</a></p>
+    </div>
+
+    <!-- Collaboration Statement -->
+    <div class="collab-banner">
+      "We look forward to collaborating with you in providing accessible psychiatric care to our community."
     </div>
 
     <!-- Action Buttons -->
@@ -640,6 +804,17 @@
 
   <!-- Pap Test & Immunization Popup Module -->
   <script>
+    // Global close listener for popups via X button
+    document.addEventListener('click', function(e) {
+      const closeBtn = e.target.closest('.popup-close-x');
+      if (closeBtn) {
+        const overlay = closeBtn.closest('.popup-overlay');
+        if (overlay) {
+          overlay.classList.remove('show');
+        }
+      }
+    });
+
     (function() {
       function createSecondaryPopup() {
         if (document.getElementById('secondaryPopup')) return;
@@ -648,6 +823,7 @@
         secondary.id = 'secondaryPopup';
         secondary.innerHTML = `
           <div class="popup">
+            <button class="popup-close-x" aria-label="Close">&times;</button>
             <h2>Select Request</h2>
             <p>Please choose:</p>
             <button class="button professionals" id="papTestBtn">Pap Test</button>

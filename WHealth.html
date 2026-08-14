@@ -282,6 +282,7 @@
     }
 
     .popup {
+      position: relative;
       background-color: white;
       padding: 2rem;
       border-radius: 10px;
@@ -289,6 +290,28 @@
       max-width: 400px;
       width: 90%;
       text-align: center;
+    }
+
+    .popup-close-x {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: #888;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+      z-index: 10;
+    }
+
+    .popup-close-x:hover {
+      color: #111;
+      background-color: rgba(0, 0, 0, 0.06);
     }
     /* Button styles copied from index.html to keep popup consistent */
     .button {
@@ -331,6 +354,7 @@
       <a href="index.html">Home</a>
       <a href="services.html">Our Services</a>
       <a href="WHealth.html">Women's Health Clinic</a>
+      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
       <a href="#" id="navPapImmunLink">Pap Test & Immunization</a>
       <a href="contact-us.html">Contact Us!</a>
       <a href="privacy-policy.html">Privacy Policy</a>
@@ -348,6 +372,7 @@
       <a href="index.html">Home</a>
       <a href="services.html">Our Services</a>
       <a href="WHealth.html">Women's Health Clinic</a>
+      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
       <a href="#" id="navPapImmunLinkMobile">Pap Test & Immunization</a>
       <a href="contact-us.html">Contact Us!</a>
       <a href="privacy-policy.html">Privacy Policy</a>
@@ -419,6 +444,17 @@
     }
   </script>
   <script>
+    // Global close listener for popups via X button
+    document.addEventListener('click', function(e) {
+      const closeBtn = e.target.closest('.popup-close-x');
+      if (closeBtn) {
+        const overlay = closeBtn.closest('.popup-overlay');
+        if (overlay) {
+          overlay.classList.remove('show');
+        }
+      }
+    });
+
     // Pap Test & Immunization popup injection for this page
     (function() {
       function createSecondaryPopup() {
@@ -428,6 +464,7 @@
         secondary.id = 'secondaryPopup';
         secondary.innerHTML = `
           <div class="popup">
+            <button class="popup-close-x" aria-label="Close">&times;</button>
             <h2>Select Request</h2>
             <p>Please choose:</p>
             <button class="button professionals" id="papTestBtn">Pap Test</button>
