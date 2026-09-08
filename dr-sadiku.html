@@ -93,6 +93,48 @@
       gap: 0.5rem;
     }
 
+    .dr-bio-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-left: 5px solid #7c3aed;
+      border-radius: var(--radius-lg);
+      padding: 2.25rem 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .dr-bio-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .dr-bio-icon {
+      font-size: 2rem;
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      background: #f5f3ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .dr-bio-body p {
+      color: var(--text-secondary);
+      font-size: 1.02rem;
+      line-height: 1.8;
+      margin-bottom: 1.1rem;
+    }
+
+    .dr-bio-body p:last-child {
+      margin-bottom: 0;
+    }
+
     @media (max-width: 900px) {
       .psychiatry-hero-card {
         flex-direction: column;
@@ -102,6 +144,9 @@
       .dr-portrait-frame {
         width: 150px;
         height: 150px;
+      }
+      .dr-bio-card {
+        padding: 1.75rem 1.5rem;
       }
     }
   </style>
@@ -203,6 +248,29 @@
           How to Refer &rarr;
         </a>
       </div>
+
+      <!-- Physician Biography -->
+      <section class="dr-bio-card">
+        <div class="dr-bio-header">
+          <div class="dr-bio-icon">👨‍⚕️</div>
+          <div>
+            <h2 style="font-size:1.55rem; font-weight:800; color:var(--primary-dark); margin-bottom:0.25rem;">
+              About Dr. Olayemi Sadiku
+            </h2>
+            <p style="color:var(--text-muted); font-size:0.95rem; font-weight:600; margin:0;">
+              FRCPC, CCFP, MPH &bull; Consultant Psychiatrist
+            </p>
+          </div>
+        </div>
+        <div class="dr-bio-body">
+          <p>
+            Dr. Olayemi Sadiku is an experienced physician with specialty training in Family Medicine and Psychiatry, and subspecialty training in Forensic Psychiatry. He gained his medical degree from the University of Ilorin, Nigeria and a master’s degree in Public Health from the London School of Hygiene and Tropical Medicine, England. He completed residency training in England in Family Medicine, Psychiatry, and Forensic Psychiatry. He holds the Fellowship of the Royal College of Physicians and Surgeons of Canada (FRCPC) and Certification with the College of Family Physicians of Canada (CCFP).
+          </p>
+          <p>
+            Dr. Sadiku's practice encompasses clinical psychiatric assessment and treatment, forensic psychiatric consultation, and family medicine, with his broad background enabling him to bring an integrated lens to complex cases. He has interest in independent psychiatric evaluations, other independent medical examinations (IMEs), forensic psychiatric evaluations, and expert opinion and testimony in legal proceedings. Drawing on his subspecialty training, he provides thorough, evidence-based assessments for legal, insurance, and administrative purposes.
+          </p>
+        </div>
+      </section>
 
       <!-- OceanMD eReferral Step-by-Step Instructions -->
       <section class="referral-ocean-card" id="oceanReferralSection">
