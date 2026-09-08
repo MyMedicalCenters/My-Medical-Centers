@@ -3,637 +3,602 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Appointment - Patient Registration & Update</title>
+  <title>Book Appointment - My Medical Centers</title>
+  <meta name="description" content="Book an appointment or register as a new patient at My Medical Centers: Carling, Richmond, or Orléans locations." />
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="icon" href="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" type="image/png">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-    :root {
-      --primary: #0077be;
-      --secondary: #f0f8ff;
-      --accent: #ff6b6b;
-      --text: #333;
-    }
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      color: var(--text);
-      overflow-x: hidden;
-    }
-    .main-content {
-      padding: 2rem;
-      margin-top: 20px;
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #333;
-    }
-    /*logo at the top left */
-    .logo-container {
-      position: absolute;
-      top: 100px;
-      left: 30px;
-      z-index: 1000;
-      width: 100px;
-      scale: 125%;
-      transition: transform 0.3s ease-in-out;
-      cursor: pointer;
-    }
-    .logo-container img {
-      width: 100%;
-      height: auto;
-    }
-    .logo-container:hover {
-      transform: scale(1.1);
-    }
-    .logo-container:active {
-      transform: scale(1.2);
-    }
-    .header {
-      background-color: white;
-      color: var(--primary);
-      padding: 1rem;
-      position: fixed;
-      width: 100%;
-      z-index: 1001;
+    .location-tabs-nav {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      max-width: 100%;
-      box-sizing: border-box;
-      overflow: hidden;
-    }
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--primary);
-    }
-    .nav {
-      display: flex;
-      align-items: center;
-    }
-    .nav a {
-      color: var(--primary);
-      text-decoration: none;
-      margin-left: 1rem;
-      transition: color 0.3s ease;
-      font-weight: 400;
-    }
-    .nav a:hover {
-      color: var(--accent);
-    }
-    .nav a.waitlist-link {
-      color: red !important;
-      font-weight: 600;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid var(--border-light);
+      padding-bottom: 0.5rem;
+      overflow-x: auto;
     }
 
-    /* Hamburger menu styles */
-    .hamburger-menu {
+    .loc-tab-btn {
+      padding: 0.75rem 1.6rem;
+      border-radius: var(--radius-pill);
+      font-size: 1.05rem;
+      font-weight: 700;
+      border: 1px solid var(--border-light);
+      background: #ffffff;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .loc-tab-btn:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .loc-tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+
+    .clinic-pane {
       display: none;
-      cursor: pointer;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 21px;
+      animation: fadeIn 0.35s ease;
     }
 
-    .hamburger-menu div {
-      width: 100%;
-      height: 3px;
-      background-color: var(--primary);
-      transition: all 0.3s ease;
+    .clinic-pane.active {
+      display: block;
     }
 
-    /* Dropdown menu styles */
-    .dropdown-menu {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.95);
-      justify-content: center;
-      align-items: center;
-      z-index: 1001;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .dropdown-menu.show {
-      display: flex;
-    }
-
-    .dropdown-menu a {
-      margin: 1rem 0;
-      font-size: 1.5rem;
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    h1 {
-      color: var(--primary);
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2.5rem;
-    }
-    .popup-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: center;
-      z-index: 1002;
-    }
-    .popup-overlay.show {
-      display: flex;
-    }
-    .popup {
-      position: relative;
-      background-color: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      width: 520px;
-      max-width: 92%;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-sizing: border-box;
-    }
-
-    .popup-close-x {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      background: transparent;
-      border: none;
-      font-size: 1.6rem;
-      font-weight: 300;
-      color: #888;
-      cursor: pointer;
-      line-height: 1;
-      padding: 4px 8px;
-      border-radius: 4px;
-      transition: color 0.2s ease, background-color 0.2s ease;
-      z-index: 10;
-    }
-
-    .popup-close-x:hover {
-      color: #111;
-      background-color: rgba(0, 0, 0, 0.06);
-    }
-
-    /* Ensure location headings in the popup match theme color */
-    .popup h4 {
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-      font-size: 1.15rem;
-      font-weight: 600;
-    }
-    .popup h2 {
-      margin-top: 0;
-      color: var(--primary);
-    }
-    .popup p {
-      margin-bottom: 1.5rem;
-    }
-    .popup .end-button {
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      color: white;
-      background-color: var(--primary);
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      margin: 0.5rem;
-    }
-    /* Actions container for location buttons */
-    .popup .location-actions {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-      align-items: center;
-      flex-wrap: nowrap;
-    }
-    .popup .location-actions .end-button {
-      min-width: 140px;
-      flex: 1 1 auto;
-    }
-    .popup .end-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-    /* Button styles copied from index.html to keep popup consistent */
-    .button {
-      padding: 0.8rem 2rem;
-      border-radius: 50px;
-      font-size: 1rem;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin: 1rem 0;
-      width: 100%;
-      transition: background-color 0.3s ease;
-    }
-
-    .button.professionals {
-      background-color: var(--primary, #0077be);
-    }
-
-    .button.professionals:hover {
-      background-color: #005c91;
-    }
-
-    .button.clients {
-      background-color: #28a745; /* fallback green */
-    }
-
-    .button.clients:hover {
-      background-color: #218838;
-    }
-    .patient-buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 4rem;
-      margin-top: 2rem;
-      height: 60vh;
-    }
-    .patient-buttons button {
-      padding: 1rem 2rem;
-      font-size: 1.5rem;
-      color: white;
-      background-color: var(--primary);
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .patient-buttons button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-    @media (max-width: 768px) {
-      .nav {
-        display: none;
-      }
-      .hamburger-menu {
-        display: flex;
-      }
-      .logo-container {
-        position: absolute;
-        top: 60px;
-        left: 8px;
-        z-index: 1000;
-        width: 100px;
-        scale: 0%;
-        transition: transform 0.3s ease-in-out;
-        cursor: pointer;
-      }
-      .patient-buttons {
-        flex-direction: column;
-        gap: 1rem;
-        height: auto;
-      }
-      h1 {
-        font-size: 2rem;
-      }
-    }
-    @media (max-width: 480px) {
-      .popup {
-        width: 96%;
-        padding: 1rem;
-        max-height: 86vh;
-      }
-      .popup h2 {
-        font-size: 1.25rem;
-      }
-      .popup p {
-        font-size: 0.95rem;
-      }
-      .popup .location-actions {
-        gap: 0.5rem;
-      }
-      .popup .location-actions .end-button {
-        flex: 0 0 48%;
-        padding: 0.75rem 0.5rem;
-        font-size: 1rem;
-        border-radius: 8px;
-      }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="logo">My Medical Centers</div>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="services.html">Our Services</a>
-      <a href="WHealth.html">Women's Health Clinic</a>
-      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
-      <a href="#" id="navPapImmunLink">Pap Test & Immunization</a>
-      <a href="contact-us.html">Contact Us!</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
-    </nav>
-    <!-- Hamburger menu icon for mobile -->
-    <div class="hamburger-menu" id="hamburgerMenu">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+  <!-- Global 2026 Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-wrapper">
+        <img src="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" alt="MMC Logo" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-title">My Medical Centers</span>
+          <span class="brand-subtitle">Your Health is Our Priority</span>
+        </div>
+      </a>
 
-    <!-- Dropdown menu for mobile -->
-    <div class="dropdown-menu" id="dropdownMenu">
-      <a href="index.html">Home</a>
-      <a href="services.html">Our Services</a>
-      <a href="WHealth.html">Women's Health Clinic</a>
-      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
-      <a href="#" id="navPapImmunLinkMobile">Pap Test & Immunization</a>
-      <a href="contact-us.html">Contact Us!</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Our Services</a>
+        <a href="WHealth.html" class="nav-link">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap & Immunization</a>
+        <a href="contact-us.html" class="nav-link">Contact</a>
+        <a href="appointment.html" class="nav-cta-btn active">Book Appointment</a>
+      </nav>
+
+      <button class="hamburger-toggle" id="hamburgerToggle" aria-label="Toggle navigation menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </header>
 
-  <!-- Logo Section -->
-  <div class="logo-container">
-    <img src="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" alt="Medical Center Logo" id="mainLogo">
-  </div>
-
-  <!-- Location Selection Popup (added) -->
-  <div class="popup-overlay" id="locationPopupOverlay">
-    <div class="popup">
-      <h2>Select Location</h2>
-      <p>Please choose the location you are attending:</p>
-      <div style="text-align:left; margin: 1rem 0;">
-        <h4 style="margin:0 0 0.5rem 0;">Carling</h4>
-        <p style="margin:0 0 0.25rem 0;"><strong>Physicians Accepting New Patients:</strong></p>
-        <ul style="margin-top:0.25rem; margin-bottom:0.5rem;">
-          <li>Dr Shegun Momodu</li>
-          <li>Dr Ini Ife</li>
-        </ul>
-
-        <p style="margin-top:0.35rem; margin-bottom:0.25rem;"><strong>Physicians not accepting new patients:</strong></p>
-        <ul style="margin-top:0.25rem; margin-bottom:0.5rem;">
-          <li>Dr I.Ata</li>
-        </ul>
-
-        <p style="margin-top:0.35rem; margin-bottom:0.25rem;"><strong>Specialists:</strong></p>
-        <ul style="margin-top:0.25rem; margin-bottom:0.75rem;">
-          <li>Dr Keiko Chan (Focused Practice in Gynaecology)</li>
-          <li>Dr Sawini Fernando (Focused Practice in Gynaecology)</li>
-        </ul>
-
-        <hr style="border:0; border-top:1px solid #e9edf1; margin:0.75rem 0;">
-
-        <h4 style="margin:0 0 0.5rem 0;">Richmond</h4>
-        <p style="margin:0 0 0.25rem 0;"><strong>Physicians Accepting New Patients:</strong></p>
-        <ul style="margin-top:0.25rem; margin-bottom:0.5rem;">
-          <li>Dr Sydney Chinagorom</li>
-          <li>Dr Nsikak Usoroh</li>
-          <li>Dr Alex Carrington</li>
-        </ul>
-
-        <p style="margin-top:0.35rem; margin-bottom:0.25rem;"><strong>Walk-in Physicians:</strong></p>
-        <ul style="margin-top:0.25rem; margin-bottom:0;">
-          <li>Dr Chesda Bun</li>
-          <li>Dr Ishola Foluso Hafeezat</li>
-        </ul>
-        <hr style="border:0; border-top:1px solid #e9edf1; margin:0.75rem 0;">
-        <h4 style="margin:0 0 0.5rem 0;">Orléans</h4>
-        <p style="margin:0 0 0.25rem 0;"><strong>Physicians Accepting New Patients:</strong></p>
-        <ul style="margin-top:0.25rem; margin-bottom:0.5rem;">
-          <li>Dr Iqbal Kashif</li>
-          <li>Dr Imran Ajaib Malik</li>
-          <li>Dr Hasnain Raza Sadiq</li>
-        </ul>
-        <p style="margin-top:0.35rem; margin-bottom:0.25rem;"><strong>Specialists:</strong></p>
-        <ul style="margin-top:0.25rem; margin-bottom:0.5rem;">
-          <li>Dr Olayemi Sadiku (Psychiatrist - Accepting New Referrals - Very Short Wait Time)</li>
-        </ul>
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-content">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Our Services</a>
+        <a href="WHealth.html" class="nav-link">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap Test & Immunization</a>
+        <a href="contact-us.html" class="nav-link">Contact Us</a>
+        <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment Now</a>
       </div>
-      <div class="location-actions">
-        <button class="end-button" id="carlingBtn">Carling</button>
-        <button class="end-button" id="richmondBtn">Richmond</button>
-        <button class="end-button" id="orleansBtn">Orléans</button>
+      <div class="mobile-drawer-footer">
+        <p><strong>My Medical Centers</strong><br>Main Line: 613-704-2524</p>
       </div>
     </div>
   </div>
 
-  <!-- Health Card Type Popup -->
-  <div class="popup-overlay" id="healthCardPopupOverlay">
-    <div class="popup">
-      <h2>Health Card Type</h2>
-      <p>Do you have a provincial health card (OHIP, RAMQ, AHCIP, MSP, MSI, etc...) or a non-provincial health coverage (UHIP, Brown card (RPCD), Refugee (IFHP), etc...)?</p>
-      <button class="end-button" id="provincialBtn">Provincial Health Coverage</button>
-      <button class="end-button" id="nonProvincialBtn">Non-Provincial Health Coverage</button>
-    </div>
-  </div>
+  <!-- Main Content -->
+  <main class="page-main-wrapper">
+    <div class="content-container">
+      
+      <!-- Page Hero -->
+      <section class="page-hero">
+        <span class="page-hero-badge">📅 Online Booking & Rostering</span>
+        <h1 class="page-hero-title">Book an Appointment</h1>
+        <p class="page-hero-subtitle">
+          Please select your preferred clinic location below to view physicians accepting new patients, walk-in availability, and access our secure Ocean appointment portal.
+        </p>
+      </section>
 
-  <!-- Main Content (hidden until popup is closed) -->
-  <main class="main-content" id="mainContent" style="display:none;">
-    <h1>Book Appointment Now!</h1>
-    <div class="patient-buttons">
-      <button id="existingPatientBtn">Existing Patient</button>
-      <button id="newPatientBtn">New Patient Registration</button>
-    </div>
-    
-    <div class="locations-container" style="max-width:900px; margin:2rem auto 0 auto; background:#fff; padding:1.25rem 1.5rem; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.06);">
-      <div class="location-block carling">
-        <h3 style="color:var(--primary); margin:0 0 0.5rem 0;">Carling Location</h3>
-        <p><strong>Physicians Accepting New Patients:</strong></p>
-        <p>Dr Shegun Momodu</p>
-        <p>Dr Ini Ife</p>
-        <p style="margin-top:0.6rem;"><strong>Walk-in Physicians:</strong></p>
-        <p>Dr Chesda Bun</p>
-        <p>Dr Siyong Lee</p>
-        <p style="margin-top:0.6rem;"><strong>Specialists:</strong></p>
-        <p>Dr Keiko Chan (Focused Practice in Gynaecology)</p>
-        <p>Dr Sawini Fernando (Focused Practice in Gynaecology)</p>
+      <!-- Insurance Notice Banner -->
+      <div style="background:#fffbeb; border:1px solid #fde68a; border-left:5px solid #f59e0b; border-radius:var(--radius-md); padding:1.25rem 1.5rem; margin-bottom:2.5rem; color:#92400e;">
+        <p style="font-weight:700; font-size:1.02rem; margin-bottom:0.25rem;">⚠️ Insurance Reminder: UHIP / COWAN Insurance</p>
+        <p style="font-size:0.92rem; line-height:1.5; margin:0;">
+          Please note that our medical centers <strong>do not accept UHIP or COWAN Insurance</strong>. Patients with UHIP, COWAN, or non-provincial coverage are required to pay directly and submit receipts to their insurer for reimbursement. Valid provincial health cards (OHIP, RAMQ, etc.) are accepted.
+        </p>
       </div>
 
-      <hr style="border:0; border-top:2px solid #eef2f6; margin:1rem 0;">
-
-      <div class="location-block richmond">
-        <h3 style="color:var(--primary); margin:0 0 0.5rem 0;">Richmond Location</h3>
-        <p><strong>Physicians Accepting New Patients:</strong></p>
-        <p>Dr Sydney Chinagorom</p>
-        <p>Dr Nsikak Usoroh</p>
-        <p>Dr Alex Carrington</p>
-        <p style="margin-top:0.6rem;"><strong>Walk-in Physicians:</strong></p>
-        <p>Dr Chesda Bun</p>
-        <p>Dr Siyong Lee</p>
+      <!-- Location Selector Tabs -->
+      <div class="location-tabs-nav" role="tablist">
+        <button class="loc-tab-btn active" onclick="switchClinicTab('carling', this)" role="tab">
+          <span>📍</span> Carling Location
+        </button>
+        <button class="loc-tab-btn" onclick="switchClinicTab('richmond', this)" role="tab">
+          <span>📍</span> Richmond Location
+        </button>
+        <button class="loc-tab-btn" onclick="switchClinicTab('orleans', this)" role="tab">
+          <span>📍</span> Orléans Location
+        </button>
       </div>
-      <hr style="border:0; border-top:2px solid #eef2f6; margin:1rem 0;">
 
-      <div class="location-block orleans">
-        <h3 style="color:var(--primary); margin:0 0 0.5rem 0;">Orléans Location</h3>
-        <p><strong>Physicians Accepting New Patients:</strong></p>
-        <p style="margin-top:0.25rem; margin-bottom:0.5rem;">Dr Iqbal Kashif</p>
-        <p style="margin-top:0.25rem; margin-bottom:0.5rem;">Dr Imran Ajaib Malik</p>
-        <p style="margin-top:0.25rem; margin-bottom:0.5rem;">Dr Hasnain Raza Sadiq</p>
-        <p style="margin-top:0.6rem;"><strong>Specialists:</strong></p>
-        <p style="margin-top:0.25rem; margin-bottom:0.5rem;">Dr Olayemi Sadiku (Psychiatrist - Accepting New Referrals - Very short wait time - Fax: 343-224-0424)</p>
+      <!-- CARLING PANE -->
+      <div class="clinic-pane active" id="pane-carling">
+        <div class="clinic-details-card" style="margin-bottom: 2rem;">
+          <div class="detail-item">
+            <span class="detail-label">Location</span>
+            <span class="detail-value">Carling Clinic (Suite 507)</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Address</span>
+            <span class="detail-value">1081 Carling Ave, Ottawa, ON</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Services</span>
+            <span class="detail-value">Family Medicine, Women's Health, Dermatology</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Dedicated Page</span>
+            <span class="detail-value"><a href="carling.html">Explore Carling Clinic &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="clinic-action-buttons-bar" style="margin-bottom: 2.5rem;">
+          <button class="clinic-btn clinic-btn-primary" onclick="triggerClinicBooking('carling')">
+            <span>Book Online (Ocean Portal)</span>
+            <span>&rarr;</span>
+          </button>
+          <a href="WHealth.html" class="clinic-btn clinic-btn-accent-pink">
+            <span>Women's Health Clinic Consult</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+
+        <div class="roster-section">
+          <div class="roster-heading-wrapper">
+            <h3 class="roster-category-title">Carling Physicians</h3>
+          </div>
+          <div class="roster-grid">
+            <div class="doctor-card">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon">SM</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Shegun Momodu</h3>
+                  <p class="role">Family Physician</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">General family practice, chronic care, preventive health.</p>
+              <div class="doctor-card-footer">
+                <span class="status-badge accepting">Accepting Patients</span>
+                <button class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;" onclick="triggerClinicBooking('carling')">Book</button>
+              </div>
+            </div>
+
+            <div class="doctor-card">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon">II</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Ini Ife</h3>
+                  <p class="role">Family Physician</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">Primary health services, routine screenings, pediatrics.</p>
+              <div class="doctor-card-footer">
+                <span class="status-badge accepting">Accepting Patients</span>
+                <button class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;" onclick="triggerClinicBooking('carling')">Book</button>
+              </div>
+            </div>
+
+            <div class="doctor-card" style="border-top: 4px solid #0284c7;">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon" style="background:#e0f2fe; color:#0284c7;">DC</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Dennis Cheung</h3>
+                  <p class="role">Dermatologist</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">Integumentary medicine, skin lesions, lumps &amp; bumps, minor surgeries, Botox.</p>
+              <div class="doctor-card-footer">
+                <a href="dr-cheung.html" style="color:var(--primary); font-weight:700; font-size:0.82rem; text-decoration:none;">View Clinic &rarr;</a>
+                <button class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;" onclick="triggerClinicBooking('carling')">Inquire</button>
+              </div>
+            </div>
+
+            <div class="doctor-card">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon" style="background:#ffe4e6; color:#e11d48;">KC</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Keiko Chan</h3>
+                  <p class="role">Focused Practice in Gynaecology</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">Comprehensive gynecological care &amp; specialized procedures.</p>
+              <div class="doctor-card-footer">
+                <span class="status-badge specialist">Specialist</span>
+                <a href="WHealth.html" class="clinic-btn clinic-btn-accent-pink" style="padding:0.4rem 0.9rem; font-size:0.85rem;">Clinic Info</a>
+              </div>
+            </div>
+
+            <div class="doctor-card">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon" style="background:#ffe4e6; color:#e11d48;">SF</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Sawini Fernando</h3>
+                  <p class="role">Focused Practice in Gynaecology</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">Women's reproductive health and clinical consultations.</p>
+              <div class="doctor-card-footer">
+                <span class="status-badge specialist">Specialist</span>
+                <a href="WHealth.html" class="clinic-btn clinic-btn-accent-pink" style="padding:0.4rem 0.9rem; font-size:0.85rem;">Clinic Info</a>
+              </div>
+            </div>
+
+            <div class="doctor-card">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon" style="background:#f1f5f9; color:#64748b;">IA</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. I. Ata</h3>
+                  <p class="role">Family Physician</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">Caring for established rostered patients.</p>
+              <div class="doctor-card-footer">
+                <span class="status-badge not-accepting">Not Accepting</span>
+                <button class="clinic-btn clinic-btn-outline" style="padding:0.4rem 0.9rem; font-size:0.85rem; color:var(--text-primary)!important;" onclick="triggerClinicBooking('carling')">Rostered</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- RICHMOND PANE -->
+      <div class="clinic-pane" id="pane-richmond">
+        <div class="clinic-details-card" style="margin-bottom: 2rem;">
+          <div class="detail-item">
+            <span class="detail-label">Location</span>
+            <span class="detail-value">Richmond Clinic (Superstore 2nd Level)</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Address</span>
+            <span class="detail-value">190 Richmond Rd, Ottawa, ON</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Services</span>
+            <span class="detail-value">Family Medicine, Walk-In Care</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Dedicated Page</span>
+            <span class="detail-value"><a href="richmond.html">Explore Richmond Clinic &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="clinic-action-buttons-bar" style="margin-bottom: 2.5rem;">
+          <button class="clinic-btn clinic-btn-primary" onclick="triggerClinicBooking('richmond')">
+            <span>Existing Patient Booking</span>
+            <span>&rarr;</span>
+          </button>
+          <a href="https://ocean.cognisantmd.com/online-booking/341f072e-411a-4b7a-9966-1d16966af184" target="_blank" rel="noopener" class="clinic-btn clinic-btn-outline" style="background:#0ea5e9; color:#fff!important;">
+            <span>New Patient Registration</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+
+        <div class="roster-section">
+          <div class="roster-heading-wrapper">
+            <h3 class="roster-category-title">Richmond Physicians</h3>
+          </div>
+          <div class="roster-grid">
+            <div class="doctor-card">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon">SC</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Sydney Chinagorom</h3>
+                  <p class="role">Family Physician</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">Accepting new individuals and families for primary medical care.</p>
+              <div class="doctor-card-footer">
+                <span class="status-badge accepting">Accepting Patients</span>
+                <button class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;" onclick="triggerClinicBooking('richmond')">Register</button>
+              </div>
+            </div>
+
+            <div class="doctor-card">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon">NU</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Nsikak Usoroh</h3>
+                  <p class="role">Family Physician</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">Providing continuous healthcare and chronic illness management.</p>
+              <div class="doctor-card-footer">
+                <span class="status-badge accepting">Accepting Patients</span>
+                <button class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;" onclick="triggerClinicBooking('richmond')">Register</button>
+              </div>
+            </div>
+
+            <div class="doctor-card">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon">AC</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Alex Carrington</h3>
+                  <p class="role">Family Physician</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">Evidence-based preventive medicine for children and adults.</p>
+              <div class="doctor-card-footer">
+                <span class="status-badge accepting">Accepting Patients</span>
+                <button class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;" onclick="triggerClinicBooking('richmond')">Register</button>
+              </div>
+            </div>
+
+            <div class="doctor-card">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon" style="background:#e0f2fe; color:#0284c7;">VG</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Vijia George</h3>
+                  <p class="role">Family Physician</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">Accepting new patients for primary medical care and routine examinations.</p>
+              <div class="doctor-card-footer">
+                <span class="status-badge accepting">Accepting Patients</span>
+                <button class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;" onclick="triggerClinicBooking('richmond')">Register</button>
+              </div>
+            </div>
+
+            <div class="doctor-card">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon">IH</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Ishola Foluso Hafeezat</h3>
+                  <p class="role">Walk-In Physician</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">Same-day consultations for acute concerns and urgent care.</p>
+              <div class="doctor-card-footer">
+                <span class="status-badge walk-in">Walk-In</span>
+                <button class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;" onclick="triggerClinicBooking('richmond')">Check In</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORLÉANS PANE -->
+      <div class="clinic-pane" id="pane-orleans">
+        <div class="clinic-details-card" style="margin-bottom: 2rem;">
+          <div class="detail-item">
+            <span class="detail-label">Location</span>
+            <span class="detail-value">Orléans Clinic</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Address</span>
+            <span class="detail-value">6497 Jeanne-d'Arc Blvd N. (between shoppers drug mart and dollarama), Orléans, ON</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Services</span>
+            <span class="detail-value">Family Medicine, Walk-In, Dermatology, Adult Psychiatry</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Dedicated Page</span>
+            <span class="detail-value"><a href="orleans.html">Explore Orléans Clinic &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="clinic-action-buttons-bar" style="margin-bottom: 2.5rem;">
+          <button class="clinic-btn clinic-btn-primary" onclick="triggerClinicBooking('orleans')">
+            <span>Family Medicine Booking</span>
+            <span>&rarr;</span>
+          </button>
+          <a href="dr-sadiku.html" class="clinic-btn clinic-btn-accent-purple">
+            <span>Psychiatric Clinic Referrals (Dr. Sadiku)</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+
+        <div class="roster-section">
+          <div class="roster-heading-wrapper">
+            <h3 class="roster-category-title">Orléans Physicians</h3>
+          </div>
+          <div class="roster-grid">
+            <div class="doctor-card">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon">IK</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Iqbal Kashif</h3>
+                  <p class="role">Family Physician</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">Primary care physician accepting new patient enrollments.</p>
+              <div class="doctor-card-footer">
+                <span class="status-badge accepting">Accepting Patients</span>
+                <button class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;" onclick="triggerClinicBooking('orleans')">Register</button>
+              </div>
+            </div>
+
+            <div class="doctor-card">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon">HS</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Hasnain Raza Sadiq</h3>
+                  <p class="role">Family Physician</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">Welcoming new patients across all age groups.</p>
+              <div class="doctor-card-footer">
+                <span class="status-badge accepting">Accepting Patients</span>
+                <button class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;" onclick="triggerClinicBooking('orleans')">Register</button>
+              </div>
+            </div>
+
+            <div class="doctor-card">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon" style="background:#eff6ff; color:#2563eb;">IY</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Ijang Yunga</h3>
+                  <p class="role">Walk-In Clinic Physician</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">Same-day walk-in consults and acute medical care.</p>
+              <div class="doctor-card-footer">
+                <span class="status-badge walk-in">Walk-In</span>
+                <button class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;" onclick="triggerClinicBooking('orleans')">Check In</button>
+              </div>
+            </div>
+
+            <div class="doctor-card" style="border-top: 4px solid #0284c7;">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon" style="background:#e0f2fe; color:#0284c7;">DC</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Dennis Cheung</h3>
+                  <p class="role">Dermatologist</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">Integumentary medicine, skin lesions, lumps &amp; bumps, minor surgeries, Botox.</p>
+              <div class="doctor-card-footer">
+                <a href="dr-cheung.html" style="color:var(--primary); font-weight:700; font-size:0.82rem; text-decoration:none;">View Clinic &rarr;</a>
+                <button class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;" onclick="triggerClinicBooking('orleans')">Inquire</button>
+              </div>
+            </div>
+
+            <div class="doctor-card" style="border-top: 4px solid var(--accent-purple);">
+              <div class="doctor-card-header">
+                <div class="doctor-avatar-icon" style="background:#ede9fe; color:#7c3aed;">OS</div>
+                <div class="doctor-info-text">
+                  <h3>Dr. Olayemi Sadiku</h3>
+                  <p class="role">Psychiatrist (Ages 18–65)</p>
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:0.92rem;">⚡ Short wait times for new referrals. Fax: 343-224-0424.</p>
+              <div class="doctor-card-footer">
+                <span class="status-badge accepting">Accepting Referrals</span>
+                <a href="dr-sadiku.html" class="clinic-btn clinic-btn-accent-purple" style="padding:0.4rem 0.9rem; font-size:0.85rem;">Referral Form</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 
+  <!-- Global 2026 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-locations-bar">
+        <div class="footer-loc-box">
+          <h5>Carling Location</h5>
+          <p>1081 Carling Ave, Suite 507, Ottawa ON</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2430</p>
+          <a href="carling.html">View Clinic & Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Richmond Location</h5>
+          <p>190 Richmond Rd (Superstore 2nd Level)</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2636</p>
+          <a href="richmond.html">View Clinic & Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Orléans Location</h5>
+          <p>6497 Jeanne-d'Arc Blvd N. (between shoppers drug mart and dollarama), Orléans ON</p>
+          <p>Tel: 613-704-2524 | Fax: 343-224-0424</p>
+          <a href="orleans.html">View Clinic & Doctors &rarr;</a>
+        </div>
+      </div>
+
+      <div class="footer-emergency-note">
+        ⚠️ <strong>Medical Emergency:</strong> If you are experiencing a life-threatening medical emergency, please call <strong>911</strong> immediately or visit your nearest hospital emergency room.
+      </div>
+
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <h3>My Medical Centers</h3>
+          <p>Modern primary care, walk-in services, women's health, and psychiatry across three accessible locations in Ottawa.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Clinics</h4>
+          <ul class="footer-nav-list">
+            <li><a href="carling.html">Carling Location</a></li>
+            <li><a href="richmond.html">Richmond Location</a></li>
+            <li><a href="orleans.html">Orléans Location</a></li>
+            <li><a href="appointment.html">Book Appointment</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Specialized Care</h4>
+          <ul class="footer-nav-list">
+            <li><a href="WHealth.html">Women's Health Clinic</a></li>
+            <li><a href="dr-sadiku.html">Psychiatric Clinic</a></li>
+            <li><a href="dr-cheung.html">Dermatology Clinic</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Pap Test Screening</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Immunization Intake</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul class="footer-nav-list">
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="for-professionals.html">For Healthcare Pros</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 My Medical Centers. All rights reserved.</p>
+        <p>Providing quality healthcare across the Ottawa region.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
   <script>
-    // Booking URLs
-    const RICHMOND_EXISTING = 'https://ocean.cognisantmd.com/online-booking/fc6b34ea-8362-46ec-a106-660f8c1c5a79';
-    const RICHMOND_NEW = 'https://ocean.cognisantmd.com/online-booking/341f072e-411a-4b7a-9966-1d16966af184';
-    const CARLING_BOOKING = 'https://ocean.cognisantmd.com/online-booking/a7eb5850-834a-4bab-8e1d-11701aa8790e';
-    const ORLEANS_BOOKING = 'https://ocean.cognisantmd.com/online-booking/2d67e44f-69a8-4c88-a00e-6f8f70944ffe';
-    const ORLEANS_EXISTING = 'https://ocean.cognisantmd.com/online-booking/80f54306-a63f-405e-af2c-decf0faf7408';
-    const RICHMOND_NONPROV_REDIRECT = 'https://ocean.cognisantmd.com/intake/patients.html?linkRef=341f072e-411a-4b7a-9966-1d16966af184#/online-booking';
+    function switchClinicTab(locationKey, btn) {
+      document.querySelectorAll('.loc-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.clinic-pane').forEach(p => p.classList.remove('active'));
+      
+      btn.classList.add('active');
+      const targetPane = document.getElementById('pane-' + locationKey);
+      if (targetPane) targetPane.classList.add('active');
+    }
 
-    let selectedLocation = null; // 'carling' or 'richmond'
-
-    // Show location -> health-card popup sequence and animate patient buttons
-    window.addEventListener('DOMContentLoaded', function() {
-      var locationPopup = document.getElementById('locationPopupOverlay');
-      var healthCardPopup = document.getElementById('healthCardPopupOverlay');
-      var mainContent = document.getElementById('mainContent');
-      var carlingBtn = document.getElementById('carlingBtn');
-      var richmondBtn = document.getElementById('richmondBtn');
-      var orleansBtn = document.getElementById('orleansBtn');
-      var provincialBtn = document.getElementById('provincialBtn');
-      var nonProvincialBtn = document.getElementById('nonProvincialBtn');
-      var existingPatientBtn = document.getElementById('existingPatientBtn');
-      var newPatientBtn = document.getElementById('newPatientBtn');
-      var waitlistLink = document.querySelector('.waitlist-link');
-
-      // Show the location selection first
-      if (locationPopup) locationPopup.classList.add('show');
-
-      if (carlingBtn) {
-        carlingBtn.onclick = function() {
-          selectedLocation = 'carling';
-          if (locationPopup) locationPopup.classList.remove('show');
-          if (healthCardPopup) healthCardPopup.classList.add('show');
-        };
-      }
-
-      if (richmondBtn) {
-        richmondBtn.onclick = function() {
-          selectedLocation = 'richmond';
-          if (locationPopup) locationPopup.classList.remove('show');
-          if (healthCardPopup) healthCardPopup.classList.add('show');
-        };
-      }
-
-      if (orleansBtn) {
-        orleansBtn.onclick = function() {
-          selectedLocation = 'orleans';
-          if (locationPopup) locationPopup.classList.remove('show');
-          if (healthCardPopup) healthCardPopup.classList.add('show');
-        };
-      }
-
-      if (provincialBtn) {
-        provincialBtn.onclick = function() {
-          if (healthCardPopup) healthCardPopup.classList.remove('show');
-          if (mainContent) mainContent.style.display = '';
-          if (waitlistLink) waitlistLink.style.display = 'none';
-        };
-      }
-
-      if (nonProvincialBtn) {
-        nonProvincialBtn.onclick = function() {
-          if (selectedLocation === 'carling') {
-            window.location.href = CARLING_BOOKING;
-          } else if (selectedLocation === 'orleans') {
-            window.location.href = ORLEANS_BOOKING;
-          } else {
-            window.location.href = RICHMOND_NONPROV_REDIRECT;
-          }
-        };
-      }
-
-      // Patient buttons: animate and open links depending on selectedLocation
-      let scale = 1;
-      let growing = true;
-      function animateButtons() {
-        if (growing) {
-          scale += 0.005;
-          if (scale >= 1.2) growing = false;
-        } else {
-          scale -= 0.005;
-          if (scale <= 1) growing = true;
-        }
-        if (existingPatientBtn) existingPatientBtn.style.transform = `scale(${scale})`;
-        if (newPatientBtn) newPatientBtn.style.transform = `scale(${scale})`;
-        requestAnimationFrame(animateButtons);
-      }
-      animateButtons();
-
-      if (existingPatientBtn) {
-        existingPatientBtn.onclick = function() {
-          if (selectedLocation === 'carling') {
-            window.open(CARLING_BOOKING, '_blank');
-          } else if (selectedLocation === 'orleans') {
-            window.open(ORLEANS_EXISTING, '_blank');
-          } else {
-            window.open(RICHMOND_EXISTING, '_blank');
-          }
-        };
-      }
-
-      if (newPatientBtn) {
-        newPatientBtn.onclick = function() {
-          if (selectedLocation === 'carling') {
-            window.open(CARLING_BOOKING, '_blank');
-          } else if (selectedLocation === 'orleans') {
-            window.open(ORLEANS_BOOKING, '_blank');
-          } else {
-            window.open(RICHMOND_NEW, '_blank');
-          }
-        };
-      }
-
-      // Hamburger menu functionality
-      const hamburgerMenu = document.getElementById('hamburgerMenu');
-      const dropdownMenu = document.getElementById('dropdownMenu');
-      if (hamburgerMenu && dropdownMenu) {
-        hamburgerMenu.addEventListener('click', () => {
-          dropdownMenu.classList.toggle('show');
-        });
+    // Check URL parameters for ?location=
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const loc = params.get('location');
+      if (loc && ['carling', 'richmond', 'orleans'].includes(loc.toLowerCase())) {
+        const targetBtn = Array.from(document.querySelectorAll('.loc-tab-btn')).find(b => b.textContent.toLowerCase().includes(loc.toLowerCase()));
+        if (targetBtn) switchClinicTab(loc.toLowerCase(), targetBtn);
       }
     });
-  </script>
-  <script>
-    // Pap Test & Immunization popup injection for this page
-    (function() {
-      function createSecondaryPopup() {
-        if (document.getElementById('secondaryPopup')) return;
-        const secondary = document.createElement('div');
-        secondary.className = 'popup-overlay';
-        secondary.id = 'secondaryPopup';
-        secondary.innerHTML = `
-          <div class="popup">
-            <h2>Select Request</h2>
-            <p>Please choose:</p>
-            <button class="button professionals" id="papTestBtn">Pap Test</button>
-            <button class="button clients" id="immunBtn">Immunization Request</button>
-            <button class="button" id="backToMainBtn" style="background:#e0e0e0;color:#111;margin-top:0.5rem;">Back</button>
-          </div>`;
-        document.body.appendChild(secondary);
-        document.getElementById('papTestBtn').addEventListener('click', () => window.location.href='https://tally.so/r/jakO8a');
-        document.getElementById('immunBtn').addEventListener('click', () => window.location.href='https://tally.so/r/Xx2K6g');
-        document.getElementById('backToMainBtn').addEventListener('click', () => document.getElementById('secondaryPopup').classList.remove('show'));
-      }
-
-      const navLink = document.getElementById('navPapImmunLink');
-      const navLinkMobile = document.getElementById('navPapImmunLinkMobile');
-      if (navLink) navLink.addEventListener('click', (e) => { e.preventDefault(); createSecondaryPopup(); document.getElementById('secondaryPopup').classList.add('show'); });
-      if (navLinkMobile) navLinkMobile.addEventListener('click', (e) => { e.preventDefault(); createSecondaryPopup(); document.getElementById('secondaryPopup').classList.add('show'); var dm = document.getElementById('dropdownMenu'); if (dm) dm.classList.remove('show'); });
-    })();
   </script>
 </body>
 </html>

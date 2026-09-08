@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dermatology &amp; Special Procedures - Dr. Dennis Cheung | My Medical Centers</title>
+  <meta name="description" content="Specialized dermatological procedures, minor skin surgery, lumps & bumps, gynecological procedures, male sexual health, and Botox injections with Dr. Dennis Cheung (FCFP, FAAFP) at My Medical Centers in Ottawa." />
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="icon" href="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" type="image/png">
+  <style>
+    .procedures-hero-card {
+      background: linear-gradient(135deg, #072b4a 0%, #0284c7 100%);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem 3rem;
+      color: #ffffff;
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .procedures-hero-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .dr-portrait-frame {
+      width: 200px;
+      height: 200px;
+      border-radius: var(--radius-pill);
+      object-fit: cover;
+      border: 4px solid rgba(56, 189, 248, 0.6);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      flex-shrink: 0;
+      background: #1e293b;
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .highlight-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(0, 119, 190, 0.3);
+    }
+
+    .highlight-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .highlight-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .highlight-value {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .bio-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-left: 5px solid var(--primary);
+      border-radius: var(--radius-md);
+      padding: 2rem 2.25rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 3rem;
+      line-height: 1.75;
+    }
+
+    .bio-card h2 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .bio-card p {
+      color: var(--text-secondary);
+      font-size: 1.02rem;
+      margin-bottom: 0;
+    }
+
+    .procedures-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .procedure-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .procedure-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: rgba(0, 119, 190, 0.25);
+    }
+
+    .procedure-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .procedure-card-icon {
+      font-size: 1.8rem;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .procedure-card-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1.3;
+    }
+
+    .procedure-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .procedure-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      background: #f8fafc;
+      border: 1px solid #f1f5f9;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.45;
+    }
+
+    .procedure-item .check-icon {
+      color: #10b981;
+      font-weight: 800;
+      font-size: 1.1rem;
+      line-height: 1;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .procedure-subhead {
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      margin: 1.25rem 0 0.5rem 0;
+      display: block;
+    }
+
+    .disclaimer-banner {
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      border-left: 5px solid #f59e0b;
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 3rem;
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: #92400e;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .disclaimer-banner strong {
+      color: #78350f;
+    }
+
+    .locations-dual-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 3rem;
+    }
+
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .loc-mini-box {
+      background: #f8fafc;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .loc-mini-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .loc-mini-detail {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 900px) {
+      .procedures-hero-card {
+        flex-direction: column;
+        padding: 2.5rem 1.75rem;
+        text-align: center;
+      }
+      .dr-portrait-frame {
+        width: 150px;
+        height: 150px;
+      }
+      .procedures-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Global 2026 Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-wrapper">
+        <img src="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" alt="MMC Logo" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-title">My Medical Centers</span>
+          <span class="brand-subtitle">Your Health is Our Priority</span>
+        </div>
+      </a>
+
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Our Services</a>
+        <a href="WHealth.html" class="nav-link">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link active">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap &amp; Immunization</a>
+        <a href="contact-us.html" class="nav-link">Contact</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment</a>
+      </nav>
+
+      <button class="hamburger-toggle" id="hamburgerToggle" aria-label="Toggle navigation menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-content">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Our Services</a>
+        <a href="WHealth.html" class="nav-link">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link active">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap Test &amp; Immunization</a>
+        <a href="contact-us.html" class="nav-link">Contact Us</a>
+        <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment Now</a>
+      </div>
+      <div class="mobile-drawer-footer">
+        <p><strong>My Medical Centers</strong><br>Main Line: 613-704-2524</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="page-main-wrapper">
+    <div class="content-container">
+
+      <!-- Doctor Hero Card -->
+      <section class="procedures-hero-card">
+        <div>
+          <span class="page-hero-badge" style="background:rgba(56,189,248,0.22); color:#e0f2fe; border-color:rgba(56,189,248,0.45);">
+            ✨ Dermatology &amp; Minor Procedures
+          </span>
+          <h1 style="font-size:2.8rem; font-weight:800; letter-spacing:-0.03em; margin-bottom:0.5rem; color:#fff;">
+            Dr. Dennis Cheung
+          </h1>
+          <p style="font-size:1.15rem; color:#bae6fd; margin-bottom:1.25rem;">
+            FCFP, FAAFP &bull; Integumentary Medicine, Dermatology &amp; Special Procedures
+          </p>
+          <div class="clinic-action-buttons-bar" style="margin-top:0;">
+            <a href="appointment.html" class="clinic-btn clinic-btn-primary">
+              <span>📅 Book an Appointment</span>
+              <span>&rarr;</span>
+            </a>
+            <a href="#locationsSection" class="clinic-btn clinic-btn-outline">
+              <span>🏢 Practicing Locations</span>
+            </a>
+            <a href="contact-us.html" class="clinic-btn clinic-btn-outline">
+              <span>💬 Contact Us</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Badges Bar -->
+      <div style="display:flex; justify-content:center; gap:0.85rem; flex-wrap:wrap; margin-bottom:2.5rem;">
+        <span class="status-badge accepting" style="font-size:0.92rem; padding:0.45rem 1.1rem;">
+          ⚡ Procedures &amp; Clinical Services Available
+        </span>
+        <span class="status-badge specialist" style="font-size:0.92rem; padding:0.45rem 1.1rem; background:#0369a1; color:#ffffff;">
+          FCFP &amp; FAAFP Fellow (Canada &amp; USA)
+        </span>
+        <span class="status-badge" style="background:#e0f2fe; color:#0369a1; font-size:0.92rem; padding:0.45rem 1.1rem;">
+          Carling &amp; Orléans Locations
+        </span>
+      </div>
+
+      <!-- Key Highlights Grid -->
+      <div class="highlights-grid">
+        <div class="highlight-card">
+          <span class="highlight-icon">🩺</span>
+          <div class="highlight-title">Qualifications</div>
+          <div class="highlight-value">FCFP &amp; FAAFP</div>
+        </div>
+        <div class="highlight-card">
+          <span class="highlight-icon">🔬</span>
+          <div class="highlight-title">Special Interests</div>
+          <div class="highlight-value">Integumentary &amp; Procedures</div>
+        </div>
+        <div class="highlight-card">
+          <span class="highlight-icon">💉</span>
+          <div class="highlight-title">Botox Therapy</div>
+          <div class="highlight-value">Cosmetic &amp; Therapeutic</div>
+        </div>
+        <div class="highlight-card">
+          <span class="highlight-icon">📍</span>
+          <div class="highlight-title">Practicing Clinics</div>
+          <div class="highlight-value">Carling &amp; Orléans</div>
+        </div>
+      </div>
+
+      <!-- About Dr. Cheung -->
+      <div class="bio-card">
+        <h2>👨‍⚕️ About Dr. Dennis Cheung</h2>
+        <p>
+          <strong>Dr. Dennis Cheung</strong> is a Fellow with the <strong>College of Family Physicians of Canada (FCFP)</strong> and a Fellow of the <strong>American Academy of Family Physicians (FAAFP)</strong>. He has advanced clinical training and special interests in integumentary medicine, skin surgery, and integumentary procedures, along with a wide spectrum of specialized gynecological, male sexual health, and therapeutic injection procedures.
+        </p>
+      </div>
+
+      <!-- Section Title -->
+      <div style="margin-bottom: 1.75rem;">
+        <h2 style="font-size:1.85rem; font-weight:800; color:var(--primary-dark); margin-bottom:0.4rem;">
+          📋 Summary of Services &amp; Procedures Offered
+        </h2>
+        <p style="color:var(--text-secondary); font-size:1.02rem;">
+          Comprehensive diagnostic assessments, skin surgeries, and minimally invasive clinical procedures performed in a welcoming outpatient setting.
+        </p>
+      </div>
+
+      <!-- 4 Procedure Categories Grid -->
+      <div class="procedures-grid">
+        
+        <!-- Category 1: Skin & Subcutaneous Tissue -->
+        <div class="procedure-card">
+          <div class="procedure-card-header">
+            <div class="procedure-card-icon">🩺</div>
+            <h3 class="procedure-card-title">Skin, Skin Appendages &amp; Subcutaneous Tissue</h3>
+          </div>
+          <p style="color:var(--text-secondary); font-size:0.92rem; margin-bottom:1rem;">
+            Surgical and medical management of skin conditions, lesions, and subcutaneous growths:
+          </p>
+          <div class="procedure-items-list">
+            <div class="procedure-item">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Lumps &amp; bumps**</strong>
+                <div style="font-size:0.85rem; color:var(--text-muted); font-weight:400; margin-top:2px;">Cysts, lipomas, benign skin growths &amp; tissue tags</div>
+              </div>
+            </div>
+            <div class="procedure-item">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Skin lesions</strong>
+                <div style="font-size:0.85rem; color:var(--text-muted); font-weight:400; margin-top:2px;">Diagnostic punch/shave biopsies, mole checks &amp; excisions</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 2: Gynecological Procedures -->
+        <div class="procedure-card">
+          <div class="procedure-card-header">
+            <div class="procedure-card-icon" style="background:#fce7f3; color:#be185d;">⚕️</div>
+            <h3 class="procedure-card-title">Gynecological Procedures</h3>
+          </div>
+          <p style="color:var(--text-secondary); font-size:0.92rem; margin-bottom:1rem;">
+            Confidential reproductive and gynecological procedural care:
+          </p>
+          <div class="procedure-items-list">
+            <div class="procedure-item">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>IUD Insertion &amp; Removal</strong>
+                <div style="font-size:0.85rem; color:var(--text-muted); font-weight:400; margin-top:2px;">Mirena, Kyleena, and non-hormonal copper intrauterine devices</div>
+              </div>
+            </div>
+            <div class="procedure-item">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Hormonal Contraception Implant Implantation &amp; Removal</strong>
+                <div style="font-size:0.85rem; color:var(--text-muted); font-weight:400; margin-top:2px;">Subdermal contraceptive implants (Nexplanon)</div>
+              </div>
+            </div>
+            <div class="procedure-item">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Medical Abortion (&lt;10 Weeks)</strong>
+                <div style="font-size:0.85rem; color:var(--text-muted); font-weight:400; margin-top:2px;">Compassionate, early outpatient medical termination</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 3: Male Sexual Health -->
+        <div class="procedure-card">
+          <div class="procedure-card-header">
+            <div class="procedure-card-icon" style="background:#e0f2fe; color:#0369a1;">♂️</div>
+            <h3 class="procedure-card-title">Male Sexual Health</h3>
+          </div>
+          <p style="color:var(--text-secondary); font-size:0.92rem; margin-bottom:1rem;">
+            Specialized clinical treatments and intracavernosal pharmacotherapy:
+          </p>
+          <div class="procedure-items-list">
+            <div class="procedure-item">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Penile Injections for Erectile Dysfunction (ED)**</strong>
+                <div style="font-size:0.85rem; color:var(--text-muted); font-weight:400; margin-top:2px;">Targeted medical evaluation, patient education &amp; injection therapy</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 4: Botox Injections -->
+        <div class="procedure-card">
+          <div class="procedure-card-header">
+            <div class="procedure-card-icon" style="background:#f3e8ff; color:#7e22ce;">💉</div>
+            <h3 class="procedure-card-title">Botox Injections (Cosmetic &amp; Therapeutic)</h3>
+          </div>
+          <p style="color:var(--text-secondary); font-size:0.92rem; margin-bottom:0.5rem;">
+            Precision neuromodulator injections for aesthetic rejuvenation and chronic medical conditions:
+          </p>
+          
+          <span class="procedure-subhead">Cosmetic Injections:</span>
+          <div class="procedure-items-list" style="margin-bottom:1rem;">
+            <div class="procedure-item">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Lines &amp; Wrinkles**</strong>
+                <div style="font-size:0.85rem; color:var(--text-muted); font-weight:400; margin-top:2px;">Upper face rejuvenation, forehead lines, frown lines &amp; crow's feet</div>
+              </div>
+            </div>
+          </div>
+
+          <span class="procedure-subhead">Therapeutic Injections:</span>
+          <div class="procedure-items-list">
+            <div class="procedure-item">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Hyperhidrosis (Excessive Sweating)**</strong>
+                <div style="font-size:0.85rem; color:var(--text-muted); font-weight:400; margin-top:2px;">Axillary (underarm) sweat gland neuromodulation</div>
+              </div>
+            </div>
+            <div class="procedure-item">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Migraine Headaches**</strong>
+                <div style="font-size:0.85rem; color:var(--text-muted); font-weight:400; margin-top:2px;">Chronic migraine prophylaxis and tension release</div>
+              </div>
+            </div>
+            <div class="procedure-item">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Temporomandibular Joint Dysfunctions (TMJ)**</strong>
+                <div style="font-size:0.85rem; color:var(--text-muted); font-weight:400; margin-top:2px;">Masseter muscle relaxation for jaw tension and teeth grinding</div>
+              </div>
+            </div>
+            <div class="procedure-item">
+              <span class="check-icon">✓</span>
+              <div>
+                <strong>Anal Fissures**</strong>
+                <div style="font-size:0.85rem; color:var(--text-muted); font-weight:400; margin-top:2px;">Therapeutic sphincter muscle spasm relaxation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- OHIP & Coverage Disclaimer -->
+      <div class="disclaimer-banner">
+        <strong>⚠️ Coverage &amp; Insurance Notice:</strong> Some clinical procedures marked with <strong>(**)</strong> may not be covered under standard Ontario Health Insurance Plan (OHIP) billing. However, select therapeutic and surgical services may be eligible for reimbursement through Private or Extended Health Insurance Plans. Please consult with our staff during booking or intake for further details.
+      </div>
+
+      <!-- Practicing Locations Dual Section -->
+      <section class="locations-dual-card" id="locationsSection">
+        <h2 style="font-size:1.75rem; font-weight:800; color:var(--primary-dark); margin-bottom:0.5rem;">
+          🏢 Where Dr. Cheung Practices
+        </h2>
+        <p style="color:var(--text-secondary); font-size:1rem;">
+          Dr. Dennis Cheung provides procedural and dermatological consultations at two convenient My Medical Centers locations in Ottawa:
+        </p>
+
+        <div class="locations-grid">
+          
+          <!-- Carling Location -->
+          <div class="loc-mini-box" style="border-top:4px solid var(--primary);">
+            <div>
+              <h3 class="loc-mini-title">
+                <span>📍</span> Carling Location
+              </h3>
+              <div class="loc-mini-detail">
+                <strong>Address:</strong><br>
+                1081 Carling Avenue, Suite 507<br>
+                Ottawa, ON K1Y 4G2<br><br>
+                <strong>Contact:</strong><br>
+                Tel: 613-704-2524 &bull; Fax: 613-704-2430
+              </div>
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <a href="carling.html" class="clinic-btn clinic-btn-outline" style="padding:0.45rem 1rem; font-size:0.88rem;">
+                View Carling Clinic &rarr;
+              </a>
+              <a href="appointment.html" class="clinic-btn clinic-btn-primary" style="padding:0.45rem 1rem; font-size:0.88rem;">
+                Book at Carling
+              </a>
+            </div>
+          </div>
+
+          <!-- Orléans Location -->
+          <div class="loc-mini-box" style="border-top:4px solid #0284c7;">
+            <div>
+              <h3 class="loc-mini-title">
+                <span>📍</span> Orléans Location
+              </h3>
+              <div class="loc-mini-detail">
+                <strong>Address:</strong><br>
+                6497 Jeanne-d'Arc Blvd N. (between shoppers drug mart and dollarama)<br>
+                Orléans, ON K1C 2R1<br><br>
+                <strong>Contact:</strong><br>
+                Tel: 613-704-2524 &bull; Fax: 343-224-0424
+              </div>
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <a href="orleans.html" class="clinic-btn clinic-btn-outline" style="padding:0.45rem 1rem; font-size:0.88rem;">
+                View Orléans Clinic &rarr;
+              </a>
+              <a href="appointment.html" class="clinic-btn clinic-btn-primary" style="padding:0.45rem 1rem; font-size:0.88rem;">
+                Book at Orléans
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Bottom Booking CTA Box -->
+      <div style="background:linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border:1px solid rgba(14,165,233,0.3); border-radius:var(--radius-lg); padding:3rem 2rem; text-align:center; margin-bottom:4rem;">
+        <h2 style="font-size:2rem; font-weight:800; color:var(--primary-dark); margin-bottom:0.75rem;">
+          Schedule Your Procedural Consultation
+        </h2>
+        <p style="color:var(--text-secondary); max-width:650px; margin:0 auto 2rem auto; font-size:1.05rem;">
+          Ready to book a consultation or procedural evaluation with Dr. Dennis Cheung? Access our secure online booking portal or contact our friendly administrative team today.
+        </p>
+        <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+          <a href="appointment.html" class="clinic-btn clinic-btn-primary" style="padding:0.85rem 2rem; font-size:1rem;">
+            <span>📅 Book Appointment Online</span>
+            <span>&rarr;</span>
+          </a>
+          <a href="contact-us.html" class="clinic-btn clinic-btn-outline" style="padding:0.85rem 2rem; font-size:1rem;">
+            <span>💬 Contact Us</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Global 2026 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-locations-bar">
+        <div class="footer-loc-box">
+          <h5>Carling Location</h5>
+          <p>1081 Carling Ave, Suite 507, Ottawa ON</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2430</p>
+          <a href="carling.html">View Clinic &amp; Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Richmond Location</h5>
+          <p>190 Richmond Rd (Superstore 2nd Level)</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2636</p>
+          <a href="richmond.html">View Clinic &amp; Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Orléans Location</h5>
+          <p>6497 Jeanne-d'Arc Blvd N. (between shoppers drug mart and dollarama), Orléans ON</p>
+          <p>Tel: 613-704-2524 | Fax: 343-224-0424</p>
+          <a href="orleans.html">View Clinic &amp; Doctors &rarr;</a>
+        </div>
+      </div>
+
+      <div class="footer-emergency-note">
+        ⚠️ <strong>Medical Emergency:</strong> If you are experiencing a life-threatening medical emergency, please call <strong>911</strong> immediately or visit your nearest hospital emergency room.
+      </div>
+
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <h3>My Medical Centers</h3>
+          <p>Modern primary care, walk-in services, women's health, psychiatric clinic, and specialized dermatological procedures across three accessible locations in Ottawa.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Clinics</h4>
+          <ul class="footer-nav-list">
+            <li><a href="carling.html">Carling Location</a></li>
+            <li><a href="richmond.html">Richmond Location</a></li>
+            <li><a href="orleans.html">Orléans Location</a></li>
+            <li><a href="appointment.html">Book Appointment</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Specialized Care</h4>
+          <ul class="footer-nav-list">
+            <li><a href="WHealth.html">Women's Health Clinic</a></li>
+            <li><a href="dr-sadiku.html">Psychiatric Clinic</a></li>
+            <li><a href="dr-cheung.html">Dermatology Clinic</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Pap Test Screening</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Immunization Intake</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul class="footer-nav-list">
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="for-professionals.html">For Healthcare Pros</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 My Medical Centers. All rights reserved.</p>
+        <p>Providing quality healthcare across the Ottawa region.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

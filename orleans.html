@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orléans Location - My Medical Centers</title>
+  <meta name="description" content="My Medical Centers - Orléans Location. Family Doctors, Walk-In Clinic, Dermatologist Dr. Dennis Cheung, and Psychiatrist Dr. Olayemi Sadiku." />
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="icon" href="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" type="image/png">
+</head>
+<body>
+  <!-- Global 2026 Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-wrapper">
+        <img src="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" alt="MMC Logo" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-title">My Medical Centers</span>
+          <span class="brand-subtitle">Your Health is Our Priority</span>
+        </div>
+      </a>
+
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Our Services</a>
+        <a href="WHealth.html" class="nav-link">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap & Immunization</a>
+        <a href="contact-us.html" class="nav-link">Contact</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment</a>
+      </nav>
+
+      <button class="hamburger-toggle" id="hamburgerToggle" aria-label="Toggle navigation menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-content">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Our Services</a>
+        <a href="WHealth.html" class="nav-link">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap Test & Immunization</a>
+        <a href="contact-us.html" class="nav-link">Contact Us</a>
+        <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment Now</a>
+      </div>
+      <div class="mobile-drawer-footer">
+        <p><strong>My Medical Centers</strong><br>Orléans Location: 613-704-2524</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="page-main-wrapper">
+    <div class="content-container">
+      
+      <!-- Clinic Hero Banner -->
+      <section class="page-hero" style="background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%);">
+        <span class="page-hero-badge">📍 Ottawa East &bull; Orléans</span>
+        <h1 class="page-hero-title">Orléans Location</h1>
+        <p class="page-hero-subtitle">
+          Family practice welcoming new patients, same-day walk-in clinic, specialized dermatology, and outpatient adult psychiatry with Dr. Olayemi Sadiku.
+        </p>
+
+        <!-- Prominent Action Buttons -->
+        <div class="clinic-action-buttons-bar">
+          <button class="clinic-btn clinic-btn-primary" onclick="triggerClinicBooking('orleans')">
+            <span>🩺 Family Doctors</span>
+            <span>&rarr;</span>
+          </button>
+          <a href="dr-sadiku.html" class="clinic-btn clinic-btn-accent-purple">
+            <span>🧠 Psychiatric Clinic (Dr. Sadiku)</span>
+            <span>&rarr;</span>
+          </a>
+          <button class="clinic-btn clinic-btn-outline" onclick="triggerClinicBooking('orleans')">
+            <span>🚶 Walk-In Clinic (Dr. Yunga)</span>
+          </button>
+          <a href="dr-cheung.html" class="clinic-btn clinic-btn-outline">
+            <span>✨ Dermatology Clinic (Dr. Cheung)</span>
+            <span>&rarr;</span>
+          </a>
+          <a href="https://maps.google.com/?q=6497+Jeanne-d'Arc+Blvd+N+Orleans+ON" target="_blank" rel="noopener" class="clinic-btn clinic-btn-outline">
+            <span>🗺️ Get Directions</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Quick Clinic Details Card -->
+      <section class="clinic-details-card">
+        <div class="detail-item">
+          <span class="detail-label">Address</span>
+          <span class="detail-value">6497 Jeanne-d'Arc Blvd N. (between shoppers drug mart and dollarama)<br>Orléans, ON K1C 2R1</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Telephone</span>
+          <span class="detail-value"><a href="tel:6137042524">613-704-2524</a></span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Fax Number</span>
+          <span class="detail-value">343-224-0424</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Email</span>
+          <span class="detail-value"><a href="mailto:orleans@mymedicalcenters.ca">orleans@mymedicalcenters.ca</a></span>
+        </div>
+      </section>
+
+      <!-- Doctor Directory Section -->
+      <section class="roster-section">
+        
+        <!-- Category 1: Accepting New Patients -->
+        <div class="roster-heading-wrapper">
+          <h2 class="roster-category-title">
+            <span>Physicians Accepting New Patients</span>
+          </h2>
+          <span class="status-badge accepting">Open Rostering</span>
+        </div>
+        <div class="roster-grid">
+          <div class="doctor-card">
+            <div class="doctor-card-header">
+              <div class="doctor-avatar-icon">IK</div>
+              <div class="doctor-info-text">
+                <h3>Dr. Iqbal Kashif</h3>
+                <p class="role">Family Physician</p>
+              </div>
+            </div>
+            <p style="color:var(--text-secondary); font-size:0.92rem; line-height:1.5;">
+              Comprehensive family medicine physician accepting new individual and family patient enrollments.
+            </p>
+            <div class="doctor-card-footer">
+              <span class="status-badge accepting">Accepting Patients</span>
+              <button class="clinic-btn clinic-btn-primary" style="padding:0.45rem 1rem; font-size:0.85rem;" onclick="triggerClinicBooking('orleans')">Register</button>
+            </div>
+          </div>
+
+          <div class="doctor-card">
+            <div class="doctor-card-header">
+              <div class="doctor-avatar-icon">HS</div>
+              <div class="doctor-info-text">
+                <h3>Dr. Hasnain Raza Sadiq</h3>
+                <p class="role">Family Physician</p>
+              </div>
+            </div>
+            <p style="color:var(--text-secondary); font-size:0.92rem; line-height:1.5;">
+              Welcoming new patients of all ages for comprehensive wellness examinations and ongoing primary medical care.
+            </p>
+            <div class="doctor-card-footer">
+              <span class="status-badge accepting">Accepting Patients</span>
+              <button class="clinic-btn clinic-btn-primary" style="padding:0.45rem 1rem; font-size:0.85rem;" onclick="triggerClinicBooking('orleans')">Register</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 2: Walk-In Physicians -->
+        <div class="roster-heading-wrapper" style="margin-top: 3.5rem;">
+          <h2 class="roster-category-title">
+            <span>Walk-In Clinic Physicians</span>
+          </h2>
+          <span class="status-badge walk-in">Walk-Ins Welcome</span>
+        </div>
+        <div class="roster-grid">
+          <div class="doctor-card">
+            <div class="doctor-card-header">
+              <div class="doctor-avatar-icon" style="background:#eff6ff; color:#2563eb;">IY</div>
+              <div class="doctor-info-text">
+                <h3>Dr. Ijang Yunga</h3>
+                <p class="role">Walk-In Clinic Physician</p>
+              </div>
+            </div>
+            <p style="color:var(--text-secondary); font-size:0.92rem; line-height:1.5;">
+              Available for same-day walk-in evaluations, acute medical care, prescriptions, and episodic non-emergency concerns.
+            </p>
+            <div class="doctor-card-footer">
+              <span class="status-badge walk-in">Walk-In Available</span>
+              <button class="clinic-btn clinic-btn-primary" style="padding:0.45rem 1rem; font-size:0.85rem;" onclick="triggerClinicBooking('orleans')">Check In</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 3: Specialists -->
+        <div class="roster-heading-wrapper" style="margin-top: 3.5rem;">
+          <h2 class="roster-category-title">
+            <span>Specialists</span>
+          </h2>
+          <span class="status-badge specialist">Specialized Care</span>
+        </div>
+        <div class="roster-grid">
+          <!-- Dr. Dennis Cheung (Dermatologist) -->
+          <div class="doctor-card" style="border-top: 4px solid #0284c7;">
+            <div class="doctor-card-header">
+              <div class="doctor-avatar-icon" style="background:#e0f2fe; color:#0284c7;">DC</div>
+              <div class="doctor-info-text">
+                <h3>Dr. Dennis Cheung</h3>
+                <p class="role">Dermatologist</p>
+              </div>
+            </div>
+            <p style="color:var(--text-secondary); font-size:0.92rem; line-height:1.5;">
+              Integumentary medicine, skin lesions, lumps &amp; bumps, minor surgeries, gynecological procedures, and cosmetic/therapeutic Botox injections.
+            </p>
+            <div class="doctor-card-footer">
+              <a href="dr-cheung.html" style="color:var(--primary); font-weight:700; font-size:0.86rem; text-decoration:none;">View Procedures &rarr;</a>
+              <button class="clinic-btn clinic-btn-primary" style="padding:0.45rem 1rem; font-size:0.85rem;" onclick="triggerClinicBooking('orleans')">Inquire / Book</button>
+            </div>
+          </div>
+
+          <!-- Dr. Olayemi Sadiku (Psychiatrist) -->
+          <div class="doctor-card" style="border-top: 4px solid var(--accent-purple);">
+            <div class="doctor-card-header">
+              <div class="doctor-avatar-icon" style="background:#ede9fe; color:#7c3aed;">OS</div>
+              <div class="doctor-info-text">
+                <h3>Dr. Olayemi Sadiku</h3>
+                <p class="role">Consultant Psychiatrist (Adults Ages 18–65)</p>
+              </div>
+            </div>
+            <div style="background:#f8fafc; border-radius:var(--radius-sm); padding:0.85rem; margin:0.5rem 0 0.75rem; border-left:3px solid var(--accent-purple);">
+              <p style="font-size:0.88rem; color:#334155; line-height:1.45; margin:0;">
+                ⚡ <strong>Very Short Wait Time</strong> for new referrals. Fax: 343-224-0424.
+              </p>
+            </div>
+            <p style="color:var(--text-secondary); font-size:0.92rem; line-height:1.5;">
+              Mood disorders, anxiety, trauma, and outpatient adult psychiatry. MD/NP referral required.
+            </p>
+            <div class="doctor-card-footer">
+              <span class="status-badge accepting">Accepting Referrals</span>
+              <a href="dr-sadiku.html" class="clinic-btn clinic-btn-accent-purple" style="padding:0.45rem 1.1rem; font-size:0.85rem;">Referral Info &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Global 2026 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-locations-bar">
+        <div class="footer-loc-box">
+          <h5>Carling Location</h5>
+          <p>1081 Carling Ave, Suite 507, Ottawa ON</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2430</p>
+          <a href="carling.html">View Clinic & Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Richmond Location</h5>
+          <p>190 Richmond Rd (Superstore 2nd Level)</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2636</p>
+          <a href="richmond.html">View Clinic & Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Orléans Location</h5>
+          <p>6497 Jeanne-d'Arc Blvd N. (between shoppers drug mart and dollarama), Orléans ON</p>
+          <p>Tel: 613-704-2524 | Fax: 343-224-0424</p>
+          <a href="orleans.html">View Clinic & Doctors &rarr;</a>
+        </div>
+      </div>
+
+      <div class="footer-emergency-note">
+        ⚠️ <strong>Medical Emergency:</strong> If you are experiencing a life-threatening medical emergency, please call <strong>911</strong> immediately or visit your nearest hospital emergency room.
+      </div>
+
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <h3>My Medical Centers</h3>
+          <p>Modern primary care, walk-in services, women's health, and psychiatry across three accessible locations in Ottawa.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Clinics</h4>
+          <ul class="footer-nav-list">
+            <li><a href="carling.html">Carling Location</a></li>
+            <li><a href="richmond.html">Richmond Location</a></li>
+            <li><a href="orleans.html">Orléans Location</a></li>
+            <li><a href="appointment.html">Book Appointment</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Specialized Care</h4>
+          <ul class="footer-nav-list">
+            <li><a href="WHealth.html">Women's Health Clinic</a></li>
+            <li><a href="dr-sadiku.html">Psychiatric Clinic</a></li>
+            <li><a href="dr-cheung.html">Dermatology Clinic</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Pap Test Screening</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Immunization Intake</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul class="footer-nav-list">
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="for-professionals.html">For Healthcare Pros</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 My Medical Centers. All rights reserved.</p>
+        <p>Providing quality healthcare across the Ottawa region.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

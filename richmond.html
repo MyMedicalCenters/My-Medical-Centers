@@ -3,42 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Patients - My Medical Centers</title>
-  <meta name="description" content="Register as a new patient at My Medical Centers. Family physicians accepting new patients at Carling, Richmond, and Orléans clinics." />
+  <title>Richmond Location - My Medical Centers</title>
+  <meta name="description" content="My Medical Centers - Richmond Location. Family Doctors accepting new patients and Walk-In Clinic in Ottawa West (Westboro Superstore)." />
   <link rel="stylesheet" href="css/theme.css">
   <link rel="icon" href="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" type="image/png">
-  <style>
-    .onboarding-steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.75rem;
-      margin: 2.5rem 0 3.5rem;
-    }
-
-    .step-card {
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-    }
-
-    .step-number-badge {
-      width: 42px;
-      height: 42px;
-      border-radius: var(--radius-pill);
-      background: linear-gradient(135deg, var(--primary) 0%, #0093e9 100%);
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      font-weight: 800;
-      margin-bottom: 1.25rem;
-      box-shadow: 0 4px 12px var(--primary-glow);
-    }
-  </style>
 </head>
 <body>
   <!-- Global 2026 Header -->
@@ -86,7 +54,7 @@
         <a href="appointment.html" class="nav-cta-btn">Book Appointment Now</a>
       </div>
       <div class="mobile-drawer-footer">
-        <p><strong>My Medical Centers</strong><br>New Patient Intake: 613-704-2524</p>
+        <p><strong>My Medical Centers</strong><br>Richmond Location: 613-704-2524</p>
       </div>
     </div>
   </div>
@@ -95,183 +63,160 @@
   <main class="page-main-wrapper">
     <div class="content-container">
       
-      <!-- Hero -->
-      <section class="page-hero">
-        <span class="page-hero-badge">👋 Welcome to Our Practice</span>
-        <h1 class="page-hero-title">New Patient Registration</h1>
+      <!-- Clinic Hero Banner -->
+      <section class="page-hero" style="background: linear-gradient(135deg, #063d3b 0%, #0d9488 100%);">
+        <span class="page-hero-badge">📍 Ottawa West &bull; Westboro</span>
+        <h1 class="page-hero-title">Richmond Location</h1>
         <p class="page-hero-subtitle">
-          We are currently accepting new patients across our clinics in Ottawa. Review our onboarding process or register directly with a family physician online.
+          Located inside the Real Canadian Superstore on Richmond Road (Second Level). Accepting new family medicine patients and walk-in visits.
         </p>
 
+        <!-- Prominent Action Buttons -->
         <div class="clinic-action-buttons-bar">
-          <a href="appointment.html" class="clinic-btn clinic-btn-primary">
-            <span>Register Online via Ocean</span>
+          <button class="clinic-btn clinic-btn-primary" onclick="triggerClinicBooking('richmond')">
+            <span>🩺 Family Doctors &amp; Walk-In</span>
+            <span>&rarr;</span>
+          </button>
+          <a href="https://ocean.cognisantmd.com/online-booking/341f072e-411a-4b7a-9966-1d16966af184" target="_blank" rel="noopener" class="clinic-btn clinic-btn-outline">
+            <span>📝 New Patient Registration</span>
             <span>&rarr;</span>
           </a>
-          <a href="contact-us.html" class="clinic-btn clinic-btn-outline">
-            <span>Clinic Contact Information</span>
+          <a href="https://maps.google.com/?q=190+Richmond+Rd+Ottawa+ON" target="_blank" rel="noopener" class="clinic-btn clinic-btn-outline">
+            <span>🗺️ Get Directions</span>
           </a>
         </div>
       </section>
 
-      <!-- 3 Simple Steps -->
-      <section>
-        <h2 style="font-size:1.75rem; font-weight:800; color:var(--primary-dark); text-align:center; margin-bottom:0.5rem;">
-          How New Patient Registration Works
-        </h2>
-        <p style="color:var(--text-secondary); text-align:center; font-size:1rem; margin-bottom:2rem;">
-          Enrolling with a family physician at My Medical Centers is quick, digital, and streamlined:
-        </p>
-
-        <div class="onboarding-steps-grid">
-          <div class="step-card">
-            <div class="step-number-badge">1</div>
-            <h3 style="font-size:1.25rem; font-weight:700; color:var(--primary-dark); margin-bottom:0.5rem;">Choose Your Location</h3>
-            <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6;">
-              Select the clinic closest to you: <strong>Carling</strong> (Ottawa Central), <strong>Richmond</strong> (Ottawa West), or <strong>Orléans</strong> (Ottawa East).
-            </p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-number-badge">2</div>
-            <h3 style="font-size:1.25rem; font-weight:700; color:var(--primary-dark); margin-bottom:0.5rem;">Complete Digital Intake</h3>
-            <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6;">
-              Click the registration button to open our secure Ocean booking portal. Provide your valid provincial health card (OHIP, RAMQ, etc.) or private coverage details.
-            </p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-number-badge">3</div>
-            <h3 style="font-size:1.25rem; font-weight:700; color:var(--primary-dark); margin-bottom:0.5rem;">Meet Your Physician</h3>
-            <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6;">
-              Schedule your first intake visit to complete medical history documentation and establish longitudinal healthcare coverage with your dedicated doctor.
-            </p>
-          </div>
+      <!-- Quick Clinic Details Card -->
+      <section class="clinic-details-card">
+        <div class="detail-item">
+          <span class="detail-label">Address</span>
+          <span class="detail-value">190 Richmond Rd, Ottawa, ON K1Z 6W6<br>(Inside Superstore, Second Level)</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Telephone</span>
+          <span class="detail-value"><a href="tel:6137042524">613-704-2524</a></span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Fax Number</span>
+          <span class="detail-value">613-704-2636</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Email</span>
+          <span class="detail-value"><a href="mailto:patient@mymedicalcenters.ca">patient@mymedicalcenters.ca</a></span>
         </div>
       </section>
 
-      <!-- Accepting Physicians Grid -->
+      <!-- Doctor Directory Section -->
       <section class="roster-section">
+        
+        <!-- Category 1: Accepting New Patients -->
         <div class="roster-heading-wrapper">
           <h2 class="roster-category-title">
-            <span>Doctors Currently Accepting Patients</span>
+            <span>Physicians Accepting New Patients</span>
           </h2>
-          <span class="status-badge accepting">Open Enrollments</span>
+          <span class="status-badge accepting">Open Rostering</span>
         </div>
-
         <div class="roster-grid">
-          <div class="doctor-card">
-            <div class="doctor-card-header">
-              <div class="doctor-avatar-icon">SM</div>
-              <div class="doctor-info-text">
-                <h3>Dr. Shegun Momodu</h3>
-                <p class="role">Carling Location</p>
-              </div>
-            </div>
-            <div class="doctor-card-footer">
-              <span class="status-badge accepting">Accepting</span>
-              <a href="carling.html" class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;">Carling Info</a>
-            </div>
-          </div>
-
-          <div class="doctor-card">
-            <div class="doctor-card-header">
-              <div class="doctor-avatar-icon">II</div>
-              <div class="doctor-info-text">
-                <h3>Dr. Ini Ife</h3>
-                <p class="role">Carling Location</p>
-              </div>
-            </div>
-            <div class="doctor-card-footer">
-              <span class="status-badge accepting">Accepting</span>
-              <a href="carling.html" class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;">Carling Info</a>
-            </div>
-          </div>
-
+          <!-- Dr. Sydney Chinagorom -->
           <div class="doctor-card">
             <div class="doctor-card-header">
               <div class="doctor-avatar-icon">SC</div>
               <div class="doctor-info-text">
                 <h3>Dr. Sydney Chinagorom</h3>
-                <p class="role">Richmond Location</p>
+                <p class="role">Family Physician</p>
               </div>
             </div>
+            <p style="color:var(--text-secondary); font-size:0.92rem; line-height:1.5;">
+              Welcoming new patients and families for long-term health management, wellness checkups, and chronic disease support.
+            </p>
             <div class="doctor-card-footer">
-              <span class="status-badge accepting">Accepting</span>
-              <a href="richmond.html" class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;">Richmond Info</a>
+              <span class="status-badge accepting">Accepting Patients</span>
+              <button class="clinic-btn clinic-btn-primary" style="padding:0.45rem 1rem; font-size:0.85rem;" onclick="triggerClinicBooking('richmond')">Register</button>
             </div>
           </div>
 
+          <!-- Dr. Nsikak Usoroh -->
           <div class="doctor-card">
             <div class="doctor-card-header">
               <div class="doctor-avatar-icon">NU</div>
               <div class="doctor-info-text">
                 <h3>Dr. Nsikak Usoroh</h3>
-                <p class="role">Richmond Location</p>
+                <p class="role">Family Physician</p>
               </div>
             </div>
+            <p style="color:var(--text-secondary); font-size:0.92rem; line-height:1.5;">
+              Dedicated to compassionate, continuous primary care for patients across all life stages.
+            </p>
             <div class="doctor-card-footer">
-              <span class="status-badge accepting">Accepting</span>
-              <a href="richmond.html" class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;">Richmond Info</a>
+              <span class="status-badge accepting">Accepting Patients</span>
+              <button class="clinic-btn clinic-btn-primary" style="padding:0.45rem 1rem; font-size:0.85rem;" onclick="triggerClinicBooking('richmond')">Register</button>
             </div>
           </div>
 
+          <!-- Dr. Alex Carrington -->
           <div class="doctor-card">
             <div class="doctor-card-header">
               <div class="doctor-avatar-icon">AC</div>
               <div class="doctor-info-text">
                 <h3>Dr. Alex Carrington</h3>
-                <p class="role">Richmond Location</p>
+                <p class="role">Family Physician</p>
               </div>
             </div>
+            <p style="color:var(--text-secondary); font-size:0.92rem; line-height:1.5;">
+              Providing modern, evidence-based primary care and preventative health screening for new individuals and families.
+            </p>
             <div class="doctor-card-footer">
-              <span class="status-badge accepting">Accepting</span>
-              <a href="richmond.html" class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;">Richmond Info</a>
+              <span class="status-badge accepting">Accepting Patients</span>
+              <button class="clinic-btn clinic-btn-primary" style="padding:0.45rem 1rem; font-size:0.85rem;" onclick="triggerClinicBooking('richmond')">Register</button>
             </div>
           </div>
 
+          <!-- Dr. Vijia George (New) -->
           <div class="doctor-card">
             <div class="doctor-card-header">
               <div class="doctor-avatar-icon" style="background:#e0f2fe; color:#0284c7;">VG</div>
               <div class="doctor-info-text">
                 <h3>Dr. Vijia George</h3>
-                <p class="role">Richmond Location</p>
+                <p class="role">Family Physician</p>
               </div>
             </div>
+            <p style="color:var(--text-secondary); font-size:0.92rem; line-height:1.5;">
+              Welcoming new patients to our Richmond clinic for comprehensive primary medical care, preventative exams, and family health.
+            </p>
             <div class="doctor-card-footer">
-              <span class="status-badge accepting">Accepting</span>
-              <a href="richmond.html" class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;">Richmond Info</a>
-            </div>
-          </div>
-
-          <div class="doctor-card">
-            <div class="doctor-card-header">
-              <div class="doctor-avatar-icon">IK</div>
-              <div class="doctor-info-text">
-                <h3>Dr. Iqbal Kashif</h3>
-                <p class="role">Orléans Location</p>
-              </div>
-            </div>
-            <div class="doctor-card-footer">
-              <span class="status-badge accepting">Accepting</span>
-              <a href="orleans.html" class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;">Orléans Info</a>
-            </div>
-          </div>
-
-          <div class="doctor-card">
-            <div class="doctor-card-header">
-              <div class="doctor-avatar-icon">HS</div>
-              <div class="doctor-info-text">
-                <h3>Dr. Hasnain Raza Sadiq</h3>
-                <p class="role">Orléans Location</p>
-              </div>
-            </div>
-            <div class="doctor-card-footer">
-              <span class="status-badge accepting">Accepting</span>
-              <a href="orleans.html" class="clinic-btn clinic-btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;">Orléans Info</a>
+              <span class="status-badge accepting">Accepting Patients</span>
+              <button class="clinic-btn clinic-btn-primary" style="padding:0.45rem 1rem; font-size:0.85rem;" onclick="triggerClinicBooking('richmond')">Register</button>
             </div>
           </div>
         </div>
+
+        <!-- Category 2: Walk-In Physicians -->
+        <div class="roster-heading-wrapper" style="margin-top: 3.5rem;">
+          <h2 class="roster-category-title">
+            <span>Walk-In Physicians</span>
+          </h2>
+          <span class="status-badge walk-in">Walk-Ins Welcome</span>
+        </div>
+        <div class="roster-grid">
+          <div class="doctor-card">
+            <div class="doctor-card-header">
+              <div class="doctor-avatar-icon">IH</div>
+              <div class="doctor-info-text">
+                <h3>Dr. Ishola Foluso Hafeezat</h3>
+                <p class="role">Walk-In Clinic Physician</p>
+              </div>
+            </div>
+            <p style="color:var(--text-secondary); font-size:0.92rem; line-height:1.5;">
+              Experienced walk-in physician offering timely, personalized ambulatory consultations and acute episodic medical care.
+            </p>
+            <div class="doctor-card-footer">
+              <span class="status-badge walk-in">Walk-In</span>
+              <button class="clinic-btn clinic-btn-primary" style="padding:0.45rem 1rem; font-size:0.85rem;" onclick="triggerClinicBooking('richmond')">Check In</button>
+            </div>
+          </div>
+        </div>
+
       </section>
 
     </div>

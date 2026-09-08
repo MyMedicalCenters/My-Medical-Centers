@@ -1,430 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - My Medical Centers</title>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-    :root {
-      --primary: #0077be;
-      --secondary: #f8fafc;
-      --accent: #ff6b6b;
-      --text: #333;
-      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - My Medical Centers</title>
+  <meta name="description" content="Contact My Medical Centers across Ottawa: Carling, Richmond, and Orléans locations. Phone numbers, addresses, faxes, and email." />
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="icon" href="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" type="image/png">
+  <style>
+    .contact-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3.5rem;
     }
 
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      color: var(--text);
-      background-color: var(--secondary);
-      overflow-x: hidden;
-    }
-
-    .header {
-      background-color: white;
-      color: var(--primary);
-      padding: 0.9rem 1rem; /* Reduced padding */
-      position: fixed;
-      width: 100%;
-      z-index: 1100;
+    .location-contact-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: center;
-      box-shadow: var(--shadow);
-      max-width: 100%;
-      box-sizing: border-box;
+      transition: var(--transition);
+      position: relative;
     }
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--primary);
+    .location-contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(0, 119, 190, 0.35);
     }
 
-    .nav {
+    .loc-card-header {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
     }
 
-    .nav a {
+    .loc-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .contact-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .contact-icon {
+      font-size: 1.1rem;
+      color: var(--primary);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .contact-line a {
       color: var(--primary);
       text-decoration: none;
-      margin-left: 1.5rem;
-      transition: color 0.3s ease;
-      font-weight: 500;
-    }
-
-    .nav a:hover {
-      color: var(--accent);
-    }
-
-    /* Hamburger menu styles */
-    .hamburger-menu {
-      display: none; /* Hidden by default */
-      cursor: pointer;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 21px;
-    }
-
-    .hamburger-menu div {
-      width: 100%;
-      height: 3px;
-      background-color: var(--primary);
-      transition: all 0.3s ease;
-    }
-
-    /* Dropdown menu styles */
-    .dropdown-menu {
-      display: none; /* Hidden by default */
-      position: fixed; /* Cover the whole page */
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent background */
-      justify-content: center; /* Center items horizontally */
-      align-items: center; /* Center items vertically */
-      z-index: 1001; /* Above everything else */
-      flex-direction: column; /* Stack links vertically */
-      text-align: center; /* Center text */
-    }
-
-    .dropdown-menu.show {
-      display: flex; /* Show when the class "show" is added */
-    }
-
-    .dropdown-menu a {
-      margin: 1rem 0; /* Space out the links */
-      font-size: 1.75rem; /* Increase font size for clarity */
-      color: var(--primary); /* Use primary color */
-    }
-
-    .container {
-      display: flex;
-      justify-content: space-between;
-      padding: 3rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      margin-top: 80px;
-      gap: 2rem;
-    }
-
-    .map-container, .contact-info {
-      flex: 1;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-      background-color: white;
-    }
-
-    .map-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .contact-info h2 {
-      margin-top: 0;
-      color: var(--primary);
-    }
-
-    .contact-info p {
-      margin: 0.75em 0;
-      font-size: 1.1rem;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .nav {
-        display: none; /* Hide regular navigation */
-      }
-
-      .hamburger-menu {
-        display: flex; /* Show hamburger menu */
-      }
-
-      .container {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .map-container, .contact-info {
-        padding: 1.5rem;
-      }
-    }
-
-    .contact-info {
-      background-color: #f9f9f9;
-      border-left: 1px solid #ddd;
-    }
-
-    .contact-info h2 {
-      margin-top: 0;
-    }
-
-    .contact-info p {
-      margin: 0.5em 0;
-    }
-
-    .contact-info h3 {
-      color: var(--primary);
-      margin: 0.5rem 0 0.25rem 0;
-      font-size: 1.05rem;
       font-weight: 600;
     }
 
-    .contact-info hr {
-      border: 0;
-      border-top: 3px solid #e6e9ef;
-      margin: 1.25rem 0;
+    .contact-line a:hover {
+      text-decoration: underline;
     }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .nav {
-        display: none; /* Hide regular navigation */
-      }
-
-      .hamburger-menu {
-        display: flex; /* Show hamburger menu */
-      }
-
-      .container {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .map-container, .contact-info {
-        padding: 1em;
-      }
-    }
-
-    </style>
-</head>
-  <style>
-      /* Popup Styles (copied from index.html) */
-      .popup-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2000;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-      }
-
-      .popup-overlay.show {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .popup {
-        position: relative;
-        background-color: white;
-        padding: 2rem;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        max-width: 400px;
-        width: 90%;
-        text-align: center;
-      }
-
-      .popup-close-x {
-        position: absolute;
-        top: 10px;
-        right: 12px;
-        background: transparent;
-        border: none;
-        font-size: 1.6rem;
-        font-weight: 300;
-        color: #888;
-        cursor: pointer;
-        line-height: 1;
-        padding: 4px 8px;
-        border-radius: 4px;
-        transition: color 0.2s ease, background-color 0.2s ease;
-        z-index: 10;
-      }
-
-      .popup-close-x:hover {
-        color: #111;
-        background-color: rgba(0, 0, 0, 0.06);
-      }
-      /* Button styles copied from index.html to keep popup consistent */
-      .button {
-        padding: 0.8rem 2rem;
-        border-radius: 50px;
-        font-size: 1rem;
-        color: white;
-        border: none;
-        cursor: pointer;
-        margin: 1rem 0;
-        width: 100%;
-        transition: background-color 0.3s ease;
-      }
-
-      .button.professionals {
-        background-color: var(--primary, #0077be);
-      }
-
-      .button.professionals:hover {
-        background-color: #005c91;
-      }
-
-      .button.clients {
-        background-color: #28a745; /* fallback green */
-      }
-
-      .button.clients:hover {
-        background-color: #218838;
-      }
   </style>
+</head>
 <body>
-  <header class="header">
-    <div class="logo">My Medical Centers</div>
-    <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="services.html">Our Services</a>
-        <a href="WHealth.html" id="navProfessionalButton">Women's Health Clinic</a>
-        <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
-        <a href="#" id="navPapImmunLink">Pap Test & Immunization</a>
-        <a href="contact-us.html">Contact Us!</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
-    </nav>
+  <!-- Global 2026 Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-wrapper">
+        <img src="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" alt="MMC Logo" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-title">My Medical Centers</span>
+          <span class="brand-subtitle">Your Health is Our Priority</span>
+        </div>
+      </a>
 
-    <!-- Hamburger menu icon for mobile -->
-    <div class="hamburger-menu" id="hamburgerMenu">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Our Services</a>
+        <a href="WHealth.html" class="nav-link">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap & Immunization</a>
+        <a href="contact-us.html" class="nav-link active">Contact</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment</a>
+      </nav>
 
-    <!-- Dropdown menu for mobile -->
-    <div class="dropdown-menu" id="dropdownMenu">
-      <a href="index.html">Home</a>
-      <a href="services.html">Our Services</a>
-      <a href="WHealth.html">Women's Health Clinic</a>
-      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
-      <a href="#" id="navPapImmunLinkMobile">Pap Test & Immunization</a>
-      <a href="contact-us.html">Contact Us!</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
+      <button class="hamburger-toggle" id="hamburgerToggle" aria-label="Toggle navigation menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </header>
 
-  <div class="container">
-    <div class="map-container">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.788049035607!2d-75.73893868447632!3d45.3887989791017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce0a6b1842a75b%3A0x28400c540f08b58!2s1081%20Carling%20Ave%2C%20Ottawa%2C%20ON%20K1Y%204G2%2C%20Canada!5e0!3m2!1sen!2sus!4v1696510599782!5m2!1sen!2sus"
-        width="100%"
-        height="450"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-    <div class="contact-info">
-      <h2>Get in Touch</h2>
-
-      <div class="location-block carling">
-        <h3>Carling Location</h3>
-        <p><strong>Email:</strong> admin@mymedicalcenters.ca</p>
-        <p><strong>Phone:</strong> 613-704-2524</p>
-        <p><strong>Address:</strong> 1081 Carling Avenue, Unit 507, Ottawa, ON K1Y 4G2</p>
-        <p><strong>Fax:</strong> 613-704-2430</p>
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-content">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Our Services</a>
+        <a href="WHealth.html" class="nav-link">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap Test & Immunization</a>
+        <a href="contact-us.html" class="nav-link active">Contact Us</a>
+        <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment Now</a>
       </div>
-
-      <hr>
-
-      <div class="location-block richmond">
-        <h3>Richmond Location</h3>
-        <p><strong>Email:</strong> patient@mymedicalcenters.ca</p>
-        <p><strong>Phone:</strong> 613-704-2524</p>
-        <p><strong>Address:</strong> 190 Richmond Rd, Ottawa, ON K1Z 6W6 (inside Superstore, Second Level)</p>
-        <p><strong>Fax:</strong> 613-704-2636</p>
-      </div>
-      
-      <hr>
-
-      <div class="location-block orleans">
-        <h3>Orléans Location</h3>
-        <p><strong>Email:</strong> orleans@mymedicalcenters.ca</p>
-        <p><strong>Phone:</strong> 613-704-2524</p>
-        <p><strong>Address:</strong> 6497 Jeanne-d'Arc Blvd. N, Orléans, ON K1C 2R1</p>
-        <p><strong>Fax:</strong> 343-224-0424</p>
+      <div class="mobile-drawer-footer">
+        <p><strong>My Medical Centers</strong><br>Main Line: 613-704-2524</p>
       </div>
     </div>
   </div>
 
-  <script>
-    // Hamburger menu functionality
-    const hamburgerMenu = document.getElementById('hamburgerMenu');
-    const dropdownMenu = document.getElementById('dropdownMenu');
+  <!-- Main Content -->
+  <main class="page-main-wrapper">
+    <div class="content-container">
+      
+      <!-- Page Hero -->
+      <section class="page-hero">
+        <span class="page-hero-badge">📍 Ottawa Clinic Directory</span>
+        <h1 class="page-hero-title">Get in Touch With Us</h1>
+        <p class="page-hero-subtitle">
+          Have a question about booking, patient registration, or clinical referrals? Find direct contact details, telephone numbers, faxes, and email addresses for each of our medical centers.
+        </p>
+      </section>
 
-    hamburgerMenu.addEventListener('click', () => {
-      dropdownMenu.classList.toggle('show'); // Toggle dropdown visibility
-    });
-  </script>
-  <script>
-    // Global close listener for popups via X button
-    document.addEventListener('click', function(e) {
-      const closeBtn = e.target.closest('.popup-close-x');
-      if (closeBtn) {
-        const overlay = closeBtn.closest('.popup-overlay');
-        if (overlay) {
-          overlay.classList.remove('show');
-        }
-      }
-    });
+      <!-- 3 Location Contact Cards -->
+      <div class="contact-cards-grid">
+        
+        <!-- Carling Card -->
+        <div class="location-contact-card" style="border-top: 4px solid var(--primary);">
+          <div>
+            <div class="loc-card-header">
+              <h2 class="loc-title">Carling Location</h2>
+              <span class="status-badge" style="background:#e0f2fe; color:#0369a1;">Ottawa Central</span>
+            </div>
 
-    // Pap Test & Immunization popup injection for this page
-    (function() {
-      function createSecondaryPopup() {
-        if (document.getElementById('secondaryPopup')) return;
-        const secondary = document.createElement('div');
-        secondary.className = 'popup-overlay';
-        secondary.id = 'secondaryPopup';
-        secondary.innerHTML = `
-          <div class="popup">
-            <button class="popup-close-x" aria-label="Close">&times;</button>
-            <h2>Select Request</h2>
-            <p>Please choose:</p>
-            <button class="button professionals" id="papTestBtn">Pap Test</button>
-            <button class="button clients" id="immunBtn">Immunization Request</button>
-            <button class="button" id="backToMainBtn" style="background:#e0e0e0;color:#111;margin-top:0.5rem;">Back</button>
-          </div>`;
-        document.body.appendChild(secondary);
-        document.getElementById('papTestBtn').addEventListener('click', () => window.location.href='https://tally.so/r/jakO8a');
-        document.getElementById('immunBtn').addEventListener('click', () => window.location.href='https://tally.so/r/Xx2K6g');
-        document.getElementById('backToMainBtn').addEventListener('click', () => document.getElementById('secondaryPopup').classList.remove('show'));
-      }
+            <div class="contact-line">
+              <span class="contact-icon">📍</span>
+              <div>
+                <strong>Address:</strong><br>
+                1081 Carling Avenue, Suite 507<br>Ottawa, ON K1Y 4G2
+              </div>
+            </div>
 
-      const navLink = document.getElementById('navPapImmunLink');
-      const navLinkMobile = document.getElementById('navPapImmunLinkMobile');
-      if (navLink) navLink.addEventListener('click', (e) => { e.preventDefault(); createSecondaryPopup(); document.getElementById('secondaryPopup').classList.add('show'); });
-      if (navLinkMobile) navLinkMobile.addEventListener('click', (e) => { e.preventDefault(); createSecondaryPopup(); document.getElementById('secondaryPopup').classList.add('show'); document.getElementById('dropdownMenu').classList.remove('show'); });
-    })();
-  </script>
+            <div class="contact-line">
+              <span class="contact-icon">📞</span>
+              <div>
+                <strong>Telephone:</strong><br>
+                <a href="tel:6137042524">613-704-2524</a>
+              </div>
+            </div>
+
+            <div class="contact-line">
+              <span class="contact-icon">📠</span>
+              <div>
+                <strong>Fax:</strong><br>
+                613-704-2430
+              </div>
+            </div>
+
+            <div class="contact-line">
+              <span class="contact-icon">✉️</span>
+              <div>
+                <strong>Email:</strong><br>
+                <a href="mailto:admin@mymedicalcenters.ca">admin@mymedicalcenters.ca</a>
+              </div>
+            </div>
+
+            <div class="contact-line">
+              <span class="contact-icon">🩺</span>
+              <div>
+                <strong>Clinics Offered:</strong><br>
+                Family Doctors, Women's Health, Dermatology
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <a href="carling.html" class="clinic-btn clinic-btn-primary" style="padding:0.45rem 1.1rem; font-size:0.88rem;">Carling Page &rarr;</a>
+            <a href="https://maps.google.com/?q=1081+Carling+Avenue+Ottawa+ON" target="_blank" rel="noopener" class="clinic-btn clinic-btn-outline" style="color:var(--text-primary)!important; padding:0.45rem 1rem; font-size:0.88rem;">Directions</a>
+          </div>
+        </div>
+
+        <!-- Richmond Card -->
+        <div class="location-contact-card" style="border-top: 4px solid #0d9488;">
+          <div>
+            <div class="loc-card-header">
+              <h2 class="loc-title">Richmond Location</h2>
+              <span class="status-badge" style="background:#ccfbf1; color:#0f766e;">Ottawa West</span>
+            </div>
+
+            <div class="contact-line">
+              <span class="contact-icon">📍</span>
+              <div>
+                <strong>Address:</strong><br>
+                190 Richmond Rd, Second Level<br>(Inside Superstore), Ottawa, ON K1Z 6W6
+              </div>
+            </div>
+
+            <div class="contact-line">
+              <span class="contact-icon">📞</span>
+              <div>
+                <strong>Telephone:</strong><br>
+                <a href="tel:6137042524">613-704-2524</a>
+              </div>
+            </div>
+
+            <div class="contact-line">
+              <span class="contact-icon">📠</span>
+              <div>
+                <strong>Fax:</strong><br>
+                613-704-2636
+              </div>
+            </div>
+
+            <div class="contact-line">
+              <span class="contact-icon">✉️</span>
+              <div>
+                <strong>Email:</strong><br>
+                <a href="mailto:patient@mymedicalcenters.ca">patient@mymedicalcenters.ca</a>
+              </div>
+            </div>
+
+            <div class="contact-line">
+              <span class="contact-icon">🩺</span>
+              <div>
+                <strong>Clinics Offered:</strong><br>
+                Family Doctors, Walk-In Care
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <a href="richmond.html" class="clinic-btn clinic-btn-primary" style="background:#0d9488; padding:0.45rem 1.1rem; font-size:0.88rem;">Richmond Page &rarr;</a>
+            <a href="https://maps.google.com/?q=190+Richmond+Rd+Ottawa+ON" target="_blank" rel="noopener" class="clinic-btn clinic-btn-outline" style="color:var(--text-primary)!important; padding:0.45rem 1rem; font-size:0.88rem;">Directions</a>
+          </div>
+        </div>
+
+        <!-- Orléans Card -->
+        <div class="location-contact-card" style="border-top: 4px solid #6366f1;">
+          <div>
+            <div class="loc-card-header">
+              <h2 class="loc-title">Orléans Location</h2>
+              <span class="status-badge" style="background:#e0e7ff; color:#4338ca;">Ottawa East</span>
+            </div>
+
+            <div class="contact-line">
+              <span class="contact-icon">📍</span>
+              <div>
+                <strong>Address:</strong><br>
+                6497 Jeanne-d'Arc Blvd N. (between shoppers drug mart and dollarama)<br>Orléans, ON K1C 2R1
+              </div>
+            </div>
+
+            <div class="contact-line">
+              <span class="contact-icon">📞</span>
+              <div>
+                <strong>Telephone:</strong><br>
+                <a href="tel:6137042524">613-704-2524</a>
+              </div>
+            </div>
+
+            <div class="contact-line">
+              <span class="contact-icon">📠</span>
+              <div>
+                <strong>Fax:</strong><br>
+                343-224-0424
+              </div>
+            </div>
+
+            <div class="contact-line">
+              <span class="contact-icon">✉️</span>
+              <div>
+                <strong>Email:</strong><br>
+                <a href="mailto:orleans@mymedicalcenters.ca">orleans@mymedicalcenters.ca</a>
+              </div>
+            </div>
+
+            <div class="contact-line">
+              <span class="contact-icon">🩺</span>
+              <div>
+                <strong>Clinics Offered:</strong><br>
+                Family Doctors, Walk-In, Dermatology, Adult Psychiatry
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <a href="orleans.html" class="clinic-btn clinic-btn-primary" style="background:#4f46e5; padding:0.45rem 1.1rem; font-size:0.88rem;">Orléans Page &rarr;</a>
+            <a href="https://maps.google.com/?q=6497+Jeanne-d'Arc+Blvd+N+Orleans+ON" target="_blank" rel="noopener" class="clinic-btn clinic-btn-outline" style="color:var(--text-primary)!important; padding:0.45rem 1rem; font-size:0.88rem;">Directions</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Global 2026 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-locations-bar">
+        <div class="footer-loc-box">
+          <h5>Carling Location</h5>
+          <p>1081 Carling Ave, Suite 507, Ottawa ON</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2430</p>
+          <a href="carling.html">View Clinic & Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Richmond Location</h5>
+          <p>190 Richmond Rd (Superstore 2nd Level)</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2636</p>
+          <a href="richmond.html">View Clinic & Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Orléans Location</h5>
+          <p>6497 Jeanne-d'Arc Blvd N. (between shoppers drug mart and dollarama), Orléans ON</p>
+          <p>Tel: 613-704-2524 | Fax: 343-224-0424</p>
+          <a href="orleans.html">View Clinic & Doctors &rarr;</a>
+        </div>
+      </div>
+
+      <div class="footer-emergency-note">
+        ⚠️ <strong>Medical Emergency:</strong> If you are experiencing a life-threatening medical emergency, please call <strong>911</strong> immediately or visit your nearest hospital emergency room.
+      </div>
+
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <h3>My Medical Centers</h3>
+          <p>Modern primary care, walk-in services, women's health, and psychiatry across three accessible locations in Ottawa.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Clinics</h4>
+          <ul class="footer-nav-list">
+            <li><a href="carling.html">Carling Location</a></li>
+            <li><a href="richmond.html">Richmond Location</a></li>
+            <li><a href="orleans.html">Orléans Location</a></li>
+            <li><a href="appointment.html">Book Appointment</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Specialized Care</h4>
+          <ul class="footer-nav-list">
+            <li><a href="WHealth.html">Women's Health Clinic</a></li>
+            <li><a href="dr-sadiku.html">Psychiatric Clinic</a></li>
+            <li><a href="dr-cheung.html">Dermatology Clinic</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Pap Test Screening</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Immunization Intake</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul class="footer-nav-list">
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="for-professionals.html">For Healthcare Pros</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 My Medical Centers. All rights reserved.</p>
+        <p>Providing quality healthcare across the Ottawa region.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
-
-
-

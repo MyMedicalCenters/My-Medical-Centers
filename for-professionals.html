@@ -1,240 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Our Medical Team - My Medical Centers</title>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-    
-      :root {
-        --primary: #0077be;
-        --secondary: #f0f8ff;
-        --accent: #ff6b6b;
-        --text: #333;
-      }
-    
-      body, html {
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', sans-serif;
-        color: var(--text);
-        background-color: var(--secondary);
-        overflow-x: hidden;
-      }
-
-      /* Logo at the top left */
-      .logo-container {
-        position: absolute;
-        top: 85px;
-        left: 27px;
-        z-index: 1000;
-        width: 100px;
-        transition: transform 0.3s ease-in-out;
-        cursor: pointer;
-      }
-
-      .logo-container img {
-        width: 100%;
-        height: auto;
-      }
-
-      .logo-container:hover {
-        transform: scale(1.1); /* Logo grows on hover */
-      }
-
-      .logo-container:active {
-        transform: scale(1.2); /* Logo grows more when clicked */
-      }
-
-      .header {
-        background-color: white;
-        color: var(--primary);
-        padding: 1rem;
-        position: fixed;
-        width: 100%;
-        z-index: 1100;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        max-width: 100%; /* Ensure it doesn’t stretch past the viewport */
-        box-sizing: border-box; /* Include padding within the width */
-        overflow: hidden; /* Prevent content from overflowing */
-      }
-    
-      .logo {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--primary);
-      }
-    
-      .nav {
-        display: flex;
-        align-items: center;
-      }
-    
-      .nav a {
-        color: var(--primary);
-        text-decoration: none;
-        margin-left: 1rem;
-        transition: color 0.3s ease;
-        font-weight: 400;
-      }
-    
-      .nav a:hover {
-        color: var(--accent);
-      }
-    
-      .waitlist-container {
-        padding-top: 80px;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 2rem;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin-top: 100px;
-      }
-    
-      h1 {
-        color: var(--primary);
-        text-align: center;
-        margin-bottom: 2rem;
-        font-size: 2.5rem;
-      }
-    
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-    
-      .waitlist-container {
-        animation: fadeIn 0.6s ease forwards;
-      }
-
-      /* Hamburger menu styles */
-      .hamburger-menu {
-          display: none; /* Hidden by default */
-          cursor: pointer;
-          flex-direction: column;
-          justify-content: space-between;
-          width: 30px;
-          height: 21px;
-      }
-
-      .hamburger-menu div {
-          width: 100%;
-          height: 3px;
-          background-color: var(--primary);
-          transition: all 0.3s ease;
-      }
-
-      /* Dropdown menu styles */
-      .dropdown-menu {
-          display: none; /* Hidden by default */
-          position: fixed; /* Cover the whole page */
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent background */
-          justify-content: center; /* Center items horizontally */
-          align-items: center; /* Center items vertically */
-          z-index: 1001; /* Above everything else */
-          flex-direction: column; /* Stack links vertically */
-          text-align: center; /* Center text */
-      }
-
-      .dropdown-menu.show {
-          display: flex; /* Show when the class "show" is added */
-      }
-
-      .dropdown-menu a {
-          margin: 1rem 0; /* Space out the links */
-          font-size: 1.5rem; /* Increase font size for clarity */
-          color: var(--primary); /* Use primary color */
-      }
-
-      @media (max-width: 768px) {
-          /* Logo at the top left */
-          .logo-container {
-              scale: 0%;
-          }
-
-          .nav {
-              display: none; /* Hide regular navigation */
-          }
-
-          .hamburger-menu {
-              display: flex; /* Show hamburger menu */
-          }
-      }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Our Medical Team - My Medical Centers</title>
+  <meta name="description" content="Career opportunities for physicians, specialists, and allied healthcare professionals at My Medical Centers in Ottawa." />
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="icon" href="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" type="image/png">
 </head>
 <body>
-  <!-- Logo Section -->
-  <div class="logo-container">
-    <img src="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" alt="Medical Center Logo" id="mainLogo">
-  </div>
+  <!-- Global 2026 Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-wrapper">
+        <img src="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" alt="MMC Logo" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-title">My Medical Centers</span>
+          <span class="brand-subtitle">Your Health is Our Priority</span>
+        </div>
+      </a>
 
-  <header class="header">
-    <div class="logo">My Medical Centers</div>
-    <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="services.html">Our Services</a>
-        <a href="WHealth.html" id="navProfessionalButton">Women's Health Clinic</a>
-        <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
-        <a href="contact-us.html">Contact Us!</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="new-patients.html">Patient Registration & Update</a>
-    </nav>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Our Services</a>
+        <a href="WHealth.html" class="nav-link">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap & Immunization</a>
+        <a href="contact-us.html" class="nav-link">Contact</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment</a>
+      </nav>
 
-    <!-- Hamburger menu icon for mobile -->
-    <div class="hamburger-menu" id="hamburgerMenu">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-
-    <!-- Dropdown menu for mobile -->
-    <div class="dropdown-menu" id="dropdownMenu">
-        <a href="index.html">Home</a>
-        <a href="services.html">Our Services</a>
-        <a href="WHealth.html">Women's Health Clinic</a>
-        <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
-        <a href="contact-us.html">Contact Us!</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="new-patients.html">Patient Registration & Update</a>
+      <button class="hamburger-toggle" id="hamburgerToggle" aria-label="Toggle navigation menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </header>
 
-  <main class="waitlist-container">
-    <h1>Join Our Medical Team</h1>
-    <!-- Tally iframe -->
-    <iframe data-tally-src="https://tally.so/embed/w2Jdgj?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="28" frameborder="0" marginheight="0" marginwidth="0" title="Join Our Medical Team!"></iframe>
-    <script>
-      var d=document,w="https://tally.so/widgets/embed.js",v=function() {
-        "undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e) {
-          e.src=e.dataset.tallySrc
-        })
-      };
-      if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){
-        var s=d.createElement("script");
-        s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);
-      }
-    </script>
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-content">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Our Services</a>
+        <a href="WHealth.html" class="nav-link">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap Test & Immunization</a>
+        <a href="contact-us.html" class="nav-link">Contact Us</a>
+        <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment Now</a>
+      </div>
+      <div class="mobile-drawer-footer">
+        <p><strong>My Medical Centers</strong><br>Professional Recruitment: admin@mymedicalcenters.ca</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="page-main-wrapper">
+    <div class="content-container" style="max-width: 900px;">
+      
+      <!-- Hero -->
+      <section class="page-hero">
+        <span class="page-hero-badge">💼 Careers &amp; Practice Opportunities</span>
+        <h1 class="page-hero-title">Join Our Medical Team</h1>
+        <p class="page-hero-subtitle">
+          My Medical Centers is actively recruiting family physicians, specialists, and clinical staff to join our modern, collaborative practices in Ottawa.
+        </p>
+      </section>
+
+      <!-- Form Container Card -->
+      <div style="background:#ffffff; border:1px solid var(--border-light); border-radius:var(--radius-lg); padding:2.5rem; box-shadow:var(--shadow-sm); margin-bottom:3rem;">
+        <h2 style="font-size:1.5rem; font-weight:700; color:var(--primary-dark); margin-bottom:1rem;">Professional Inquiry Form</h2>
+        <p style="color:var(--text-secondary); margin-bottom:2rem; font-size:0.98rem; line-height:1.6;">
+          Complete the form below to connect with our clinical operations leadership regarding practice flexibility, competitive overhead models, EMR support, and turnkey clinic infrastructure.
+        </p>
+        
+        <iframe data-tally-src="https://tally.so/embed/w2Jdgj?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="28" frameborder="0" marginheight="0" marginwidth="0" title="Join Our Medical Team!"></iframe>
+        <script>
+          var d=document,w="https://tally.so/widgets/embed.js",v=function() {
+            "undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e) {
+              e.src=e.dataset.tallySrc
+            })
+          };
+          if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){
+            var s=d.createElement("script");
+            s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);
+          }
+        </script>
+      </div>
+
+      <!-- Practice Highlights -->
+      <div class="clinic-details-card">
+        <div class="detail-item">
+          <span class="detail-label">Practice Models</span>
+          <span class="detail-value">FHO, FHO Associate, FFS Walk-In &amp; Focused Practice</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Technology</span>
+          <span class="detail-value">Modern Cloud EMR, OceanMD Online Booking &amp; eReferrals</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Direct Contact</span>
+          <span class="detail-value"><a href="mailto:admin@mymedicalcenters.ca">admin@mymedicalcenters.ca</a></span>
+        </div>
+      </div>
+
+    </div>
   </main>
 
-  <script>
-    // Hamburger menu functionality
-    const hamburgerMenu = document.getElementById('hamburgerMenu');
-    const dropdownMenu = document.getElementById('dropdownMenu');
+  <!-- Global 2026 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-locations-bar">
+        <div class="footer-loc-box">
+          <h5>Carling Location</h5>
+          <p>1081 Carling Ave, Suite 507, Ottawa ON</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2430</p>
+          <a href="carling.html">View Clinic & Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Richmond Location</h5>
+          <p>190 Richmond Rd (Superstore 2nd Level)</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2636</p>
+          <a href="richmond.html">View Clinic & Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Orléans Location</h5>
+          <p>6497 Jeanne-d'Arc Blvd N. (between shoppers drug mart and dollarama), Orléans ON</p>
+          <p>Tel: 613-704-2524 | Fax: 343-224-0424</p>
+          <a href="orleans.html">View Clinic & Doctors &rarr;</a>
+        </div>
+      </div>
 
-    hamburgerMenu.addEventListener('click', () => {
-        dropdownMenu.classList.toggle('show'); // Toggle dropdown visibility
-    });
-  </script>
+      <div class="footer-emergency-note">
+        ⚠️ <strong>Medical Emergency:</strong> If you are experiencing a life-threatening medical emergency, please call <strong>911</strong> immediately or visit your nearest hospital emergency room.
+      </div>
+
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <h3>My Medical Centers</h3>
+          <p>Modern primary care, walk-in services, women's health, and psychiatry across three accessible locations in Ottawa.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Clinics</h4>
+          <ul class="footer-nav-list">
+            <li><a href="carling.html">Carling Location</a></li>
+            <li><a href="richmond.html">Richmond Location</a></li>
+            <li><a href="orleans.html">Orléans Location</a></li>
+            <li><a href="appointment.html">Book Appointment</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Specialized Care</h4>
+          <ul class="footer-nav-list">
+            <li><a href="WHealth.html">Women's Health Clinic</a></li>
+            <li><a href="dr-sadiku.html">Psychiatric Clinic</a></li>
+            <li><a href="dr-cheung.html">Dermatology Clinic</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Pap Test Screening</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Immunization Intake</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul class="footer-nav-list">
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="for-professionals.html">For Healthcare Pros</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 My Medical Centers. All rights reserved.</p>
+        <p>Providing quality healthcare across the Ottawa region.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>

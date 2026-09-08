@@ -4,502 +4,407 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Services - My Medical Centers</title>
+  <meta name="description" content="Explore comprehensive medical services at My Medical Centers: Family Medicine, Walk-In Clinic, Women's Health, Psychiatry, Dermatology, and Specialized Care." />
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="icon" href="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" type="image/png">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-  
-    :root {
-      --primary: #0077be;
-      --secondary: #f0f8ff;
-      --accent: #ff6b6b;
-      --text: #333;
-    }
-  
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    /* Logo at the top left */
-    .logo-container {
-      position: absolute;
-      top: 60px;
-      left: 10px;
-      z-index: 1000;
-      width: 100px;
-      scale: 75%;
-      transition: transform 0.3s ease-in-out;
-      cursor: pointer;
-    }
-
-    .logo-container img {
-      width: 100%;
-      height: auto;
-    }
-
-    .logo-container:hover {
-      transform: scale(1.1); /* Logo grows on hover */
-    }
-
-    .logo-container:active {
-      transform: scale(1.2); /* Logo grows more when clicked */
-    }
-
-    .header {
-      background-color: white;
-      color: var(--primary);
-      padding: 1rem;
-      position: fixed;
-      width: 100%;
-      z-index: 1001;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      max-width: 100%; /* Ensure it doesn’t stretch past the viewport */
-      box-sizing: border-box; /* Include padding within the width */
-      overflow: hidden; /* Prevent content from overflowing */
-    }
-  
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--primary);
-    }
-  
-    .nav {
-      display: flex;
-      align-items: center;
-    }
-  
-    .nav a {
-      color: var(--primary);
-      text-decoration: none;
-      margin-left: 1rem;
-      transition: color 0.3s ease;
-      font-weight: 400;
-    }
-  
-    .nav a:hover {
-      color: var(--accent);
-    }
-  
-    .services-container {
-      padding-top: 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-  
-    h1 {
-      color: var(--primary);
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2.5rem;
-    }
-  
-    .services-grid {
+    .services-showcase-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       gap: 2rem;
     }
-  
-    .service-card {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    .service-feature-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
       overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
       position: relative;
     }
-  
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
-  
-    .service-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-  
-    .service-content {
-      padding: 1.5rem;
-    }
-  
-    .service-title {
-      color: var(--primary);
-      margin-top: 0;
-    }
-  
-    .service-description {
-      margin-bottom: 0;
-    }
-  
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  
-    .service-card {
-      animation: fadeInUp 0.6s ease forwards;
-      opacity: 0;
-    }
-  
-    .service-card:nth-child(1) { animation-delay: 0.1s; }
-    .service-card:nth-child(2) { animation-delay: 0.2s; }
-    .service-card:nth-child(3) { animation-delay: 0.3s; }
-    .service-card:nth-child(4) { animation-delay: 0.4s; }
-    .service-card:nth-child(5) { animation-delay: 0.5s; }
-    .service-card:nth-child(6) { animation-delay: 0.6s; }
-    .service-card:nth-child(7) { animation-delay: 0.7s; }
-    .service-card:nth-child(8) { animation-delay: 0.8s; }
 
-    /* New badge for recent services */
-    .service-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background-color: #e63946; /* red */
-      color: #fff;
-      padding: 6px 10px;
-      border-radius: 12px;
+    .service-feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(0, 119, 190, 0.35);
+    }
+
+    .service-img-wrapper {
+      position: relative;
+      height: 210px;
+      overflow: hidden;
+      background: #0f172a;
+    }
+
+    .service-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .service-feature-card:hover .service-img-wrapper img {
+      transform: scale(1.06);
+    }
+
+    .service-card-body {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .service-card-title {
+      font-size: 1.35rem;
       font-weight: 700;
-      font-size: 0.9rem;
-      box-shadow: 0 4px 8px rgba(230,57,70,0.15);
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card-text {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-card-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       z-index: 5;
     }
 
-    /* Hamburger menu styles */
-    .hamburger-menu {
-        display: none; /* Hidden by default */
-        cursor: pointer;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 21px;
+    .service-card-badge.green {
+      background: #10b981;
+      color: #ffffff;
     }
 
-    .hamburger-menu div {
-        width: 100%;
-        height: 3px;
-        background-color: var(--primary);
-        transition: all 0.3s ease;
+    .service-card-badge.pink {
+      background: #f43f5e;
+      color: #ffffff;
     }
 
-    /* Dropdown menu styles */
-    .dropdown-menu {
-        display: none; /* Hidden by default */
-        position: fixed; /* Cover the whole page */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent background */
-        justify-content: center; /* Center items horizontally */
-        align-items: center; /* Center items vertically */
-        z-index: 1001; /* Above everything else */
-        flex-direction: column; /* Stack links vertically */
-        text-align: center; /* Center text */
+    .service-card-badge.purple {
+      background: #8b5cf6;
+      color: #ffffff;
     }
 
-    .dropdown-menu.show {
-        display: flex; /* Show when the class "show" is added */
+    .service-card-badge.orange {
+      background: #f59e0b;
+      color: #ffffff;
     }
 
-    .dropdown-menu a {
-        margin: 1rem 0; /* Space out the links */
-        font-size: 1.5rem; /* Increase font size for clarity */
-        color: var(--primary); /* Use primary color */
-    }
-
-    @media (max-width: 768px) {
-        .nav {
-            display: none; /* Hide regular navigation */
-        }
-
-        .hamburger-menu {
-            display: flex; /* Show hamburger menu */
-        }
-        
-        /* Logo at the top left */
-        .logo-container {
-          position: absolute;
-          top: 60px;
-          left: 8px;
-          z-index: 1000;
-          width: 100px;
-          scale: 0%;
-          transition: transform 0.3s ease-in-out;
-          cursor: pointer;
-        }
-    }
-
-    /* Popup Styles (copied from index.html) */
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    .popup-overlay.show {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .popup {
-      position: relative;
-      background-color: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-    }
-
-    .popup-close-x {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      background: transparent;
-      border: none;
-      font-size: 1.6rem;
-      font-weight: 300;
-      color: #888;
-      cursor: pointer;
-      line-height: 1;
-      padding: 4px 8px;
-      border-radius: 4px;
-      transition: color 0.2s ease, background-color 0.2s ease;
-      z-index: 10;
-    }
-
-    .popup-close-x:hover {
-      color: #111;
-      background-color: rgba(0, 0, 0, 0.06);
-    }
-    /* Button styles copied from index.html to keep popup consistent */
-    .button {
-      padding: 0.8rem 2rem;
-      border-radius: 50px;
-      font-size: 1rem;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin: 1rem 0;
-      width: 100%;
-      transition: background-color 0.3s ease;
-    }
-
-    .button.professionals {
-      background-color: var(--primary, #0077be);
-    }
-
-    .button.professionals:hover {
-      background-color: #005c91;
-    }
-
-    .button.clients {
-      background-color: #28a745; /* fallback green */
-    }
-
-    .button.clients:hover {
-      background-color: #218838;
+    .service-card-badge.blue {
+      background: #0284c7;
+      color: #ffffff;
     }
   </style>
 </head>
 <body>
-  <!-- Logo Section -->
-  <div class="logo-container">
-    <img src="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" alt="Medical Center Logo" id="mainLogo">
-  </div>
+  <!-- Global 2026 Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-wrapper">
+        <img src="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" alt="MMC Logo" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-title">My Medical Centers</span>
+          <span class="brand-subtitle">Your Health is Our Priority</span>
+        </div>
+      </a>
 
-  <header class="header">
-    <div class="logo">My Medical Centers</div>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="services.html">Our Services</a>
-      <a href="WHealth.html">Women's Health Clinic</a>
-      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
-      <a href="#" id="navPapImmunLink">Pap Test & Immunization</a>
-      <a href="contact-us.html">Contact Us!</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
-    </nav>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link active">Our Services</a>
+        <a href="WHealth.html" class="nav-link">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap & Immunization</a>
+        <a href="contact-us.html" class="nav-link">Contact</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment</a>
+      </nav>
 
-    <!-- Hamburger menu icon for mobile -->
-    <div class="hamburger-menu" id="hamburgerMenu">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-
-    <!-- Dropdown menu for mobile -->
-    <div class="dropdown-menu" id="dropdownMenu">
-      <a href="index.html">Home</a>
-      <a href="services.html">Our Services</a>
-      <a href="WHealth.html">Women's Health Clinic</a>
-      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
-      <a href="#" id="navPapImmunLinkMobile">Pap Test & Immunization</a>
-      <a href="contact-us.html">Contact Us!</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
+      <button class="hamburger-toggle" id="hamburgerToggle" aria-label="Toggle navigation menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </header>
 
-  <main class="services-container">
-    <h1>Our Services</h1>
-    <div class="services-grid">
-      <div class="service-card">
-        <img src="https://i.postimg.cc/7PzW8jPf/New-Project.png" alt="Walk-In Clinic" class="service-image">
-        <div class="service-content">
-          <h2 class="service-title">Walk-In Clinic</h2>
-          <p class="service-description">Convenient care for non-emergency medical needs without an appointment.</p>
-        </div>
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-content">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link active">Our Services</a>
+        <a href="WHealth.html" class="nav-link">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap Test & Immunization</a>
+        <a href="contact-us.html" class="nav-link">Contact Us</a>
+        <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment Now</a>
       </div>
+      <div class="mobile-drawer-footer">
+        <p><strong>My Medical Centers</strong><br>Main Line: 613-704-2524</p>
+      </div>
+    </div>
+  </div>
 
-      <div class="service-card">
-        <img src="https://i.postimg.cc/DZYqDvH8/image-2024-10-14-210713793.png" alt="Family Doctor" class="service-image">
-        <div class="service-content">
-          <h2 class="service-title">Family Doctor</h2>
-          <p class="service-description">Comprehensive primary care services for all members of your family.</p>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-badge" style="background-color: #28a745;">ACCEPTING REFERRALS</div>
-        <img src="https://i.postimg.cc/7LQ8ZRWj/out-0-2.webp" alt="Psychiatry Services - Dr. Olayemi Sadiku" class="service-image">
-        <div class="service-content">
-          <h2 class="service-title">Psychiatry Services</h2>
-          <p class="service-description"><strong>Dr. Olayemi Sadiku</strong> (Psychiatrist) is accepting new referrals starting Sept 2026 with a very short waiting time at our Orléans Location (6497 Jeanne-d'Arc Blvd. N). Fax: 343-224-0424.</p>
-          <a href="dr-sadiku.html" style="display:inline-block; margin-top:0.8rem; background:var(--primary); color:white; padding:0.5rem 1.2rem; border-radius:20px; text-decoration:none; font-weight:600; font-size:0.9rem;">Learn More & Referral Info &rarr;</a>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <img src="https://i.postimg.cc/7LQ8ZRWj/out-0-2.webp" alt="Psychotherapy" class="service-image">
-        <div class="service-content">
-          <h2 class="service-title">Psychotherapy</h2>
-          <p class="service-description">Professional mental health support to improve emotional well-being.</p>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <img src="https://i.postimg.cc/BZjDb1Xz/image-2024-10-14-210805566.png" alt="Addiction Counselling" class="service-image">
-        <div class="service-content">
-          <h2 class="service-title">Addiction Counselling</h2>
-          <p class="service-description">Specialized support for individuals struggling with substance abuse and addiction.</p>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <img src="https://i.postimg.cc/mgf702Z5/image-2024-10-14-210830508.png" alt="Mental Health Workshops" class="service-image">
-        <div class="service-content">
-          <h2 class="service-title">Mental Health Workshops</h2>
-          <p class="service-description">Educational sessions focusing on various mental health topics to empower and support our community.</p>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-badge">COMING SOON!</div>
-        <img src="https://i.postimg.cc/0N3m3TtP/image-2026-02-10-145908218.png" alt="Iron Infusion Clinic" class="service-image">
-        <div class="service-content">
-          <h2 class="service-title">Iron Infusion Clinic</h2>
-          <p class="service-description">Safe, supervised iron infusion therapy to treat iron-deficiency anemia. Book a consult to learn more.</p>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <img src="https://i.postimg.cc/kMLRnFGg/image-9.png" alt="More to come!" class="service-image">
-        <div class="service-content">
-          <h2 class="service-title">Coming Soon!</h2>
-          <p class="service-description">More to come!</p>
-        </div>
-      </div>
+  <!-- Main Content -->
+  <main class="page-main-wrapper">
+    <div class="content-container">
       
+      <!-- Page Hero -->
+      <section class="page-hero">
+        <span class="page-hero-badge">🩺 Clinical Care Directory</span>
+        <h1 class="page-hero-title">Comprehensive Medical Services</h1>
+        <p class="page-hero-subtitle">
+          From walk-in medical consultations and family doctor rostering to specialized adult psychiatry, focused gynecology, and clinical dermatology, My Medical Centers is dedicated to your health and well-being.
+        </p>
+      </section>
+
+      <!-- Services Grid -->
+      <div class="services-showcase-grid">
+
+        <!-- 1. Family Medicine / Family Doctor -->
+        <div class="service-feature-card">
+          <div class="service-img-wrapper">
+            <span class="service-card-badge green">Accepting Patients</span>
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=700&q=80" alt="Family Doctor">
+          </div>
+          <div class="service-card-body">
+            <div>
+              <h2 class="service-card-title">Family Medicine &amp; Rostering</h2>
+              <p class="service-card-text">
+                Continuous primary medical care for children, adults, and seniors. Physicians are currently accepting new patient rostering across Carling, Richmond, and Orléans.
+              </p>
+            </div>
+            <a href="appointment.html" class="clinic-btn clinic-btn-primary" style="padding:0.5rem 1.25rem; font-size:0.88rem; align-self:flex-start;">
+              Find an Accepting Physician &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Walk-In Clinic -->
+        <div class="service-feature-card">
+          <div class="service-img-wrapper">
+            <span class="service-card-badge green">Walk-In Available</span>
+            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=700&q=80" alt="Walk-In Clinic">
+          </div>
+          <div class="service-card-body">
+            <div>
+              <h2 class="service-card-title">Walk-In Clinic</h2>
+              <p class="service-card-text">
+                Prompt evaluation and treatment for non-emergency medical conditions, acute illnesses, minor injuries, and prescription refills at our <strong>Richmond</strong> and <strong>Orléans</strong> clinics.
+              </p>
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <a href="richmond.html" class="clinic-btn clinic-btn-primary" style="padding:0.45rem 1rem; font-size:0.85rem;">Richmond Walk-In &rarr;</a>
+              <a href="orleans.html" class="clinic-btn clinic-btn-outline" style="padding:0.45rem 1rem; font-size:0.85rem; color:var(--text-primary)!important;">Orléans Walk-In &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Dermatology (Dr. Dennis Cheung) -->
+        <div class="service-feature-card" style="border-color: rgba(2, 132, 199, 0.4);">
+          <div class="service-img-wrapper">
+            <span class="service-card-badge blue">Specialist Care</span>
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=700&q=80" alt="Dermatology Clinic">
+          </div>
+          <div class="service-card-body">
+            <div>
+              <h2 class="service-card-title">Dermatology &amp; Minor Procedures (Dr. Dennis Cheung)</h2>
+              <p class="service-card-text">
+                Specialized integumentary medicine, lumps &amp; bumps, skin lesions, minor surgeries, gynecological procedures, male sexual health, and therapeutic/cosmetic Botox injections with Dr. Dennis Cheung (FCFP, FAAFP).
+              </p>
+            </div>
+            <a href="dr-cheung.html" class="clinic-btn clinic-btn-primary" style="background:#0284c7; padding:0.5rem 1.25rem; font-size:0.88rem; align-self:flex-start;">
+              View Clinic &amp; Procedures &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. Psychiatry Services -->
+        <div class="service-feature-card" style="border-color: rgba(139, 92, 246, 0.4);">
+          <div class="service-img-wrapper">
+            <span class="service-card-badge purple">Short Wait Times</span>
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=700&q=80" alt="Psychiatry Clinic">
+          </div>
+          <div class="service-card-body">
+            <div>
+              <h2 class="service-card-title">Adult Psychiatry (Dr. Sadiku)</h2>
+              <p class="service-card-text">
+                Comprehensive psychiatric assessments and medication management with <strong>Dr. Olayemi Sadiku</strong> at our Orléans clinic (ages 18–65). Short wait times for new referrals.
+              </p>
+            </div>
+            <a href="dr-sadiku.html" class="clinic-btn clinic-btn-accent-purple" style="padding:0.5rem 1.25rem; font-size:0.88rem; align-self:flex-start;">
+              Psychiatric Clinic Info &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 5. Women's Health Clinic -->
+        <div class="service-feature-card" style="border-color: rgba(244, 63, 94, 0.4);">
+          <div class="service-img-wrapper">
+            <span class="service-card-badge pink">Focused Gynecology</span>
+            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=700&q=80" alt="Women's Health">
+          </div>
+          <div class="service-card-body">
+            <div>
+              <h2 class="service-card-title">Women's Health Clinic</h2>
+              <p class="service-card-text">
+                Specialized gynecological consultations with <strong>Dr. Keiko Chan</strong> and <strong>Dr. Sawini Fernando</strong> at Carling. IUD insertions, pelvic pain, menopause, and endometrial biopsies.
+              </p>
+            </div>
+            <a href="WHealth.html" class="clinic-btn clinic-btn-accent-pink" style="padding:0.5rem 1.25rem; font-size:0.88rem; align-self:flex-start;">
+              Women's Health Details &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 6. Psychotherapy & Counselling -->
+        <div class="service-feature-card">
+          <div class="service-img-wrapper">
+            <span class="service-card-badge green">Mental Health</span>
+            <img src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&w=700&q=80" alt="Psychotherapy">
+          </div>
+          <div class="service-card-body">
+            <div>
+              <h2 class="service-card-title">Psychotherapy &amp; Mental Health</h2>
+              <p class="service-card-text">
+                Professional cognitive and emotional support to help patients navigate anxiety, depression, life transitions, grief, and stress with evidence-based strategies.
+              </p>
+            </div>
+            <a href="contact-us.html" class="clinic-btn clinic-btn-outline" style="padding:0.5rem 1.25rem; font-size:0.88rem; color:var(--text-primary)!important; align-self:flex-start;">
+              Inquire About Care &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 7. Pap Test & Immunization -->
+        <div class="service-feature-card">
+          <div class="service-img-wrapper">
+            <span class="service-card-badge green">Preventive Care</span>
+            <img src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?auto=format&fit=crop&w=700&q=80" alt="Immunization & Pap">
+          </div>
+          <div class="service-card-body">
+            <div>
+              <h2 class="service-card-title">Pap Screening &amp; Immunizations</h2>
+              <p class="service-card-text">
+                Routine cervical screening (Pap smear) through the Ontario Cervical Screening Program, along with adult and pediatric routine vaccines.
+              </p>
+            </div>
+            <button class="clinic-btn clinic-btn-primary open-pap-immun-modal" style="padding:0.5rem 1.25rem; font-size:0.88rem; align-self:flex-start;">
+              Request Intake Form &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- 8. Iron Infusion Clinic -->
+        <div class="service-feature-card">
+          <div class="service-img-wrapper">
+            <span class="service-card-badge orange">Coming Soon</span>
+            <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=700&q=80" alt="Iron Infusion Clinic">
+          </div>
+          <div class="service-card-body">
+            <div>
+              <h2 class="service-card-title">Iron Infusion Clinic</h2>
+              <p class="service-card-text">
+                Safe, medically supervised intravenous iron therapy for the rapid, effective treatment of iron deficiency anemia when oral supplements are inadequate.
+              </p>
+            </div>
+            <span class="status-badge not-accepting" style="align-self:flex-start;">Launching Soon</span>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </main>
 
-  <script>
-    // Global close listener for popups via X button
-    document.addEventListener('click', function(e) {
-      const closeBtn = e.target.closest('.popup-close-x');
-      if (closeBtn) {
-        const overlay = closeBtn.closest('.popup-overlay');
-        if (overlay) {
-          overlay.classList.remove('show');
-        }
-      }
-    });
+  <!-- Global 2026 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-locations-bar">
+        <div class="footer-loc-box">
+          <h5>Carling Location</h5>
+          <p>1081 Carling Ave, Suite 507, Ottawa ON</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2430</p>
+          <a href="carling.html">View Clinic & Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Richmond Location</h5>
+          <p>190 Richmond Rd (Superstore 2nd Level)</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2636</p>
+          <a href="richmond.html">View Clinic & Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Orléans Location</h5>
+          <p>6497 Jeanne-d'Arc Blvd N. (between shoppers drug mart and dollarama), Orléans ON</p>
+          <p>Tel: 613-704-2524 | Fax: 343-224-0424</p>
+          <a href="orleans.html">View Clinic & Doctors &rarr;</a>
+        </div>
+      </div>
 
-    // Pap Test & Immunization popup injection for this page
-    (function() {
-      function createSecondaryPopup() {
-        if (document.getElementById('secondaryPopup')) return;
-        const secondary = document.createElement('div');
-        secondary.className = 'popup-overlay';
-        secondary.id = 'secondaryPopup';
-        secondary.innerHTML = `
-          <div class="popup">
-            <button class="popup-close-x" aria-label="Close">&times;</button>
-            <h2>Select Request</h2>
-            <p>Please choose:</p>
-            <button class="button professionals" id="papTestBtn">Pap Test</button>
-            <button class="button clients" id="immunBtn">Immunization Request</button>
-            <button class="button" id="backToMainBtn" style="background:#e0e0e0;color:#111;margin-top:0.5rem;">Back</button>
-          </div>`;
-        document.body.appendChild(secondary);
-        document.getElementById('papTestBtn').addEventListener('click', () => window.location.href='https://tally.so/r/jakO8a');
-        document.getElementById('immunBtn').addEventListener('click', () => window.location.href='https://tally.so/r/Xx2K6g');
-        document.getElementById('backToMainBtn').addEventListener('click', () => document.getElementById('secondaryPopup').classList.remove('show'));
-      }
+      <div class="footer-emergency-note">
+        ⚠️ <strong>Medical Emergency:</strong> If you are experiencing a life-threatening medical emergency, please call <strong>911</strong> immediately or visit your nearest hospital emergency room.
+      </div>
 
-      const navLink = document.getElementById('navPapImmunLink');
-      const navLinkMobile = document.getElementById('navPapImmunLinkMobile');
-      if (navLink) navLink.addEventListener('click', (e) => { e.preventDefault(); createSecondaryPopup(); document.getElementById('secondaryPopup').classList.add('show'); });
-      if (navLinkMobile) navLinkMobile.addEventListener('click', (e) => { e.preventDefault(); createSecondaryPopup(); document.getElementById('secondaryPopup').classList.add('show'); document.getElementById('dropdownMenu').classList.remove('show'); });
-    })();
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <h3>My Medical Centers</h3>
+          <p>Modern primary care, walk-in services, women's health, and psychiatry across three accessible locations in Ottawa.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Clinics</h4>
+          <ul class="footer-nav-list">
+            <li><a href="carling.html">Carling Location</a></li>
+            <li><a href="richmond.html">Richmond Location</a></li>
+            <li><a href="orleans.html">Orléans Location</a></li>
+            <li><a href="appointment.html">Book Appointment</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Specialized Care</h4>
+          <ul class="footer-nav-list">
+            <li><a href="WHealth.html">Women's Health Clinic</a></li>
+            <li><a href="dr-sadiku.html">Psychiatric Clinic</a></li>
+            <li><a href="dr-cheung.html">Dermatology Clinic</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Pap Test Screening</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Immunization Intake</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul class="footer-nav-list">
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="for-professionals.html">For Healthcare Pros</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
 
-    // Hamburger menu functionality
-    const hamburgerMenu = document.getElementById('hamburgerMenu');
-    const dropdownMenu = document.getElementById('dropdownMenu');
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 My Medical Centers. All rights reserved.</p>
+        <p>Providing quality healthcare across the Ottawa region.</p>
+      </div>
+    </div>
+  </footer>
 
-    hamburgerMenu.addEventListener('click', () => {
-      dropdownMenu.classList.toggle('show'); // Toggle dropdown visibility
-    });
-
-    // Animation observer for service cards
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-
-    document.querySelectorAll('.service-card').forEach(card => {
-      observer.observe(card);
-    });
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

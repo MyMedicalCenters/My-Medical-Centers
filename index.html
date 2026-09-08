@@ -3,940 +3,292 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Medical Centers - Your Health, Our Priority</title>
+  <title>My Medical Centers - Your Health is Our Priority</title>
+  <meta name="description" content="Welcome to My Medical Centers. Ottawa's premier medical clinics across Carling, Richmond, and Orléans. Family medicine, walk-in, women's health, and psychiatry." />
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="icon" href="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" type="image/png">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-    :root {
-      --primary: #0077be; /* Blue */
-      --secondary: #f0f8ff; /* Light Blue */
-      --accent: #ff6b6b; /* Red */
-      --client: #28a745; /* Green */
+    body {
+      background-color: #071322;
     }
-
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-      height: 100%;
-    }
-
-    /* Logo placed under the header (flows in document, above CTA) */
-    .logo-container {
-      position: relative;
-      margin: 70px 0 0 27px; /* ensure it sits below the fixed header */
-      z-index: 900; /* place under the header (header z-index:1000) */
-      width: 100px;
-      transition: transform 0.3s ease-in-out;
-      cursor: pointer;
-      display: block;
-    }
-
-    .logo-container img {
-      width: 100%;
-      height: auto;
-    }
-
-    .logo-container:hover {
-      transform: scale(1.1); /* Logo grows on hover */
-    }
-
-    .logo-container:active {
-      transform: scale(1.2); /* Logo grows more when clicked */
-    }
-
-    .header {
-      background-color: white;
-      color: var(--primary);
-      padding: 0.5rem 1.2rem; /* Reduce vertical padding */
-      position: fixed;
-      width: 100%;
-      z-index: 1000;
-      display: flex;
-      justify-content: center; /* Center all header content horizontally */
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      max-width: 100%;
-      box-sizing: border-box;
-      overflow: hidden;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      margin-left: 0; /* No margin on the left */
-      width: 100%;
-      justify-content: center;
-      position: relative;
-    }
-
-    .nav a {
-      color: var(--primary);
-      text-decoration: none;
-      margin-left: 1.2rem; /* More space between nav links */
-      margin-right: 0;
-      font-size: 0.97rem; /* Slightly smaller */
-      transition: color 0.3s ease;
-      font-weight: 400;
-      line-height: 1;
-      padding: 0;
-    }
-
-    .nav a:first-child {
-      position: absolute;
-      left: 0;
-      margin-left: 0;
-    }
-
-    .nav a:hover {
-      color: var(--accent);
-    }
-
-
-    .video-container {
-      position: relative;
-      width: 100%;
-      height: 70vh; /* bigger video */
-      max-height: 840px;
-      overflow: hidden;
-      margin-top: 8px; /* place the video just below the CTA (slightly closer) */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem 0;
-    }
-
-    #mainVideo {
-      width: 85%;
-      height: 100%;
-      max-width: 1200px;
-      object-fit: cover;
-      border-radius: 8px;
-      display: block;
-    }
-
-    .video-controls {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 10;
-    }
-
-    .video-controls button {
-      background-color: rgba(255,255,255,0.85);
-      border: none;
-      border-radius: 6px;
-      padding: 0.45rem 0.6rem;
-      margin-left: 0.5rem;
-      cursor: pointer;
-      font-size: 18px;
-    }
-
-    #playPauseBtn {
-      background-color: rgba(255, 255, 255, 0.7);
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 24px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: background-color 0.3s ease;
-    }
-
-    #playPauseBtn:hover {
-      background-color: rgba(255, 255, 255, 0.9);
-    }
-
-    /* End of Video Buttons */
-    #endButtons {
-      position: absolute;
-      bottom: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      justify-content: space-between;
-      width: 80%;
-    }
-
-    .end-button {
-      background-color: var(--primary);
-      color: white;
-      padding: 1.5rem 3rem;
-      border: none;
-      border-radius: 25px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      flex: 1;
-      margin: 0 1rem;
-      animation: zoomInOut 2s infinite;
-    }
-
-    .end-button:hover {
-      background-color: #005c91;
-    }
-
-    @keyframes zoomInOut {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.1);
-      }
-    }
-
-    /* Popup Styles */
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    .popup-overlay.show {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .popup {
-      position: relative;
-      background-color: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-    }
-
-    .popup-close-x {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      background: transparent;
-      border: none;
-      font-size: 1.6rem;
-      font-weight: 300;
-      color: #888;
-      cursor: pointer;
-      line-height: 1;
-      padding: 4px 8px;
-      border-radius: 4px;
-      transition: color 0.2s ease, background-color 0.2s ease;
-      z-index: 10;
-    }
-
-    .popup-close-x:hover {
-      color: #111;
-      background-color: rgba(0, 0, 0, 0.06);
-    }
-
-    /* Dr. Imran popup (physician announcement) — compact sizing */
-    #physicianPopup .popup {
-      max-width: 350px;
-      width: min(90%, 300px);
-      padding: 1.2rem 1rem;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-
-    #physicianPopup .popup img {
-      max-width: 100%;
-      height: auto;
-      max-height: 90vh;
-      border-radius: 6px;
-      margin-bottom: 0.7rem;
-    }
-
-    #physicianPopup .popup h2 {
-      font-size: 1.15rem;
-      margin: 0.5rem 0 0.6rem;
-    }
-
-    #physicianPopup .popup p {
-      font-size: 0.95rem;
-      margin: 0 0 0.9rem;
-    }
-
-    #physicianPopup .button {
-      padding: 0.65rem 1.4rem;
-      font-size: 0.92rem;
-      margin: 0.5rem 0;
-    }
-
-    /* Button Styles */
-    .button {
-      padding: 0.8rem 2rem;
-      border-radius: 50px;
-      font-size: 1rem;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin: 1rem 0;
-      width: 100%;
-      transition: background-color 0.3s ease;
-    }
-
-    .button.professionals {
-      background-color: var(--primary);
-    }
-
-    .button.professionals:hover {
-      background-color: #005c91;
-    }
-
-    .button.clients {
-      background-color: var(--client);
-    }
-
-    .button.clients:hover {
-      background-color: #218838;
-    }
-
-    .hamburger-menu {
-      display: none; /* Hidden by default */
-      cursor: pointer;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 21px;
-    }
-
-    .hamburger-menu div {
-      width: 100%;
-      height: 3px;
-      background-color: var(--primary);
-      transition: all 0.3s ease;
-    }
-    /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .nav {
-      display: none; /* Hide regular navigation */
-    }
-
-    .hamburger-menu {
-      display: flex; /* Show hamburger menu */
-    }
-
-    /* Keep logo positioned under header on mobile as well; reduce size so it doesn't cover CTA */
-    .logo-container {
-      position: relative;
-      margin: 55px 0 0 12px; /* moved down on mobile to avoid touching CTA */
-      z-index: 900; /* keep below header on mobile too */
-      width: 56px;
-      transition: transform 0.15s ease;
-    }
-
-    .book-appointment-btn {
-      display: none !important; /* Hide main button on mobile */
-    }
-
-    .logo {
-      width: 100%;
-      text-align: center;
-      margin: 0 auto;
-      display: block;
-      float: none;
-    }
-
-    .hero-cta { height: 160px; margin-top: 80px; }
-    .big-appointment-btn { font-size: 1.1rem; padding: 0.9rem 1.6rem; }
-    .video-container { height: 50vh; }
-
-    /* Dr. Imran popup mobile sizing */
-    #physicianPopup .popup {
-      max-width: 280px;
-      width: min(90%, 280px);
-      padding: 1.1rem 0.9rem;
-      max-height: 65vh;
-    }
-
-    #physicianPopup .popup img {
-      max-height: 32vh;
-      margin-bottom: 0.6rem;
-    }
-
-    #physicianPopup .popup h2 {
-      font-size: 1.1rem;
-      margin: 0.4rem 0 0.5rem;
-    }
-
-    #physicianPopup .popup p {
-      font-size: 0.92rem;
-      margin: 0 0 0.8rem;
-    }
-
-    #physicianPopup .button {
-      padding: 0.6rem 1.2rem;
-      font-size: 0.9rem;
-      margin: 0.4rem 0;
-    }
-  }
-
-
-    .dropdown-menu {
-      display: none; /* Hidden by default */
-      position: fixed; /* Cover the whole page */
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent background */
-      justify-content: center; /* Center items horizontally */
-      align-items: center; /* Center items vertically */
-      z-index: 1001; /* Above everything else */
-      flex-direction: column; /* Stack links vertically */
-      text-align: center; /* Center text */
-    }
-
-    .dropdown-menu.show {
-      display: flex; /* Show when the class "show" is added */
-    }
-
-    .dropdown-menu a {
-      margin: 1rem 0; /* Space out the links */
-      font-size: 1.5rem; /* Increase font size for clarity */
-      color: var(--primary); /* Use primary color */
-    }
-
-  @media (min-width: 769px) {
-    .dropdown-menu {
-      display: none; /* Hide dropdown on larger screens */
-    }
-  }
-
-  .book-appointment-btn {
-    background-color: #5fa1bc;
-    color: #fff;
-    padding: 0.18rem 0.7rem;
-    border-radius: 15px;
-    font-size: 0.93rem;
-    border: none;
-    cursor: pointer;
-    margin-left: 1.5rem; /* Add space between nav and button */
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 2px 8px rgba(95,161,188,0.08);
-    display: inline-flex;
-    align-items: center;
-    height: 28px;
-    line-height: 1;
-    white-space: nowrap;
-  }
-
-  .book-appointment-btn:hover {
-    background-color: #48829a;
-    color: #fff;
-  }
-
-  .logo {
-  font-size: 1.2rem;
-  font-weight: 700; /* Revert to bold */
-  color: var(--primary);
-  line-height: 1;
-  margin-right: 1.5rem;
-}
-
-.header-inline-logo {
-  display: none;
-}
-
-    /* Hero CTA placed where the video used to be */
-    .hero-cta {
-      position: relative;
-      width: 100%;
-      height: 220px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-      box-sizing: border-box;
-      margin-top: 58px; /* move the CTA up while keeping gap to video */
-    }
-
-    .big-appointment-btn {
-      background: linear-gradient(90deg, #5fa1bc, #2d9cbc);
-      color: #fff;
-      padding: 1.2rem 2.4rem;
-      border-radius: 40px;
-      font-size: 1.6rem;
-      font-weight: 700;
-      text-decoration: none;
-      box-shadow: 0 8px 30px rgba(47,128,142,0.25);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      white-space: normal;
-      line-height: 1.1;
-    }
-
-      /* Make top CTA match hero CTA size */
-      .top-cta { display:flex; justify-content:center; margin-top:12px; }
-      .top-cta .big-appointment-btn, .hero-cta .big-appointment-btn { width: 85%; max-width: 1200px; }
-
-    .big-appointment-btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(47,128,142,0.35);
-    }
-
-    .dropdown-menu button.book-appointment-btn {
-      display: inline-flex !important;
-      margin-top: 1.5rem;
-      width: auto;
-      font-size: 1.2rem;
-      background-color: #5fa1bc;
-      color: #fff;
-      border-radius: 15px;
-      border: none;
-      padding: 0.5rem 1.5rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(95,161,188,0.08);
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .dropdown-menu button.book-appointment-btn:hover {
-      background-color: #48829a;
-    }
-
   </style>
 </head>
 <body>
-  <!-- (removed top-level floating logo; logo will be inside header to sit under it) -->
 
-  <header class="header">
-    <div class="logo">My Medical Centers</div>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="services.html">Our Services</a>
-      <a href="WHealth.html" id="navProfessionalButton">Women's Health Clinic</a>
-      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
-      <a href="#" id="navPapImmunLink">Pap Test & Immunization</a>
-      <a href="contact-us.html">Contact Us!</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
-    </nav>
-    <a href="appointment.html" class="book-appointment-btn">Book Appointment Now!</a>
-    <!-- Hamburger menu icon for mobile -->
-    <div class="hamburger-menu" id="hamburgerMenu">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+  <!-- Global 2026 Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-wrapper">
+        <img src="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" alt="MMC Logo" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-title">My Medical Centers</span>
+          <span class="brand-subtitle">Your Health is Our Priority</span>
+        </div>
+      </a>
 
-    <!-- Dropdown menu for mobile -->
-    <div class="dropdown-menu" id="dropdownMenu">
-      <a href="index.html">Home</a>
-      <a href="services.html">Our Services</a>
-      <a href="WHealth.html">Women's Health Clinic</a>
-      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
-      <a href="#" id="navPapImmunLinkMobile">Pap Test & Immunization</a>
-      <a href="contact-us.html">Contact Us!</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
-      <button onclick="window.location.href='appointment.html'" class="book-appointment-btn" style="display:inline-flex; margin-top:1.5rem; width:auto; font-size:1.2rem;">Book Appointment Now!</button>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="services.html" class="nav-link">Our Services</a>
+        <a href="WHealth.html" class="nav-link">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap & Immunization</a>
+        <a href="contact-us.html" class="nav-link">Contact</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment</a>
+      </nav>
+
+      <button class="hamburger-toggle" id="hamburgerToggle" aria-label="Toggle navigation menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </header>
 
-  <!-- Logo placed under header so it does not sit inside header element -->
-  <div class="logo-container">
-    <img src="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" alt="Medical Center Logo" id="mainLogo">
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-content">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="services.html" class="nav-link">Our Services</a>
+        <a href="WHealth.html" class="nav-link">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap Test & Immunization</a>
+        <a href="contact-us.html" class="nav-link">Contact Us</a>
+        <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment Now</a>
+      </div>
+      <div class="mobile-drawer-footer">
+        <p><strong>My Medical Centers</strong><br>Main Line: 613-704-2524</p>
+      </div>
+    </div>
   </div>
 
-  <!-- Video Section -->
-  <!-- Hero CTA (big button where the video used to be) -->
-  <section class="hero-cta">
-    <a href="appointment.html" class="big-appointment-btn">Book Appointment Now!</a>
-  </section>
-  <main class="video-container">
-    <video id="mainVideo" muted>
-      <source src="https://ia601501.us.archive.org/7/items/mmc-video-reworked/MMC_Video_Reworked.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <div class="video-controls">
-      <button id="playPauseBtn">▶</button>
-      <button id="muteUnmuteBtn">🔇</button>
-    </div>
-    <div id="endButtons" style="display: none;">
-      <button id="joinWaitlistBtn" class="end-button">New patient?</button>
-    </div>
+  <!-- Dynamic 3-Column Split Hero (No video, no old book button) -->
+  <main class="hero-split-wrapper" id="heroSplit">
+    
+    <!-- 1st Vertical Bar: Carling Location (Far Left) -->
+    <a href="carling.html" class="clinic-bar" id="carlingBar" aria-label="Explore Carling Location">
+      <div class="clinic-bar-bg" style="background-image: url('carling-clinic.png');"></div>
+      <div class="clinic-bar-overlay"></div>
+      <div class="clinic-bar-content">
+        <span class="clinic-location-pill">📍 Ottawa Central</span>
+        <h2 class="clinic-bar-title">Carling Location</h2>
+        
+        <!-- Info in Brackets -->
+        <div class="bracket-info-group">
+          <span class="bracket-badge accent-green">Family Doctors</span>
+          <span class="bracket-badge accent-pink">Women's Health Clinic</span>
+          <span class="bracket-badge" style="background:rgba(14,165,233,0.3); border-color:rgba(14,165,233,0.55); color:#e0f2fe;">Dermatology</span>
+        </div>
+
+        <p class="clinic-bar-desc">
+          <span>🏢</span> 1081 Carling Avenue, Suite 507
+        </p>
+
+        <div class="clinic-bar-action">
+          <span>View Clinic & Doctors</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 2nd Vertical Bar: Richmond Location (Middle) -->
+    <a href="richmond.html" class="clinic-bar" id="richmondBar" aria-label="Explore Richmond Location">
+      <div class="clinic-bar-bg" style="background-image: url('richmond-clinic.png');"></div>
+      <div class="clinic-bar-overlay"></div>
+      <div class="clinic-bar-content">
+        <span class="clinic-location-pill">📍 Ottawa West &bull; Westboro</span>
+        <h2 class="clinic-bar-title">Richmond Location</h2>
+        
+        <!-- Info in Brackets -->
+        <div class="bracket-info-group">
+          <span class="bracket-badge accent-green">Family Doctors & Walk-In</span>
+        </div>
+
+        <p class="clinic-bar-desc">
+          <span>🏢</span> 190 Richmond Rd (Inside Superstore, 2nd Level)
+        </p>
+
+        <div class="clinic-bar-action">
+          <span>View Clinic & Doctors</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 3rd Vertical Bar: Orléans Location (Far Right) -->
+    <a href="orleans.html" class="clinic-bar" id="orleansBar" aria-label="Explore Orléans Location">
+      <div class="clinic-bar-bg" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80');"></div>
+      <div class="clinic-bar-overlay"></div>
+      <div class="clinic-bar-content">
+        <span class="clinic-location-pill">📍 Ottawa East</span>
+        <h2 class="clinic-bar-title">Orléans Location</h2>
+        
+        <!-- Info in Brackets -->
+        <div class="bracket-info-group">
+          <span class="bracket-badge accent-green">Family Doctors</span>
+          <span class="bracket-badge accent-purple">Psychiatric Clinic</span>
+          <span class="bracket-badge" style="background:rgba(37,99,235,0.3); border-color:rgba(37,99,235,0.55); color:#dbeafe;">Walk-In</span>
+        </div>
+
+        <p class="clinic-bar-desc">
+          <span>🏢</span> 6497 Jeanne-d'Arc Blvd N. (between shoppers drug mart and dollarama)
+        </p>
+
+        <div class="clinic-bar-action">
+          <span>View Clinic & Doctors</span>
+          <span class="arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+
   </main>
 
-  <!-- Dr. Olayemi Sadiku Popup Overlay -->
-  <div class="popup-overlay" id="sadikuPopup">
-    <div class="popup" style="max-width: 480px; border-top: 5px solid var(--primary); text-align: left; padding: 1.8rem; position: relative;">
-      <button class="popup-close-x" id="closeSadikuX" aria-label="Close">&times;</button>
-      
-      <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
-        <div style="background: rgba(0, 119, 190, 0.1); color: var(--primary); padding: 0.6rem; border-radius: 50%; font-size: 1.6rem; display: flex; align-items: center; justify-content: center; min-width: 48px; min-height: 48px;">
-          🧠
+  <!-- Notice Board Section -->
+  <section class="notice-board-section" id="noticeBoard">
+    <div class="notice-board-container">
+      <div class="notice-board-header">
+        <h2 class="notice-board-title">
+          <span>📋</span> Clinic Notice Board
+        </h2>
+        <span class="status-badge" style="background:rgba(255,255,255,0.1); color:#cbd5e1; border:1px solid rgba(255,255,255,0.2);">
+          Official Patient Notices
+        </span>
+      </div>
+
+      <div class="notice-board-grid">
+        <!-- Notice 1: Dr. Sadiku -->
+        <div class="notice-card" style="border-top: 4px solid #10b981;">
+          <div>
+            <div class="notice-card-header">
+              <span class="notice-pill green">⚡ Accepting Referrals</span>
+              <small style="color:#94a3b8;">Orléans Location</small>
+            </div>
+            <h3 class="notice-title">Dr. Olayemi Sadiku (Psychiatrist)</h3>
+            <p class="notice-desc">
+              Dr. Olayemi Sadiku (Psychiatrist) is accepting adult referrals (ages 18–65) at our Orléans clinic with very short wait times. Direct referral fax: <strong>343-224-0424</strong>. Electronic referrals are also accepted through OceanMD.
+            </p>
+          </div>
+          <div class="notice-footer">
+            <a href="dr-sadiku.html" style="color:#38bdf8; text-decoration:none; font-weight:700; font-size:0.92rem; display:inline-flex; align-items:center; gap:0.4rem;">
+              <span>View Referral Info &amp; Ocean Steps</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
         </div>
-        <div>
-          <span style="background: #28a745; color: white; font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.65rem; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">Accepting New Referrals</span>
-          <h2 style="color: var(--primary); font-weight: 700; margin: 0.25rem 0 0 0; font-size: 1.4rem; line-height: 1.2;">Dr. Olayemi Sadiku</h2>
+
+        <!-- Notice 2: Dr. Ijang Yunga (New Walk-In Doctor) -->
+        <div class="notice-card" style="border-top: 4px solid #0ea5e9;">
+          <div>
+            <div class="notice-card-header">
+              <span class="notice-pill blue">✨ New Physician</span>
+              <small style="color:#94a3b8;">Orléans Location</small>
+            </div>
+            <h3 class="notice-title">Dr. Ijang Yunga (Walk-In Clinic)</h3>
+            <p class="notice-desc">
+              We are pleased to announce that <strong>Dr. Ijang Yunga</strong>, a female physician, has joined our team at the Orléans location for walk-in patient services. Walk-in appointments and acute episodic medical care are now available with Dr. Yunga.
+            </p>
+          </div>
+          <div class="notice-footer">
+            <a href="orleans.html" style="color:#38bdf8; text-decoration:none; font-weight:700; font-size:0.92rem; display:inline-flex; align-items:center; gap:0.4rem;">
+              <span>View Orléans Clinic &amp; Doctors</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Notice 3: Insurance Notice -->
+        <div class="notice-card" style="border-top: 4px solid #f59e0b;">
+          <div>
+            <div class="notice-card-header">
+              <span class="notice-pill amber">⚠️ Insurance Policy</span>
+              <small style="color:#94a3b8;">All Locations</small>
+            </div>
+            <h3 class="notice-title">Notice Regarding UHIP / COWAN Insurance</h3>
+            <p class="notice-desc">
+              Please note: Our medical centers <strong>do not accept UHIP or COWAN Insurance</strong>. Patients covered by UHIP, COWAN, or non-provincial private insurance are required to pay directly at the time of service and submit their receipts for reimbursement.
+            </p>
+          </div>
+          <div class="notice-footer">
+            <span style="color:#94a3b8; font-size:0.88rem;">Valid provincial health coverage (OHIP, IFHP, other provinces except Québec) accepted</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global 2026 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-locations-bar">
+        <div class="footer-loc-box">
+          <h5>Carling Location</h5>
+          <p>1081 Carling Ave, Suite 507, Ottawa ON</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2430</p>
+          <a href="carling.html">View Clinic & Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Richmond Location</h5>
+          <p>190 Richmond Rd (Superstore 2nd Level)</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2636</p>
+          <a href="richmond.html">View Clinic & Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Orléans Location</h5>
+          <p>6497 Jeanne-d'Arc Blvd N. (between shoppers drug mart and dollarama), Orléans ON</p>
+          <p>Tel: 613-704-2524 | Fax: 343-224-0424</p>
+          <a href="orleans.html">View Clinic & Doctors &rarr;</a>
         </div>
       </div>
 
-      <div style="background: #f8fafc; border-radius: 8px; padding: 1.1rem; margin-bottom: 1.2rem; border-left: 4px solid var(--primary); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);">
-        <p style="margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 600; color: #1e293b;">
-          Psychiatrist
-        </p>
-        <p style="margin: 0 0 0.8rem 0; font-size: 0.98rem; color: #334155; line-height: 1.45;">
-          ⚡ <strong>Very short waiting time</strong> for new patient referrals.
-        </p>
-        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 0.8rem 0;">
-        
-        <p style="margin: 0.4rem 0; font-size: 0.95rem; color: #334155; line-height: 1.4;">
-          📍 <strong>Location:</strong> Orléans Location<br>
-          <span style="font-size: 0.92rem; color: #475569; margin-left: 1.4rem; display: block; margin-top: 0.2rem; font-weight: 500;">
-            6497 Jeanne-d'Arc Blvd. N, Orléans, ON K1C 2R1
-          </span>
-        </p>
-        
-        <p style="margin: 0.6rem 0 0 0; font-size: 0.95rem; color: #334155;">
-          📠 <strong>Fax #:</strong> <a href="tel:3432240424" style="color: var(--primary); font-weight: 600; text-decoration: none;">343-224-0424</a>
-        </p>
+      <div class="footer-emergency-note">
+        ⚠️ <strong>Medical Emergency:</strong> If you are experiencing a life-threatening medical emergency, please call <strong>911</strong> immediately or visit your nearest hospital emergency room.
       </div>
 
-      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-        <button class="button clients" id="closeSadikuBtn" style="margin: 0; flex: 1 1 30%; font-weight: 600; padding: 0.8rem 1rem; font-size: 0.95rem;">OK</button>
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <h3>My Medical Centers</h3>
+          <p>Modern primary care, walk-in services, women's health, and psychiatry across three accessible locations in Ottawa.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Clinics</h4>
+          <ul class="footer-nav-list">
+            <li><a href="carling.html">Carling Location</a></li>
+            <li><a href="richmond.html">Richmond Location</a></li>
+            <li><a href="orleans.html">Orléans Location</a></li>
+            <li><a href="appointment.html">Book Appointment</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Specialized Care</h4>
+          <ul class="footer-nav-list">
+            <li><a href="WHealth.html">Women's Health Clinic</a></li>
+            <li><a href="dr-sadiku.html">Psychiatric Clinic</a></li>
+            <li><a href="dr-cheung.html">Dermatology Clinic</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Pap Test Screening</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Immunization Intake</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul class="footer-nav-list">
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="for-professionals.html">For Healthcare Pros</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 My Medical Centers. All rights reserved.</p>
+        <p>Providing quality healthcare across the Ottawa region.</p>
       </div>
     </div>
-  </div>
+  </footer>
 
-  <div class="popup-overlay" id="popupOverlay">
-    <div class="popup">
-      <button class="popup-close-x" aria-label="Close">&times;</button>
-      <h2>Welcome to My Medical Centers</h2>
-      <p>Please select a service:</p>
-      <button class="button professionals" id="popupProfessionalButton">Women's Health Clinic</button>
-      <button class="button clients" id="clientButton">Family Doctor/Walk-in</button>
-      <button class="button professionals" id="popupPapImmunButton">Pap Test/Immunization Request</button>
-    </div>
-  </div>
-
-  <!-- Secondary Popup: Pap Test or Immunization Request -->
-  <div class="popup-overlay" id="secondaryPopup">
-    <div class="popup">
-      <button class="popup-close-x" aria-label="Close">&times;</button>
-      <h2>Select Request</h2>
-      <p>Please choose:</p>
-      <button class="button professionals" id="papTestBtn">Pap Test</button>
-      <button class="button clients" id="immunBtn">Immunization Request</button>
-      <button class="button" id="backToMainBtn" style="background:#e0e0e0;color:#111;margin-top:0.5rem;">Back</button>
-    </div>
-  </div>
-
-  <!-- Announcement Popup -->
-  <div class="popup-overlay" id="announcementPopup">
-    <div class="popup">
-      <button class="popup-close-x" aria-label="Close">&times;</button>
-      <h2 style="color: var(--accent); font-weight: bold;">Important!</h2>
-      <p style="font-weight: bold; font-size: 1.2rem;">We are accepting walk-in all day (from 9 am to 5 pm on weekdays, and Saturdays (from 9am to 1pm)</p>
-      <button class="button clients" id="closeAnnouncementBtn">OK</button>
-    </div>
-  </div>
-
-  <script>
-    const video = document.getElementById('mainVideo');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-    const endButtons = document.getElementById('endButtons');
-    const popupOverlay = document.getElementById('popupOverlay');
-    const announcementPopup = document.getElementById('announcementPopup');
-    const closeAnnouncementBtn = document.getElementById('closeAnnouncementBtn');
-
-    // Popups on initial page load sequence
-    const sadikuPopup = document.getElementById('sadikuPopup');
-    const closeSadikuBtn = document.getElementById('closeSadikuBtn');
-    const closeSadikuX = document.getElementById('closeSadikuX');
-
-    function showInitialPopup() {
-      if (sadikuPopup) {
-        sadikuPopup.classList.add('show');
-      } else if (popupOverlay) {
-        popupOverlay.classList.add('show');
-      }
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', showInitialPopup);
-    } else {
-      showInitialPopup();
-    }
-
-    function handleSadikuClose() {
-      if (sadikuPopup) sadikuPopup.classList.remove('show');
-      if (popupOverlay) {
-        popupOverlay.classList.add('show');
-      }
-    }
-
-    if (closeSadikuBtn) closeSadikuBtn.addEventListener('click', handleSadikuClose);
-    if (closeSadikuX) closeSadikuX.addEventListener('click', handleSadikuClose);
-
-    // Play video with sound when "For Clients" is clicked
-    document.getElementById('clientButton').addEventListener('click', () => {
-      popupOverlay.classList.remove('show');
-      announcementPopup.classList.add('show');
-    });
-
-  // Redirect to "WHealth.html" when the "Women's Health Clinic" button is clicked
-    document.getElementById('popupProfessionalButton').addEventListener('click', (e) => {
-      e.preventDefault();
-      popupOverlay.classList.remove('show');
-      announcementPopup.classList.add('show');
-      // After a short delay, redirect
-      setTimeout(() => {
-  window.location.href = 'WHealth.html';
-      }, 2000);
-    });
-
-    // Redirect to "WHealth.html" when the navigation link is clicked
-    document.getElementById('navProfessionalButton').addEventListener('click', (event) => {
-      event.preventDefault();
-  window.location.href = 'WHealth.html';
-    });
-
-    // Show popup when "Pap Test & Immunization" nav links are clicked (works on any page)
-    const navPapImmunLink = document.getElementById('navPapImmunLink');
-    const navPapImmunLinkMobile = document.getElementById('navPapImmunLinkMobile');
-
-    // Global click listener for closing popups with the top-right X button
-    document.addEventListener('click', function(e) {
-      const closeBtn = e.target.closest('.popup-close-x');
-      if (closeBtn && closeBtn.id !== 'closeSadikuX') {
-        const overlay = closeBtn.closest('.popup-overlay');
-        if (overlay) {
-          overlay.classList.remove('show');
-        }
-      }
-    });
-
-    function createPapImmunPopupsIfNeeded() {
-      // Ensure main overlay exists
-      let overlay = document.getElementById('popupOverlay');
-      if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.className = 'popup-overlay';
-        overlay.id = 'popupOverlay';
-        overlay.innerHTML = `
-        <div class="popup">
-          <button class="popup-close-x" aria-label="Close">&times;</button>
-          <h2>Welcome to My Medical Centers</h2>
-          <p>Please select a service:</p>
-          <button class="button professionals" id="popupProfessionalButton">Women's Health Clinic</button>
-          <button class="button clients" id="clientButton">Family Doctor/Walk-in</button>
-          <button class="button professionals" id="popupPapImmunButton">Pap Test/Immunization Request</button>
-        </div>`;
-        document.body.appendChild(overlay);
-      }
-
-      // Ensure secondary overlay exists
-      let secondary = document.getElementById('secondaryPopup');
-      if (!secondary) {
-        secondary = document.createElement('div');
-        secondary.className = 'popup-overlay';
-        secondary.id = 'secondaryPopup';
-        secondary.innerHTML = `
-        <div class="popup">
-          <button class="popup-close-x" aria-label="Close">&times;</button>
-          <h2>Select Request</h2>
-          <p>Please choose:</p>
-          <button class="button professionals" id="papTestBtn">Pap Test</button>
-          <button class="button clients" id="immunBtn">Immunization Request</button>
-          <button class="button" id="backToMainBtn" style="background:#e0e0e0;color:#111;margin-top:0.5rem;">Back</button>
-        </div>`;
-        document.body.appendChild(secondary);
-      }
-
-      // Wire up buttons (idempotent)
-      const popupPapBtn = document.getElementById('popupPapImmunButton');
-      const popupClientBtn = document.getElementById('clientButton');
-      const popupProfBtn = document.getElementById('popupProfessionalButton');
-
-      // Show secondary when Pap/Immun button clicked
-      if (popupPapBtn && !popupPapBtn._wired) {
-        popupPapBtn.addEventListener('click', () => {
-          overlay.classList.remove('show');
-          secondary.classList.add('show');
-        });
-        popupPapBtn._wired = true;
-      }
-
-      const papBtn = document.getElementById('papTestBtn');
-      const immunBtn = document.getElementById('immunBtn');
-      const backBtn = document.getElementById('backToMainBtn');
-
-      if (papBtn && !papBtn._wired) { papBtn.addEventListener('click', () => window.location.href = 'https://tally.so/r/jakO8a'); papBtn._wired = true; }
-      if (immunBtn && !immunBtn._wired) { immunBtn.addEventListener('click', () => window.location.href = 'https://tally.so/r/Xx2K6g'); immunBtn._wired = true; }
-      if (backBtn && !backBtn._wired) {
-        backBtn.addEventListener('click', () => {
-          secondary.classList.remove('show');
-          overlay.classList.add('show');
-        });
-        backBtn._wired = true;
-      }
-
-      if (popupClientBtn && !popupClientBtn._wired) {
-        popupClientBtn.addEventListener('click', () => {
-          overlay.classList.remove('show');
-          const announcement = document.getElementById('announcementPopup');
-          if (announcement) announcement.classList.add('show');
-        });
-        popupClientBtn._wired = true;
-      }
-      if (popupProfBtn && !popupProfBtn._wired) {
-        popupProfBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          overlay.classList.remove('show');
-          const announcement = document.getElementById('announcementPopup');
-          if (announcement) announcement.classList.add('show');
-          setTimeout(() => { window.location.href = 'WHealth.html'; }, 2000);
-        });
-        popupProfBtn._wired = true;
-      }
-
-      return overlay;
-    }
-
-    function showPapImmunPopup() {
-      // Ensure popups exist and are wired
-      const overlay = createPapImmunPopupsIfNeeded();
-      const secondary = document.getElementById('secondaryPopup');
-      // Show secondary (Select Request) directly
-      if (overlay) overlay.classList.remove('show');
-      if (secondary) secondary.classList.add('show');
-    }
-
-    if (navPapImmunLink) {
-      navPapImmunLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        showPapImmunPopup();
-      });
-    }
-    if (navPapImmunLinkMobile) {
-      navPapImmunLinkMobile.addEventListener('click', (e) => {
-        e.preventDefault();
-        showPapImmunPopup();
-        dropdownMenu.classList.remove('show');
-      });
-    }
-
-    // Toggle play/pause with the button
-    playPauseBtn.addEventListener('click', () => {
-      if (video.paused) {
-        video.play();
-        playPauseBtn.innerHTML = '❚❚';
-      } else {
-        video.pause();
-        playPauseBtn.innerHTML = '▶';
-      }
-    });
-
-    // Mute/unmute button (starts muted)
-    const muteUnmuteBtn = document.getElementById('muteUnmuteBtn');
-    muteUnmuteBtn.addEventListener('click', () => {
-      video.muted = !video.muted;
-      muteUnmuteBtn.innerHTML = video.muted ? '🔇' : '🔊';
-    });
-
-    // On video end, dim the video, hide the play/pause button, and show end buttons
-    video.addEventListener('ended', () => {
-      video.style.filter = 'brightness(0.5)';
-      playPauseBtn.style.display = 'none';
-      endButtons.style.display = 'flex';
-    });
-
-    // Keep the video at the smaller size and lower position on load/resize
-    function setVideoLayout() {
-      const vc = document.querySelector('.video-container');
-      if (vc) {
-        vc.style.height = '70vh';
-        vc.style.marginTop = '8px';
-      }
-    }
-
-    window.addEventListener('resize', setVideoLayout);
-    window.addEventListener('load', setVideoLayout);
-
-    // Add event listeners to the buttons at the end of the video
-    const learnMoreBtn = document.getElementById('learnMoreBtn');
-    if (learnMoreBtn) learnMoreBtn.addEventListener('click', () => {
-      window.location.href = 'services.html';
-    });
-
-    const joinWaitlistBtn = document.getElementById('joinWaitlistBtn');
-    if (joinWaitlistBtn) joinWaitlistBtn.addEventListener('click', () => {
-      window.location.href = 'appointment.html';
-    });
-
-    // Close announcement popup for patients (do NOT autoplay)
-    closeAnnouncementBtn.addEventListener('click', () => {
-      announcementPopup.classList.remove('show');
-      // Keep video paused and muted until user chooses
-      if (video) video.muted = true;
-    });
-
-     // Hamburger menu functionality
-    const hamburgerMenu = document.getElementById('hamburgerMenu');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-
-    hamburgerMenu.addEventListener('click', () => {
-      dropdownMenu.classList.toggle('show'); // Toggle dropdown visibility
-
-    });
-    
-    // Pap Test / Immunization secondary popup handlers
-    const popupPapImmunButton = document.getElementById('popupPapImmunButton');
-    const secondaryPopup = document.getElementById('secondaryPopup');
-    const papTestBtn = document.getElementById('papTestBtn');
-    const immunBtn = document.getElementById('immunBtn');
-    const backToMainBtn = document.getElementById('backToMainBtn');
-
-    if (popupPapImmunButton) {
-      popupPapImmunButton.addEventListener('click', () => {
-        popupOverlay.classList.remove('show');
-        if (secondaryPopup) secondaryPopup.classList.add('show');
-      });
-    }
-
-    if (papTestBtn) {
-      papTestBtn.addEventListener('click', () => {
-        // Redirect to pap.html (create this file separately)
-        window.location.href = 'https://tally.so/r/jakO8a';
-      });
-    }
-
-    if (immunBtn) {
-      immunBtn.addEventListener('click', () => {
-        // Redirect to tally.html (the immunization tally form you'll create)
-        window.location.href = 'https://tally.so/r/Xx2K6g';
-      });
-    }
-
-    if (backToMainBtn) {
-      backToMainBtn.addEventListener('click', () => {
-        if (secondaryPopup) secondaryPopup.classList.remove('show');
-        popupOverlay.classList.add('show');
-      });
-    }
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

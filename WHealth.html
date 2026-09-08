@@ -3,485 +3,379 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Women's Health Clinic - Dr. Keiko Chan</title>
+  <title>Women's Health Clinic - My Medical Centers</title>
+  <meta name="description" content="Specialized Women's Health Clinic in Ottawa with Dr. Keiko Chan & Dr. Sawini Fernando. Focused gynecologic care, IUD insertions, pain management, and menopause care." />
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="icon" href="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" type="image/png">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-    :root {
-      --primary: #0077be;
-      --secondary: #f0f8ff;
-      --accent: #ff6b6b;
-      --text: #333;
+    .team-profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
     }
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      color: var(--text);
-      background-color: var(--secondary);
-      overflow-x: hidden;
-    }
-    .header {
-      background-color: white;
-      color: var(--primary);
-      padding: 0.4rem 1rem; /* slightly smaller to reduce header height */
-      position: fixed;
-      width: 100%;
-      z-index: 1100;
+
+    .doctor-profile-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
       display: flex;
-      justify-content: center; /* center header content horizontally */
+      flex-direction: column;
       align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      max-width: 100%;
-      box-sizing: border-box;
-      overflow: hidden;
-    }
-    .logo {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--primary);
-      line-height: 1;
-      margin-right: 1.5rem;
-    }
-    .nav {
-      display: flex;
-      align-items: center;
-      margin-left: 0;
-      width: 100%;
-      justify-content: center;
+      text-align: center;
       position: relative;
     }
-    .nav a {
-      color: var(--primary);
-      text-decoration: none;
-      margin-left: 1.2rem; /* slightly larger spacing */
-      margin-right: 0;
-      font-size: 0.97rem;
-      transition: color 0.3s ease;
-      font-weight: 400;
-      line-height: 1;
-      padding: 0;
-    }
-    .nav a:first-child {
-      position: absolute;
-      left: 0;
-      margin-left: 0;
-    }
-    .nav a:hover {
-      color: var(--accent);
-    }
-    .logo-container {
-      position: absolute;
-      top: 85px;
-      left: 27px;
-      z-index: 1100;
-      width: 100px;
-      transition: transform 0.3s ease-in-out;
-      cursor: pointer;
-    }
-    .logo-container img {
-      width: 100%;
-      height: auto;
-    }
-    .logo-container:hover {
-      transform: scale(1.1);
-    }
-    .logo-container:active {
-      transform: scale(1.2);
-    }
-    .main-content {
-      padding: 2.5rem 1.5rem 2rem 1.5rem;
-      max-width: 900px;
-      margin: 120px auto 0 auto; /* pulled up to reduce perceived header height */
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
-    }
-    h1 {
-      color: var(--primary);
-      text-align: center;
-      margin-bottom: 1.5rem;
-      font-size: 2.5rem;
-    }
-    h2 {
-      color: var(--primary);
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    ul {
-      margin-left: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .bio-section {
-      margin-bottom: 2.5rem;
-    }
-    .bio {
-      background: var(--secondary);
-      border-left: 4px solid var(--primary);
-      padding: 1.2rem 1.5rem;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-    }
-    .photo-placeholder {
+
+    .doctor-portrait-img {
       width: 140px;
       height: 140px;
-      border-radius: 50%;
-      display: block;
-      margin: 0 0 1.5rem 0; /* no auto-centering inside flex */
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      object-fit: cover; /* ensures the image fills the circle */
+      border-radius: var(--radius-pill);
+      object-fit: cover;
+      margin-bottom: 1.25rem;
+      border: 4px solid var(--primary-light);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     }
-    .team-photos {
+
+    .conditions-list-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0 3rem;
+    }
+
+    .condition-pill-item {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 1.2rem;
       display: flex;
-      gap: 1.25rem;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      flex-wrap: nowrap;
+      gap: 0.85rem;
+      align-items: flex-start;
+      box-shadow: var(--shadow-sm);
     }
-    .contact-box {
-      background: var(--secondary);
-      border-left: 4px solid var(--accent);
-      padding: 1.2rem 1.5rem;
-      border-radius: 8px;
-      margin-top: 2.5rem;
+
+    .condition-icon {
+      background: #ffe4e6;
+      color: #e11d48;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-pill);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
       font-size: 1.1rem;
     }
-    .referral-section {
-      margin-top: 2rem;
-      background: #fbfcfe;
-      border: 1px solid rgba(0,0,0,0.04);
-      padding: 1rem;
-      border-radius: 10px;
-    }
-    .pdf-embed {
-      margin-top: 0.8rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    @media (max-width: 768px) {
-      .main-content {
-        margin: 120px 0 0 0;
-        padding: 1rem 0.5rem;
-      }
-      .logo-container {
-        top: 60px;
-        left: 8px;
-        width: 80px;
-      }
-      h1 {
-        font-size: 2rem;
-      }
-    }
-    /* Hamburger menu and dropdown (mobile) */
-    .hamburger-menu {
-      display: none; /* Hidden by default, shown on small screens */
-      cursor: pointer;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 21px;
-    }
 
-    .hamburger-menu div {
-      width: 100%;
-      height: 3px;
-      background-color: var(--primary);
-      transition: all 0.3s ease;
-    }
-
-    .dropdown-menu {
-      display: none; /* Hidden by default */
-      position: fixed; /* Cover the whole page */
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.97);
-      justify-content: center; /* Center items horizontally */
-      align-items: center; /* Center items vertically */
-      z-index: 1200; /* Above header */
-      flex-direction: column; /* Stack links vertically */
-      text-align: center; /* Center text */
-    }
-
-    .dropdown-menu.show {
-      display: flex; /* Show when toggled */
-    }
-
-    .dropdown-menu a {
-      margin: 1rem 0; /* Space out the links */
-      font-size: 1.4rem; /* Larger for touch */
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    .book-appointment-btn {
-      background-color: #5fa1bc;
-      color: #fff;
-      padding: 0.18rem 0.7rem; /* compact vertical padding like index.html */
-      border-radius: 15px;
-      font-size: 0.93rem;
-      border: none;
-      cursor: pointer;
-      margin-left: 1.5rem;
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      height: 28px;
-      line-height: 1;
-      box-shadow: 0 2px 8px rgba(95,161,188,0.08);
-      white-space: nowrap;
-    }
-
-    /* Prominent OceanMD link styling */
-    .oceanmd-link {
-      font-size: 1.25rem;
-      text-decoration: none;
-      color: #ffffff;
-      background-color: var(--primary);
-      padding: 0.45rem 0.9rem;
-      border-radius: 8px;
-      display: inline-block;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      font-weight: 700;
-    }
-    .oceanmd-link:hover {
-      background-color: #005f9e;
-      transform: translateY(-2px);
-    }
-
-    @media (max-width: 768px) {
-      .nav { display: none; }
-      .hamburger-menu { display: flex; }
-  .book-appointment-btn { display: none !important; }
-  /* But keep the booking button visible inside the dropdown menu */
-  .dropdown-menu button.book-appointment-btn { display: inline-flex !important; }
-    }
-    /* Popup Styles (copied from index.html) */
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    .popup-overlay.show {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .popup {
-      position: relative;
-      background-color: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-    }
-
-    .popup-close-x {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      background: transparent;
-      border: none;
-      font-size: 1.6rem;
-      font-weight: 300;
-      color: #888;
-      cursor: pointer;
-      line-height: 1;
-      padding: 4px 8px;
-      border-radius: 4px;
-      transition: color 0.2s ease, background-color 0.2s ease;
-      z-index: 10;
-    }
-
-    .popup-close-x:hover {
-      color: #111;
-      background-color: rgba(0, 0, 0, 0.06);
-    }
-    /* Button styles copied from index.html to keep popup consistent */
-    .button {
-      padding: 0.8rem 2rem;
-      border-radius: 50px;
-      font-size: 1rem;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin: 1rem 0;
-      width: 100%;
-      transition: background-color 0.3s ease;
-    }
-
-    .button.professionals {
-      background-color: var(--primary, #0077be);
-    }
-
-    .button.professionals:hover {
-      background-color: #005c91;
-    }
-
-    .button.clients {
-      background-color: #28a745; /* fallback green */
-    }
-
-    .button.clients:hover {
-      background-color: #218838;
+    .referral-ocean-card {
+      background: linear-gradient(135deg, #fdf2f8 0%, #f0fdf4 100%);
+      border: 1px solid rgba(244, 63, 94, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin: 3rem 0;
+      box-shadow: var(--shadow-sm);
     }
   </style>
 </head>
 <body>
-  <!-- Logo Section -->
-  <div class="logo-container">
-    <img src="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" alt="Medical Center Logo" id="mainLogo">
-  </div>
-  <header class="header">
-    <div class="logo">My Medical Centers</div>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="services.html">Our Services</a>
-      <a href="WHealth.html">Women's Health Clinic</a>
-      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
-      <a href="#" id="navPapImmunLink">Pap Test & Immunization</a>
-      <a href="contact-us.html">Contact Us!</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
-    </nav>
-    <a href="appointment.html" class="book-appointment-btn">Book Appointment Now!</a>
-    <!-- Hamburger menu for mobile -->
-    <div class="hamburger-menu" id="hamburgerMenu">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+  <!-- Global 2026 Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-wrapper">
+        <img src="https://i.postimg.cc/wTrcjZ7f/MMC-transformed.png" alt="MMC Logo" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-title">My Medical Centers</span>
+          <span class="brand-subtitle">Your Health is Our Priority</span>
+        </div>
+      </a>
 
-    <!-- Dropdown menu for mobile -->
-    <div class="dropdown-menu" id="dropdownMenu">
-      <a href="index.html">Home</a>
-      <a href="services.html">Our Services</a>
-      <a href="WHealth.html">Women's Health Clinic</a>
-      <a href="dr-sadiku.html">Dr. Sadiku - Psychiatry</a>
-      <a href="#" id="navPapImmunLinkMobile">Pap Test & Immunization</a>
-      <a href="contact-us.html">Contact Us!</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
-      <button onclick="window.location.href='appointment.html'" class="book-appointment-btn" style="margin-top:1.5rem; width:auto; font-size:1.1rem;">Book Appointment Now!</button>
+      <nav class="desktop-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Our Services</a>
+        <a href="WHealth.html" class="nav-link active">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap & Immunization</a>
+        <a href="contact-us.html" class="nav-link">Contact</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment</a>
+      </nav>
+
+      <button class="hamburger-toggle" id="hamburgerToggle" aria-label="Toggle navigation menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </header>
-  <main class="main-content">
-    <h1>Women's Health Clinic<br><span style="font-size:1.3rem;font-weight:400;">with Dr. Keiko Chan & Dr. Sawini Fernando</span></h1>
-  <!-- Two framed photos: Dr. Keiko (left) and Dr. Sawini (right) -->
-  <div class="team-photos">
-    <img src="https://i.postimg.cc/vBP5Btt3/1000015982.jpg" alt="Dr. Keiko Chan" class="photo-placeholder">
-    <img src="https://i.postimg.cc/W1ZHS7Xn/image-2026-06-06-135349248-modified.png" alt="Dr. Sawini Fernando" class="photo-placeholder">
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-content">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Our Services</a>
+        <a href="WHealth.html" class="nav-link active">Women's Health Clinic</a>
+        <a href="dr-sadiku.html" class="nav-link">Psychiatric Clinic</a>
+        <a href="dr-cheung.html" class="nav-link">Dermatology Clinic</a>
+        <a href="#" class="nav-link open-pap-immun-modal">Pap Test & Immunization</a>
+        <a href="contact-us.html" class="nav-link">Contact Us</a>
+        <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+        <a href="appointment.html" class="nav-cta-btn">Book Appointment Now</a>
+      </div>
+      <div class="mobile-drawer-footer">
+        <p><strong>My Medical Centers</strong><br>Carling Clinic: 613-704-2524</p>
+      </div>
+    </div>
   </div>
-    <div class="referral-section" id="referralSection">
-      <h2>We only accept referrals through OceanMD</h2>
-      <p style="text-align:center; margin-top:0.8rem;">
-        <a href="https://ocean.cognisantmd.com/referrals/NewReferral.html" target="_blank" rel="noopener" class="oceanmd-link">
-          <strong><em>OceanMD is FREE for the sender</em></strong>
-        </a>
-      </p>
-      <div style="margin-top:1rem;">
-        <h3 style="margin-bottom:0.4rem;">How to send a referral (quick steps)</h3>
-        <ol style="margin-top:0; padding-left:1.25rem;">
-          <li>Sign in (or <a href="https://www.oceanmd.com/getting-started/" target="_blank" rel="noopener">sign up</a>) to Clinic Account on the top right.</li>
-          <li>Click the OceanMD link above to open the referral page.</li>
-          <li>Make sure your selected location is set near <strong>Ottawa</strong>.</li>
-          <li>In the "Find any health service" search bar, type: <strong>My Medical Centers - Women's Health Keiko Chan</strong>.</li>
-          <li>Open the provider entry and click the <strong>Send eReferral</strong> button on bottom of their page to complete the referral.</li>
-        </ol>
-          <p style="margin:0.5rem 0 0 0; font-weight:600;">If you have any trouble, visit <a href="https://www.oceanmd.com/getting-started/" target="_blank" rel="noopener"></a> <a href="https://www.oceanmd.com/contact-us/" target="_blank" rel="noopener">OceanMD Contact Us</a> page</a>.</p>
+
+  <!-- Main Content -->
+  <main class="page-main-wrapper">
+    <div class="content-container">
+      
+      <!-- Hero Banner -->
+      <section class="page-hero" style="background: linear-gradient(135deg, #4c0519 0%, #be123c 100%);">
+        <span class="page-hero-badge" style="background:rgba(255,255,255,0.2);">🌸 Specialized Gynecological Care</span>
+        <h1 class="page-hero-title">Women's Health Clinic</h1>
+        <p class="page-hero-subtitle">
+          Dedicated outpatient focused gynecological care with <strong>Dr. Keiko Chan</strong> &amp; <strong>Dr. Sawini Fernando</strong>. Comfortable, patient-first care with comprehensive pain management options at our Carling location.
+        </p>
+
+        <div class="clinic-action-buttons-bar">
+          <a href="https://ocean.cognisantmd.com/referrals/NewReferral.html" target="_blank" rel="noopener" class="clinic-btn clinic-btn-accent-pink">
+            <span>Send Ocean eReferral (Free)</span>
+            <span>&rarr;</span>
+          </a>
+          <a href="carling.html" class="clinic-btn clinic-btn-outline">
+            <span>🏢 Carling Location Info</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Physician Profiles -->
+      <div class="team-profiles-grid">
+        
+        <!-- Dr. Keiko Chan -->
+        <div class="doctor-profile-card">
+          <img src="https://i.postimg.cc/vBP5Btt3/1000015982.jpg" alt="Dr. Keiko Chan" class="doctor-portrait-img">
+          <span class="status-badge specialist" style="margin-bottom:0.75rem;">Focused Practice</span>
+          <h3 style="font-size:1.5rem; font-weight:700; color:var(--primary-dark); margin-bottom:0.25rem;">Dr. Keiko Chan</h3>
+          <p style="color:var(--text-secondary); font-weight:600; margin-bottom:1rem;">Focused Practice in Gynaecology</p>
+          <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6; text-align:left;">
+            Dr. Keiko Chan completed medical school in Calgary and residency in Family Medicine in Ottawa, training extensively in women's health at the Shirley E Greenberg Center. She is passionate about making procedures like IUD insertions, endometrial biopsies, and Pap tests comfortable, offering cervical nerve blocks, inhaled Penthrox, and anxiolytic medication options. She frequently lectures on perimenopause/menopause and holds Menopause Society certification.
+          </p>
+        </div>
+
+        <!-- Dr. Sawini Fernando -->
+        <div class="doctor-profile-card">
+          <img src="https://i.postimg.cc/W1ZHS7Xn/image-2026-06-06-135349248-modified.png" alt="Dr. Sawini Fernando" class="doctor-portrait-img">
+          <span class="status-badge specialist" style="margin-bottom:0.75rem;">Focused Practice</span>
+          <h3 style="font-size:1.5rem; font-weight:700; color:var(--primary-dark); margin-bottom:0.25rem;">Dr. Sawini Fernando</h3>
+          <p style="color:var(--text-secondary); font-weight:600; margin-bottom:1rem;">Focused Practice in Gynaecology</p>
+          <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6; text-align:left;">
+            Dr. Sawini Fernando graduated from Dalhousie University's medical school and completed Family Medicine residency and Enhanced Skills Training in Women's Health at Queen's University. She is dedicated to empathetic, trauma-informed gynecologic care for cisgender, transgender, and non-binary individuals, offering tailored pain management including paracervical blocks during clinical procedures.
+          </p>
+        </div>
+
       </div>
-    </div>
-    <h2>What Conditions We See</h2>
-    <ul>
-      <li>Pap smear/HPV testing</li>
-      <li>Contraceptive Consultations (Pills, patches, rings, IUDs, Nexplanon) with pain management if applicable (cervical nerve blocks, inhaled Penthrox, and anxiolytic medications are options for IUDs)</li>
-      <li>Menstrual Consultations (irregular menses, painful menses, heavy menses, PCOS, endometriosis, adenomyosis)</li>
-      <li>Medical Abortion &lt;10 weeks</li>
-      <li>Endometrial biopsy (for investigating post-menopausal bleeding)</li>
-      <li>Severe menstrual mood disorders (Premenstrual Dysphoric Disorder, a.k.a. PMDD)</li>
-    </ul>
-    <div class="bio-section">
-      <!-- Removed duplicate services/bio block per user request -->
-      <h2>About Dr. Keiko Chan</h2>
-      <div class="bio">
-        Dr. Keiko Chan completed medical school in Calgary, then moved to Ottawa for her residency in Family Medicine. Throughout residency, she focused on women’s health, working at the Shirley E Greenberg Center twice weekly. Upon graduation, Dr. Chan continued to explore women’s health for patients of all ages, ranging from contraception and more. She is passionate about making procedures such as IUD insertions, endometrial biopsies, or even pap/HPV smears as comfortable as possible in the outpatient setting. At pre-procedure consultations, Dr. Chan will present patients with pain management options including cervical nerve blocks, inhaled Penthrox, and anxiolytic medications. Dr. Chan is also active in the Ottawa community, often giving public talks on evidence-based medicine in perimenopause and menopause. She is also pursuing her Menopause Society Certified Practitioner (MSCP) status with The Menopause Society and hopes to become certified in late October 2025.
-      </div>
-      <h2>About Dr. Sawini Fernando</h2>
-      <div class="bio">
-        Dr. Sawini Fernando graduated from Dalhousie University's medical school in Halifax, Nova Scotia. She then completed her residency in Family Medicine at Queen's University in Kingston, Ontario, followed by Enhanced Skills Training in Women's Health through Queen's University. Throughout her training, Dr. Fernando developed a particular interest in women’s health and is passionate about providing gynaecologic care that is empathetic and respectful of the unique experiences of cisgender, transgender and non-binary individuals. She offers various options for pain management during gynaecological procedures, including paracervical block, which are discussed during pre-procedure consultations. Dr. Fernando is excited to be working with Dr. Keiko Chan to serve this patient community.
-      </div>
-    </div>
-    <div class="contact-box">
-      <strong>Contact for Referrals & Questions:</strong><br>
-      Referrals Coordinator: <a href="mailto:admin@mymedicalcenters.ca">admin@mymedicalcenters.ca</a><br>
-      Address: 1081 Carling Ave Unit 507, Ottawa, ON K1Y 4G2<br>
-      Fax: 613-907-4455
+
+      <!-- Clinical Services / Conditions Seen -->
+      <section style="margin: 3.5rem 0;">
+        <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 0.5rem;">
+          Conditions Evaluated &amp; Procedures Offered
+        </h2>
+        <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem;">
+          We provide specialized consultations, diagnostics, and procedures in a welcoming outpatient setting:
+        </p>
+
+        <div class="conditions-list-grid">
+          <div class="condition-pill-item">
+            <div class="condition-icon">📋</div>
+            <div>
+              <strong style="color:var(--text-primary); display:block; margin-bottom:0.2rem;">Pap Smear &amp; HPV Testing</strong>
+              <span style="font-size:0.88rem; color:var(--text-secondary);">Screening, follow-ups, and cervical health evaluations.</span>
+            </div>
+          </div>
+
+          <div class="condition-pill-item">
+            <div class="condition-icon">💊</div>
+            <div>
+              <strong style="color:var(--text-primary); display:block; margin-bottom:0.2rem;">Contraceptive Consultations</strong>
+              <span style="font-size:0.88rem; color:var(--text-secondary);">IUD insertions &amp; removals (Mirena, Kyleena, Copper), Nexplanon, oral contraceptives.</span>
+            </div>
+          </div>
+
+          <div class="condition-pill-item">
+            <div class="condition-icon">🛡️</div>
+            <div>
+              <strong style="color:var(--text-primary); display:block; margin-bottom:0.2rem;">Advanced Pain Management</strong>
+              <span style="font-size:0.88rem; color:var(--text-secondary);">Cervical nerve blocks, inhaled Penthrox, and premedication for maximum comfort.</span>
+            </div>
+          </div>
+
+          <div class="condition-pill-item">
+            <div class="condition-icon">🩸</div>
+            <div>
+              <strong style="color:var(--text-primary); display:block; margin-bottom:0.2rem;">Menstrual Disorders &amp; PCOS</strong>
+              <span style="font-size:0.88rem; color:var(--text-secondary);">Irregular, painful, or heavy bleeding, endometriosis, and adenomyosis workups.</span>
+            </div>
+          </div>
+
+          <div class="condition-pill-item">
+            <div class="condition-icon">🔬</div>
+            <div>
+              <strong style="color:var(--text-primary); display:block; margin-bottom:0.2rem;">Endometrial Biopsy</strong>
+              <span style="font-size:0.88rem; color:var(--text-secondary);">Investigation of abnormal post-menopausal or heavy uterine bleeding.</span>
+            </div>
+          </div>
+
+          <div class="condition-pill-item">
+            <div class="condition-icon">🧠</div>
+            <div>
+              <strong style="color:var(--text-primary); display:block; margin-bottom:0.2rem;">PMDD &amp; Severe Mood Disorders</strong>
+              <span style="font-size:0.88rem; color:var(--text-secondary);">Premenstrual Dysphoric Disorder assessments and targeted medical treatment.</span>
+            </div>
+          </div>
+
+          <div class="condition-pill-item">
+            <div class="condition-icon">🌿</div>
+            <div>
+              <strong style="color:var(--text-primary); display:block; margin-bottom:0.2rem;">Perimenopause &amp; Menopause</strong>
+              <span style="font-size:0.88rem; color:var(--text-secondary);">Evidence-based hormone therapy (HRT) and non-hormonal symptom management.</span>
+            </div>
+          </div>
+
+          <div class="condition-pill-item">
+            <div class="condition-icon">🩺</div>
+            <div>
+              <strong style="color:var(--text-primary); display:block; margin-bottom:0.2rem;">Medical Abortion (&lt;10 Weeks)</strong>
+              <span style="font-size:0.88rem; color:var(--text-secondary);">Confidential, compassionate outpatient early pregnancy termination support.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Referral Submission Card -->
+      <section class="referral-ocean-card" id="referralSection">
+        <h2 style="font-size:1.6rem; font-weight:800; color:#881337; margin-bottom:0.6rem;">
+          How to Submit a Referral
+        </h2>
+        <p style="color:#4c0519; font-size:1rem; line-height:1.6; margin-bottom:1.5rem;">
+          We accept physician and nurse practitioner referrals exclusively through <strong>OceanMD eReferral</strong> (completely free for the sender).
+        </p>
+
+        <div style="background:#ffffff; border-radius:var(--radius-md); padding:1.5rem; margin-bottom:1.5rem; border:1px solid rgba(0,0,0,0.06);">
+          <ol style="margin:0; padding-left:1.5rem; color:#334155; line-height:1.7; font-size:0.95rem;">
+            <li>Log in or create a free account on <a href="https://www.oceanmd.com/getting-started/" target="_blank" rel="noopener" style="color:var(--primary); font-weight:600;">OceanMD</a>.</li>
+            <li>Click the Ocean referral link or open the eReferral directory.</li>
+            <li>Make sure your selected location is set near <strong>Ottawa</strong>.</li>
+            <li>In the "Find any health service" search bar, type: <strong>My Medical Centers - Women's Health Keiko Chan</strong>.</li>
+            <li>Open the provider entry and click <strong>Send eReferral</strong> at the bottom of their page.</li>
+          </ol>
+        </div>
+
+        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="https://ocean.cognisantmd.com/referrals/NewReferral.html" target="_blank" rel="noopener" class="clinic-btn clinic-btn-accent-pink">
+            <span>Open OceanMD eReferral Portal</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Clinic Contact Card -->
+      <section class="clinic-details-card">
+        <div class="detail-item">
+          <span class="detail-label">Location</span>
+          <span class="detail-value">Carling Location, Suite 507</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Clinic Address</span>
+          <span class="detail-value">1081 Carling Avenue, Ottawa, ON K1Y 4G2</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Referrals Coordinator</span>
+          <span class="detail-value"><a href="mailto:admin@mymedicalcenters.ca">admin@mymedicalcenters.ca</a></span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Referral Fax</span>
+          <span class="detail-value">613-907-4455</span>
+        </div>
+      </section>
+
     </div>
   </main>
-  <script>
-    // Hamburger toggle (mobile dropdown)
-    const hamburgerMenu = document.getElementById('hamburgerMenu');
-    const dropdownMenu = document.getElementById('dropdownMenu');
 
-    if (hamburgerMenu && dropdownMenu) {
-      hamburgerMenu.addEventListener('click', () => {
-        dropdownMenu.classList.toggle('show');
-      });
-    }
-  </script>
-  <script>
-    // Global close listener for popups via X button
-    document.addEventListener('click', function(e) {
-      const closeBtn = e.target.closest('.popup-close-x');
-      if (closeBtn) {
-        const overlay = closeBtn.closest('.popup-overlay');
-        if (overlay) {
-          overlay.classList.remove('show');
-        }
-      }
-    });
+  <!-- Global 2026 Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-locations-bar">
+        <div class="footer-loc-box">
+          <h5>Carling Location</h5>
+          <p>1081 Carling Ave, Suite 507, Ottawa ON</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2430</p>
+          <a href="carling.html">View Clinic & Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Richmond Location</h5>
+          <p>190 Richmond Rd (Superstore 2nd Level)</p>
+          <p>Tel: 613-704-2524 | Fax: 613-704-2636</p>
+          <a href="richmond.html">View Clinic & Doctors &rarr;</a>
+        </div>
+        <div class="footer-loc-box">
+          <h5>Orléans Location</h5>
+          <p>6497 Jeanne-d'Arc Blvd N. (between shoppers drug mart and dollarama), Orléans ON</p>
+          <p>Tel: 613-704-2524 | Fax: 343-224-0424</p>
+          <a href="orleans.html">View Clinic & Doctors &rarr;</a>
+        </div>
+      </div>
 
-    // Pap Test & Immunization popup injection for this page
-    (function() {
-      function createSecondaryPopup() {
-        if (document.getElementById('secondaryPopup')) return;
-        const secondary = document.createElement('div');
-        secondary.className = 'popup-overlay';
-        secondary.id = 'secondaryPopup';
-        secondary.innerHTML = `
-          <div class="popup">
-            <button class="popup-close-x" aria-label="Close">&times;</button>
-            <h2>Select Request</h2>
-            <p>Please choose:</p>
-            <button class="button professionals" id="papTestBtn">Pap Test</button>
-            <button class="button clients" id="immunBtn">Immunization Request</button>
-            <button class="button" id="backToMainBtn" style="background:#e0e0e0;color:#111;margin-top:0.5rem;">Back</button>
-          </div>`;
-        document.body.appendChild(secondary);
-        document.getElementById('papTestBtn').addEventListener('click', () => window.location.href='https://tally.so/r/jakO8a');
-        document.getElementById('immunBtn').addEventListener('click', () => window.location.href='https://tally.so/r/Xx2K6g');
-        document.getElementById('backToMainBtn').addEventListener('click', () => document.getElementById('secondaryPopup').classList.remove('show'));
-      }
+      <div class="footer-emergency-note">
+        ⚠️ <strong>Medical Emergency:</strong> If you are experiencing a life-threatening medical emergency, please call <strong>911</strong> immediately or visit your nearest hospital emergency room.
+      </div>
 
-      const navLink = document.getElementById('navPapImmunLink');
-      const navLinkMobile = document.getElementById('navPapImmunLinkMobile');
-      if (navLink) navLink.addEventListener('click', (e) => { e.preventDefault(); createSecondaryPopup(); document.getElementById('secondaryPopup').classList.add('show'); });
-      if (navLinkMobile) navLinkMobile.addEventListener('click', (e) => { e.preventDefault(); createSecondaryPopup(); document.getElementById('secondaryPopup').classList.add('show'); document.getElementById('dropdownMenu').classList.remove('show'); });
-    })();
-  </script>
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <h3>My Medical Centers</h3>
+          <p>Modern primary care, walk-in services, women's health, and psychiatry across three accessible locations in Ottawa.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Clinics</h4>
+          <ul class="footer-nav-list">
+            <li><a href="carling.html">Carling Location</a></li>
+            <li><a href="richmond.html">Richmond Location</a></li>
+            <li><a href="orleans.html">Orléans Location</a></li>
+            <li><a href="appointment.html">Book Appointment</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Specialized Care</h4>
+          <ul class="footer-nav-list">
+            <li><a href="WHealth.html">Women's Health Clinic</a></li>
+            <li><a href="dr-sadiku.html">Psychiatric Clinic</a></li>
+            <li><a href="dr-cheung.html">Dermatology Clinic</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Pap Test Screening</a></li>
+            <li><a href="#" class="open-pap-immun-modal">Immunization Intake</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul class="footer-nav-list">
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="for-professionals.html">For Healthcare Pros</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 My Medical Centers. All rights reserved.</p>
+        <p>Providing quality healthcare across the Ottawa region.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
